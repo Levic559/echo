@@ -2,17 +2,26 @@
     width:100%;
     height:5rem;
     display:flex;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
     background-color: grey;
-}
+    .TextCon{
+    width:75%;
+    justify-content:center;
+    align-items:center;
+    font-size:2rem;
+    text-align:center;
+    margin:.5rem;
+    color:$textColorB
+    }
 
-.TextCon{
-width:75%;
-justify-content:center;
-align-items:center;
-font-size:2rem;
-text-align:center;
-margin:.5rem;
-color:$textColorB
+    .navLogoCon{
+        width:10%;
+        }
+    .navInputCon{
+        display: flex;
+        flex-direction: row;
+    width:50%;
+    justify-content: space-evenly;
+    }
 }
