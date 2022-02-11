@@ -4,12 +4,12 @@ import {useRouter} from 'next/router';
 
 const MyButton =({
 text='book',
-routeTo =  "/"
+onClick
 
 })=>{
     const router = useRouter();
 return(
-<Button className='button' onClick={() => router.push(routeTo)}> <p>{text}</p></Button>
+<Button className='button' onClick={onClick}> <p>{text}</p></Button>
 )
 }
 

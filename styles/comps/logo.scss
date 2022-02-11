@@ -7,14 +7,34 @@
     width:32.5rem;
     height:15rem;
     padding:0;
-    margin:0
+    margin:0;
+    @media screen and (max-width: 600px) {
+        justify-content:flex-start;
+        height:10rem;
+        width:20rem;
+    }
+    .TextCon{    
+        font-family: 'Baumans', sans-serif;
+        font-size:10rem;
+        line-height: 10rem;
+        color:$textColorL;
+        padding:0;
+        margin:0;
+        @media screen and (max-width: 1200px) {
+            font-size: 5rem;
+        }
+        @media screen and (max-width: 600px) {
+            font-size: 3.5rem;
+        }
+    };
+    .logoAni{
+        width:25rem;
+        @media screen and (max-width: 1200px) {
+            width:10rem;
+        }
+        @media screen and (max-width: 600px) {
+            width:10rem;
+        }
+    }
 }
 
-.TextCon{    
-    font-family: 'Baumans', sans-serif;
-    font-size:10rem;
-    line-height: 10rem;
-    color:$textColorL;
-    padding:0;
-    margin:0
-}

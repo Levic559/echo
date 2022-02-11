@@ -4,12 +4,68 @@ import MyButton from '@/comps/Button'
 import styled from'styled-components'
 import Footer from '@/comps/Footer' 
 import InputBox from '@/comps/InputBox'
+import {useRouter} from 'next/router';
+import{Card} from "../comps/Card"
+import { useState } from 'react'
 
-
+var page=1
 export default function Home({
   title="Sign Up"
 }) {
- 
+  const router = useRouter();
+  const [component1, setcomponent1] = useState(Card.one.component1);
+  const [component2, setcomponent2] = useState(Card.one.component2);
+  const nextPage = () => 
+  {
+    page++;
+    
+    if (page == 1)
+    {
+        setcomponent1(Card.one.component1);
+        setcomponent2(Card.one.component2);
+    }
+    else  if (page == 2)
+    {
+        setcomponent1(Card.two.component1);
+        setcomponent2(Card.two.component2);
+    } 
+    else  if (page == 3)
+    {
+        setcomponent1(Card.third.component1);
+        setcomponent2(Card.third.component2);
+       
+    } 
+    else  if (page == 4)
+    {
+         router.push("/bookShelf")
+    } 
+    console.log("page " + page)
+  }
+  const backPage = () => 
+  {
+    page--;
+    if (page == 3)
+   {
+     setcomponent1(Card.third.component1);
+     setcomponent2(Card.third.component2);
+   } 
+    else  if (page == 2)
+    {
+      setcomponent1(Card.two.component1);
+      setcomponent2(Card.two.component2);
+    } 
+    else if (page == 1)
+    {
+        setcomponent1(Card.one.component1);
+        setcomponent2(Card.one.component2);
+       
+    }
+    else if (page == 0)
+    {
+         router.push("/")
+    }
+    console.log("page " + page)
+  }
   return <div>
       <Head>
         <title>Echo</title>
@@ -25,11 +81,11 @@ export default function Home({
         </div>
         <div className='CardCon'>
         <p className='title'>{title}</p>
-        <InputBox/>
-        <InputBox text="Password"/>
+        {component1}
+        {component2}
         <div className='ButtonCon'>
-        <MyButton routeTo ="/" text="Back"/>
-        <MyButton text="Next" routeTo ="/setting"/>
+        <MyButton onClick={backPage}/>
+        <MyButton text="Next" onClick={nextPage}/>
         </div>
         </div>
       </div>

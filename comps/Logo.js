@@ -15,7 +15,7 @@ const Logo = () => {
 
 return <div className="Logo">
       <p className="TextCon" color={text_theme[theme].title}> Echo </p> 
-     <Lottie style={{width:'20rem'}} loop={true}     animationData={sound} />
+     <Lottie className="logoAni" loop={true}     animationData={sound} />
 
   </div>
 }
