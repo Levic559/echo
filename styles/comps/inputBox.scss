@@ -1,0 +1,17 @@
+.inputCon{
+    display:flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items:flex-start ;
+    width: 70%;
+    margin-bottom: 5%;
+    p{
+        font-size: 1.5rem;
+        margin-bottom: .1rem;
+        color:$textColorL;
+    }
+    .input{
+        width:100%;
+        border-radius:.5rem;
+    }
+}

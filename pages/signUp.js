@@ -7,7 +7,7 @@ import InputBox from '@/comps/InputBox'
 
 
 export default function Home({
-  title="Log in"
+  title="Sign Up"
 }) {
  
   return <div>
@@ -19,18 +19,17 @@ export default function Home({
       <div className='Wrapper'>
       <div className='Container' >
         <div className='LogoCon'>
-          {/* <p className='welcome'>Welcome</p> */}
+          <p className='welcome'>Welcome to</p>
         <Logo/>
-        <p className="intro"> Every literate person is aware of the paragraph. Paragraphs are important in speeches, in writing or a random paragraph can be used as a prop in ads or presentations too! They are like the building blocks. </p>
-
+        {/* <p className="intro"> Every literate person is aware of the paragraph. Paragraphs are important in speeches, in writing or a random paragraph can be used as a prop in ads or presentations too! They are like the building blocks. </p> */}
         </div>
         <div className='CardCon'>
         <p className='title'>{title}</p>
         <InputBox/>
         <InputBox text="Password"/>
         <div className='ButtonCon'>
-        <MyButton routeTo ="/signUp/" text="Sign Up"/>
-        <MyButton text="Log in" routeTo ="/setting"/>
+        <MyButton routeTo ="/" text="Back"/>
+        <MyButton text="Next" routeTo ="/setting"/>
         </div>
         </div>
       </div>

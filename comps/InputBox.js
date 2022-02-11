@@ -1,19 +1,22 @@
-import { Input, Label } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
 import React from "react";
 
 
-const InputBox =({
-text='Account :',
 
 
-})=>{
-    
-   
-return<div> 
+const InputBox = ({
+    text = 'Account :',
 
-<Label> {text}</Label>
-<Input style={{width:'15rem', borderRadius:'.5rem'}} /> 
-    </div>
+
+}) => {
+
+
+    return <div className='inputCon'>
+            
+                <p> {text}</p>
+                <Input className='input' />
+        </div>
+  
 }
 
 

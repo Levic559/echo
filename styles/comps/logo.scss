@@ -1,0 +1,20 @@
+.Logo{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:center;
+    align-items:flex-start;
+    width:32.5rem;
+    height:15rem;
+    padding:0;
+    margin:0
+}
+
+.TextCon{    
+    font-family: 'Baumans', sans-serif;
+    font-size:10rem;
+    line-height: 10rem;
+    color:$textColorL;
+    padding:0;
+    margin:0
+}

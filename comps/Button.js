@@ -9,7 +9,7 @@ routeTo =  "/"
 })=>{
     const router = useRouter();
 return(
-<Button style={{width:'10rem', borderRadius:'.5rem'}} onClick={() => router.push(routeTo)}> {text}</Button>
+<Button className='button' onClick={() => router.push(routeTo)}> <p>{text}</p></Button>
 )
 }
 
