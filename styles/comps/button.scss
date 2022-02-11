@@ -5,8 +5,16 @@
     color:$textColorD;
     margin:0;
     padding:0;
+    @media screen and (max-width: 1200px) {
+        width:9rem;
+        
+    }
     p{
-        font-size: 1.5rem;
+        font-size: 1.25rem;
+        @media screen and (max-width: 1200px) {
+            font-size: .75rem;
+            
+        }
         @media screen and (max-width: 600px) {
             font-size: 1rem;
         }

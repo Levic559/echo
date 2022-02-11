@@ -9,12 +9,13 @@ import {useRouter} from 'next/router';
 
 
 
-
 export default function Home({
   title="Log in"
 }) {
   const router = useRouter();
- 
+  const logIn =()=>{
+    router.push("/bookShelf")
+  }
   return <div>
       <Head>
         <title>Echo</title>
@@ -37,7 +38,7 @@ You may see other people’s reading lists, so you can request a friend connecti
         <InputBox text="Password"/>
         <div className='ButtonCon'>
         <MyButton onClick={() => router.push("/signUp")}  text="Sign Up"/>
-        <MyButton text="Log in" />
+        <MyButton text="Log in" onClick={logIn}/>
         </div>
         </div>
       </div>

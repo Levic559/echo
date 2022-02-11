@@ -84,7 +84,7 @@ export default function Home({
         {component1}
         {component2}
         <div className='ButtonCon'>
-        <MyButton onClick={backPage}/>
+        <MyButton onClick={backPage} text="Back"/>
         <MyButton text="Next" onClick={nextPage}/>
         </div>
         </div>
