@@ -5,7 +5,7 @@ import styled from'styled-components'
 import Footer from '@/comps/Footer' 
 import InputBox from '@/comps/InputBox'
 import {useRouter} from 'next/router';
-import{Card} from "../comps/Card"
+import{IndexCard} from "../comps/IndexCard"
 import { useState } from 'react'
 
 var page=1
@@ -13,26 +13,26 @@ export default function Home({
   title="Sign Up"
 }) {
   const router = useRouter();
-  const [component1, setcomponent1] = useState(Card.one.component1);
-  const [component2, setcomponent2] = useState(Card.one.component2);
+  const [component1, setcomponent1] = useState(IndexCard.one.component1);
+  const [component2, setcomponent2] = useState(IndexCard.one.component2);
   const nextPage = () => 
   {
     page++;
     
     if (page == 1)
     {
-        setcomponent1(Card.one.component1);
-        setcomponent2(Card.one.component2);
+        setcomponent1(IndexCard.one.component1);
+        setcomponent2(IndexCard.one.component2);
     }
     else  if (page == 2)
     {
-        setcomponent1(Card.two.component1);
-        setcomponent2(Card.two.component2);
+        setcomponent1(IndexCard.two.component1);
+        setcomponent2(IndexCard.two.component2);
     } 
     else  if (page == 3)
     {
-        setcomponent1(Card.third.component1);
-        setcomponent2(Card.third.component2);
+        setcomponent1(IndexCard.third.component1);
+        setcomponent2(IndexCard.third.component2);
        
     } 
     else  if (page == 4)
@@ -46,18 +46,18 @@ export default function Home({
     page--;
     if (page == 3)
    {
-     setcomponent1(Card.third.component1);
-     setcomponent2(Card.third.component2);
+     setcomponent1(IndexCard.third.component1);
+     setcomponent2(IndexCard.third.component2);
    } 
     else  if (page == 2)
     {
-      setcomponent1(Card.two.component1);
-      setcomponent2(Card.two.component2);
+      setcomponent1(IndexCard.two.component1);
+      setcomponent2(IndexCard.two.component2);
     } 
     else if (page == 1)
     {
-        setcomponent1(Card.one.component1);
-        setcomponent2(Card.one.component2);
+        setcomponent1(IndexCard.one.component1);
+        setcomponent2(IndexCard.one.component2);
        
     }
     else if (page == 0)

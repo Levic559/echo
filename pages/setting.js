@@ -5,7 +5,7 @@ import styled from'styled-components'
 import Footer from '@/comps/Footer' 
 import InputBox from '@/comps/InputBox'
 import {useRouter} from 'next/router';
-import{Card} from "../comps/Card"
+import{Card} from "../comps/IndexCard"
 import { useState } from 'react'
 import Nav from '@/comps/Nav'
 var page=1

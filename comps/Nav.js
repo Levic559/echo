@@ -5,6 +5,7 @@ import { Router } from "next/router";
 import { useRouter } from "next/router";
 import { Input } from 'semantic-ui-react'
 import Logo from "./Logo";
+import NavLogo from "./NavLogo";
 import { Icon } from 'semantic-ui-react'
 
 const Nav = ({
@@ -16,7 +17,8 @@ const Nav = ({
     return (
         <div className="navBar" BGC={header_theme[theme].label}>
             <div className="navLogoCon  ">
-                <Logo  className="lightColor "/>
+                <NavLogo  className="lightColor "/>
+                
             </div>
 
             <div className="navInputCon">

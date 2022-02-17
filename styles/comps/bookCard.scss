@@ -1,0 +1,19 @@
+.bookCard_Con {
+    width: 20rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 12.5rem;
+        height: 12.5rem;
+        background-color: pink;
+        border-radius: 50%;
+    }
+    h3{
+        font-size: 2rem;
+        font-family: 'Courier New', Courier, monospace;
+        color:#CAD2C5;
+    }
+}
