@@ -1,0 +1,44 @@
+.CommentCard_Con {
+    width: 95%;
+    height: 20rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid pink;
+    border-radius: 10px ;
+    margin-top: 2.5%;
+
+    img {
+        width: 20%;
+        height: 20rem;
+        border-radius: 10px 0 0 10px;
+    }
+    .content{
+        width: 50%;
+        height: 20rem;
+       color:#cad2c5;
+       font-size: 1.25rem;
+       display: flex;
+       align-items: center;
+       line-height: 200%;
+    //    margin:1rem
+    }
+    .user{
+        width: 20%;
+        height: 20rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        img{
+            width: 10rem;
+            height: 10rem;
+            border-radius:50%;
+            object-fit: cover;
+        }
+        h3{
+            color:#cad2c5;
+            font-size: 1.25rem;
+        }
+    }
+}

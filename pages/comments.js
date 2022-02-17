@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react'
 import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
-
+import CommentCard from '@/comps/CommentCard'
 export default function Home({
 
 }) {
@@ -38,25 +38,14 @@ export default function Home({
             </div>
           </div>
           <div className='Feed_Area'>
-            <div className='Drawer'>
-            <h3> Popular books for your Location</h3>
-            <BookCard/>
-            </div>
-            <div className='Drawer'>
-            <h3> Popular books for your friens</h3>
-            <BookCard/>
-            </div>
-            <div className='Drawer'>
-            <h3> Popular books for your clubs</h3>
-            <BookCard/>
-            </div>
-            <div className='Drawer'>
-            <h3> Popular books for your age</h3>
-            <BookCard/>
-            </div>
-            <div className='Drawer'>
+           
+              <CommentCard />
+              <CommentCard />
+              <CommentCard />
+              <CommentCard />
 
-            </div>
+
+
           </div>
 
         </div>
