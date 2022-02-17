@@ -8,14 +8,16 @@ import React, { useState, useEffect } from 'react';
 
 
 
-const Logo = () => {
+const Logo = ({
+  loop="true"
+}) => {
   const {theme} = useTheme();
 
   
 
 return <div className="Logo">
       <p className="TextCon" color={text_theme[theme].title}> Echo </p> 
-     <Lottie className="logoAni" loop={true}     animationData={sound} />
+     <Lottie className="logoAni" loop={loop}     animationData={sound} />
 
   </div>
 }

@@ -22,11 +22,11 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className='Wrapper'>
-      <div className='Container' >
+      <div className='Container align-items-start' style={{alignItems:"flex-start"}} >
       <Nav/>
+      <Footer/>
         </div>
       </div>
-      <Footer/>
       </div>
 
   

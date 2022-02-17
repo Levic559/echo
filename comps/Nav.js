@@ -1,31 +1,40 @@
 import React from "react";
-import Icon from "./Icon";
 import { header_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
 import { Router } from "next/router";
 import { useRouter } from "next/router";
 import { Input } from 'semantic-ui-react'
-
+import Logo from "./Logo";
+import { Icon } from 'semantic-ui-react'
 
 const Nav = ({
-    text = 'Setting',
+    users = 'Guest',
 }) => {
 
     const { theme } = useTheme();
     const router = useRouter()
     return (
         <div className="navBar" BGC={header_theme[theme].label}>
-            <div className="navLogoCon">
-                Echo
+            <div className="navLogoCon  ">
+                <Logo  className="lightColor "/>
             </div>
 
             <div className="navInputCon">
 
-                <Input />
-                <Input />
+            <Input   className="navInput"  placeholder='Search...' />
+            <Input className="navInput" placeholder='Search...' />
             </div>
+            <div className="navUsers ">
+               Hello~ {users}
+            </div>
+            <div className="iconCon">
 
-            <div color={text_theme[theme].label} onClick={() => router.push('/books')}>{text}</div>
+            <Icon name='user' size='large' onClick={()=>router.push("/setting")}/>
+            <Icon name='setting' size='large'onClick={()=>router.push("/Personal site")} />
+            </div>
+           <div>
+
+           </div>
 
         </div>
     )
