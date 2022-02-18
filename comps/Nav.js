@@ -16,8 +16,8 @@ const Nav = ({
     const router = useRouter()
     return (
         <div className="navBar" BGC={header_theme[theme].label}>
-            <div className="navLogoCon  ">
-                <NavLogo  className="lightColor "/>
+            <div className="navLogoCon  " onClick={()=>router.push("/bookShelf")}>
+                <NavLogo  className="lightColor " />
                 
             </div>
 
@@ -31,8 +31,8 @@ const Nav = ({
             </div>
             <div className="iconCon">
 
-            <Icon name='user' size='large' onClick={()=>router.push("/setting")}/>
-            <Icon name='setting' size='large'onClick={()=>router.push("/Personal site")} />
+            <Icon name='user' size='large' onClick={()=>router.push("/personalSite")}/>
+            <Icon name='setting' size='large'onClick={()=>router.push("/setting")} />
             </div>
            <div>
 

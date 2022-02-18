@@ -1,0 +1,113 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.s_Wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .Container {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        @media screen and (max-width: 600px) {
+            flex-wrap: wrap;
+            justify-content: center;
+            height: 100%;
+        }
+        .Nav{
+            height: 100%;
+            width: 70%;
+            position: fixed;
+        }
+        .Content{
+            margin-top: 5rem;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: center;
+            
+
+            .personInfo{
+               padding: 2.5%;
+                width: 55%;
+                height:100%;
+                display: flex;
+                flex-direction: column;
+                justify-content:flex-start;
+                align-items: center;
+                
+                img{
+                  width:20rem;
+                  height: 20rem;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  margin: 5%;
+                }
+                .content{
+                    height:50%;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content:center;
+                    align-items: center;
+                    margin-right:10%;
+                    margin-left:10%;
+                    
+                }
+                .button{
+                    width:100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content:flex-end;
+                    align-items: flex-end;
+                    margin: 2.5%;
+                }
+
+            }
+            .settingBox{
+                width: 40%;
+                height:60rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 2.5%;
+                background-color: #354F52;
+                border-radius: 1rem;
+                padding:5%;
+                p{
+                    font-size: 1.5rem;
+                    line-height:200%;
+                    color:#7A9B92;
+                    font-family: 'Baumans', sans-serif;
+                }
+               
+            }
+        }
+    }
+}
