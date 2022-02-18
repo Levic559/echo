@@ -15,7 +15,7 @@ const CommentCard=({
         <div className='user'> 
             <img src="https://news.artnet.com/app/news-upload/2021/12/RachelUffner-byJasonFrankRothenberg-2015-750x550.jpg"/>
             <h3> {user}</h3>
-             <Button> More</Button>
+             <Button class="ui button"> More</Button>
           </div>
 
 
