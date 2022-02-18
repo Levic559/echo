@@ -20,7 +20,7 @@
        font-size: 1.25rem;
        display: flex;
        align-items: center;
-       line-height: 200%;
+       line-height: 150%;
     //    margin:1rem
     }
     .user{
@@ -39,6 +39,9 @@
         h3{
             color:#cad2c5;
             font-size: 1.25rem;
+        }
+        button{
+            background-color: #84a98c;
         }
     }
 }

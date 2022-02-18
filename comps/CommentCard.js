@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react'
-
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 const CommentCard=({
   user="Lin"
 })=>{
@@ -15,7 +15,7 @@ const CommentCard=({
         <div className='user'> 
             <img src="https://news.artnet.com/app/news-upload/2021/12/RachelUffner-byJasonFrankRothenberg-2015-750x550.jpg"/>
             <h3> {user}</h3>
-             <Button class="ui button"> More</Button>
+            <Button variant="contained">more</Button>
           </div>
 
 
