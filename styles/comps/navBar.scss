@@ -23,18 +23,23 @@
     .navInputCon {
         display: flex;
         flex-direction: row;
-        width: 100%;
+        width: 50%;
         justify-content: space-evenly;
-        .navInput{
-            width:40%
+
+        .input{
+            width: 60%;
+            background-color: $textColorL;
+            border-radius: .5rem;
+           border-style: none;
         }
 
     }
     .navUsers{
-        width: 17.5%;
+        width: 15%;
         margin-left:5%;
         font-size: 1.5rem;
         color: $textColorL;
+        font-family: 'Baumans';
     }
     .iconCon{
         display: flex;
