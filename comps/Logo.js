@@ -16,8 +16,8 @@ const Logo = ({
   
 
 return <div className="Logo">
-      <p className="TextCon" color={text_theme[theme].title}> Echo </p> 
-     <Lottie className="logoAni" loop={loop}     animationData={sound} />
+      <p className="TextCon" style={{color:text_theme[theme].title}}> Echo </p> 
+     <Lottie className="logoAni" loop={loop}     animationData={sound}  style={{color:text_theme[theme].title}}/>
 
   </div>
 }

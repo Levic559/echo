@@ -3,17 +3,17 @@ export const global_theme ={
         body:'#2f3e46'
         
     },
-    dark:{
-        body:'#100E12'
+    light:{
+        body:'#B8DFD6'
     }
 }
 
 export const comp_theme ={
     default :{
-        label:"#42524E"
+        label:"#354F52"
     },
-    dark :{
-        label:"#7A876F"
+    light :{
+        label:"#80A6A4"
     },
 }
 
@@ -21,19 +21,19 @@ export const header_theme ={
     default :{
         label:"#1A3D36"
     },
-    dark :{
+    light :{
         label:"#1b2e0b"
     },
 }
 
 export const text_theme ={
     default :{
-        title:"#42524E",
-        label:"#B5F5E8"
+        title:"#CAD2C5",
+        label:"#CAD2C5"
     },
-    dark :{
-        title:"#7A876F",
-        label:"#7A876F"
+    light :{
+        title:"#4B5163",
+        label:"#4B5163"
     },
 }
 

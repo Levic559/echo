@@ -1,3 +1,4 @@
+// const books =require("./books500.json") 
 export const GoToPage=(bks=[], page=1, num=5)=>{
     // const list =bks.slice(0,5)
     // const list2 =bks.splice(0,5)
@@ -5,6 +6,8 @@ export const GoToPage=(bks=[], page=1, num=5)=>{
     // console.log(result)
     return result
 }
+
+// GoToPage()
 // const booklist =require("./bookslist.json")
 // export const filiter=(
 //     arr=[]

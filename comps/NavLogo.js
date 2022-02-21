@@ -16,8 +16,8 @@ const NavLogo = ({
   
 
 return <div className="navLogo">
-      <p className="navTextCon" color={text_theme[theme].title}> Echo </p> 
-     <Lottie className="navLogoAni" loop={loop}     animationData={sound} />
+      <p className="navTextCon" style={{color:text_theme[theme].title}}> Echo </p> 
+     <Lottie className="navLogoAni" loop={loop}     animationData={sound} style={{color:text_theme[theme].title}}/>
 
   </div>
 }

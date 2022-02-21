@@ -1,6 +1,6 @@
-import {Save, Read} from '@/utils/helpers';
-import booklist from '@/utils/booklist.json'
-import {GoToPage} from '@/utils/function'
+// import {Save, Read} from '@/utils/helpers';
+import bookslist from '../../utils/books500.json'
+import {GoToPage} from '../../utils/function'
 import { filtering,sorting } from '@/utils/filter';
 export default async function handler(req, res) {
 
@@ -24,17 +24,18 @@ export default async function handler(req, res) {
 //    })
 //  }
 
-  var lists = GoToPage(lists,1,15);
+  var lists = GoToPage(bookslist,1,15);
   if(req.query.page){
-    lists= GoToPage(booklist,req.query.page,15)
+    lists= GoToPage(bookslist,req.query.page,15)
   }
 
-  if(req.query.book_id){
-    lists=booklist.filter(o=>o.bookID=== Number(req.query.book_id));
-    console.log(lists)
-  }
+  // if(req.query.book_id){
+  //   lists=books500.filter(o=>o.bookID=== Number(req.query.book_id));
+  //   console.log(lists)
+  // }
 //  lists=lists.slice(0,15)
 
   // res.status(200).json(lists);
+  // console.log(lists)
   res.status(200).json(lists);
 }

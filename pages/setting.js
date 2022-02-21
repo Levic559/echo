@@ -7,12 +7,16 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputBox from '@/comps/InputBox';
 import Button from '@mui/material/Button';
+import IosSwitch from '@/comps/MuiSwitch'
+import Switch from '@/comps/Switch';
+import {useTheme} from '@/utils/provider' 
+import { comp_theme } from '@/utils/variables';
 export default function Home({
 
 }) {
   const router = useRouter();
 
-
+  const {theme,setTheme}=useTheme();
   return <div>
     <Head>
       <title>Echo</title>
@@ -28,28 +32,55 @@ export default function Home({
           <div className='personInfo'>
             <img src="https://news.artnet.com/app/news-upload/2021/12/RachelUffner-byJasonFrankRothenberg-2015-750x550.jpg" />
             <div className='content'>
-            <InputBox text="Account" style={{width:'10rem'}}/>
-            <InputBox text="User name"/>
-            <InputBox text="Leave of Age"/>
-            <InputBox text="Location"/>
-            <InputBox text="Gender"/>
+              <InputBox text="Account" style={{ width: '10rem' }} />
+              <InputBox text="User name" />
+              <InputBox text="Leave of Age" />
+              <InputBox text="Location" />
+              <InputBox text="Gender" />
             </div>
             <div className='button'>
               <Button variant="contained">Submit</Button>
-              </div>
+            </div>
           </div>
-          <div className='settingBox'>
-              <p>Dark Mode </p>
-              <p>Descendant Mode </p>
-              <p>Private Mode</p>
-              <p>Personal Info </p>
-              <p>Favorite Book </p>
-              <p>Reading List </p>
-              <p>Friends </p>
-              <p>Clubs </p>
+          <div className='settingBox' style={{background:comp_theme[theme].label}}>
+            <div>  
+              <Switch
+                onSwitchClick={() => setTheme(
+                  theme === 'light' ? 'default' : 'light'
+                )}
+                btn={theme === 'light' ? 'Off' : 'On'}
+              />
              
-              <Button variant="contained">Log out</Button>
-              
+            </div>
+            <div>  <div>Descendant </div>
+              <IosSwitch />
+              <div>On </div>
+            </div>
+            <div>  <div>Private </div>
+              <IosSwitch />
+              <div>On </div>
+            </div>
+            <div>  <div>Personal Info </div>
+              <IosSwitch />
+              <div>On </div>
+            </div>
+            <div>  <div>Favorite Book </div>
+              <IosSwitch />
+              <div>On </div>
+            </div>
+            <div>  <div>Friends </div>
+              <IosSwitch />
+              <div>On </div>
+            </div>
+            <div>  <div>Clubs </div>
+              <IosSwitch />
+              <div>On </div>
+            </div>
+
+
+
+            <Button variant="contained">Log out</Button>
+
           </div>
 
         </div>

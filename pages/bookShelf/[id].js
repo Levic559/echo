@@ -3,7 +3,6 @@ import ax from 'axios';
 import {useRouter} from 'next/router';
 import styled from 'styled-components';
 import Footer from '@/comps/Footer';
-import { Input } from 'semantic-ui-react'
 import {useEffect, useState} from 'react'
 import Header from '@/comps/Header';
 import BookCom from '@/comps/BookCom';

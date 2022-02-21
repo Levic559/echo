@@ -95,16 +95,27 @@ a {
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
-                align-items: center;
+                align-items: flex-end;
                 margin: 2.5%;
                 background-color: #354F52;
                 border-radius: 1rem;
                 padding:5%;
-                p{
-                    font-size: 1.5rem;
-                    line-height:200%;
-                    color:#7A9B92;
-                    font-family: 'Baumans', sans-serif;
+                div{
+                    height:10%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    div{  
+                        font-size: 1.5rem;
+                         color:$textColorL;
+                        font-family: 'Baumans', sans-serif;
+                        margin: 1rem;
+                    }
+                    div:last-child {
+                        font-size: 1.25rem;
+                        
+                    }
                 }
                
             }

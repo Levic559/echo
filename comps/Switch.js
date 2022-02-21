@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {useTheme} from '../utils/provider'
 import {comp_theme} from'../utils/variables'
+import Button from '@mui/material/Button';
+
 const Container =styled.div`
 height:5rem;
 display:flex;
@@ -9,7 +11,7 @@ justify-content:center;
 align-items:center
 `
 const BtnCont=styled.button`
-width:15rem;
+width:10rem;
 font-size:.8rem;
 padding:.75rem;
 border-radius:.75rem;
@@ -44,7 +46,8 @@ const Switch=({
     // console.log(theme)
     return <Container>
         <SwitchLabel color={comp_theme[theme].label}> {label} </SwitchLabel>
-       <BtnCont onClick={onSwitchClick} > {btn} </BtnCont>
+       <Button onClick={onSwitchClick} > {btn} </Button>
+       
 </Container>
 }
 
