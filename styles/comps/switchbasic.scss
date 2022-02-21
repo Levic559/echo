@@ -1,0 +1,40 @@
+@import '../variables/default.scss';
+
+.switch-basic {
+    width: 220px;
+    min-height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.5rem;
+    color: $textColorL;
+}
+
+.switch-body {
+    width: 50px;
+    height: 28px;
+    padding: 2px;
+    background-color: $textColorL;
+    border-radius: 14px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.switch-btn {
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 13px;
+}
+
+.switch-status {
+    width: 30px;
+}
+
+.switch-body-on {
+    justify-content: flex-end;
+    background-color: $textColorB;
+}
