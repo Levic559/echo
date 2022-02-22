@@ -38,7 +38,7 @@ a {
             height: 100%;
         }
         .LogoCon {
-            width: 45%;
+            width: 35%;
             height: 40%;
             display: flex;
             flex-direction: column;
@@ -58,7 +58,7 @@ a {
 
             .welcome {
                 font-size: 5.5rem;
-                color: $textColorB;
+                // color: $textColorB;
                 text-align: center;
                 height: 6rem;
                 @media screen and (max-width: 1200px) {
@@ -72,7 +72,7 @@ a {
             }
             .intro {
                 font-size: 1.25rem;
-                color: $textColorL;
+                // color: $textColorL;
                 @media screen and (max-width: 1200px) {
                     font-size: 1rem;
                 }
@@ -84,14 +84,14 @@ a {
             }
         }
         .CardCon {
-            width: 55%;
+            width: 65%;
             height: 50%;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
-            background-color: #84a98c;
-            margin: 10%;
+            // background-color: #84a98c;
+            margin: 5%;
             border-radius: 1.5rem;
             @media screen and (max-width: 600px) {
                 width: 90%;
@@ -101,23 +101,32 @@ a {
 
             .title {
                 font-size: 3rem;
-                color: $textColorL;
+                // color: $textColorL;
                 margin-top: 10%;
                 @media screen and (max-width: 600px) {
                     margin-top: 5%;
                     font-size: 2rem;
                 }
             }
+            .InputCon{
+                width: 75%;
+               
+            }
 
             .ButtonCon {
-                width: 70%;
+                width: 75%;
                 height: 50%;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                background-color: #84a98c;
+                // background-color: #84a98c;
                 border-radius: 1rem;
+                @media screen and (max-width: 1200px) {
+                    flex-direction: column;
+                    justify-content: space-around;
+                    height: 20%;
+                }
             }
         }
     }

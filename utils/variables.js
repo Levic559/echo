@@ -17,14 +17,6 @@ export const comp_theme ={
     },
 }
 
-export const header_theme ={
-    default :{
-        label:"#1A3D36"
-    },
-    light :{
-        label:"#1b2e0b"
-    },
-}
 
 export const text_theme ={
     default :{

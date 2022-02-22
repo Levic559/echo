@@ -79,7 +79,7 @@ export default function Home({
 
 
 
-            <Button variant="contained">Log out</Button>
+            <Button variant="contained" onClick={()=>router.push('/')} >Log out</Button>
 
           </div>
 

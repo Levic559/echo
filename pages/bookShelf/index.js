@@ -9,9 +9,13 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import {comp_theme, text_theme} from'../../utils/variables'
 import {useTheme} from '../../utils/provider'
+import MyButton from '@/comps/Button';
 export default function bookShelf({
 
 }) {
+  const openBook = () => {
+    router.push(`/bookShelf/${o.ISBN}`)
+  }
   const {theme} = useTheme();
   const router = useRouter();
   const [books, setbooks] = useState([]);
@@ -57,8 +61,8 @@ export default function bookShelf({
               background:comp_theme[theme].label,
               color:text_theme[theme].label
               }}>
-              <a href="/bookShelf" > BookShelf</a>
-              <a href="/comments"> Comments</a>
+              <a onClick={()=>router.push('/bookShelf')} > BookShelf</a>
+              <a onClick={()=>router.push('/comments')} > Comments</a>
               <a> Friends</a>
               <a> Clubs</a>
               <a> Subscription</a>
@@ -72,24 +76,30 @@ export default function bookShelf({
               <div className='Drawer'>
                 {books.map((o, i) =>
                   <BookCard key={i}
+                  onClick={()=>router.push(`/bookShelf/${o.ISBN}`)}
                     src={o.ImageURLM}
                     title={o.BookTitle.substr(0, 20) + "..."}
+                    isbn={o.ISBN}
                   />
-
+                
+                 
                 )}
+                
               </div>
-
+                  {/* <MyButton onClick={()=>GetBooks()}>1</MyButton> */}
             </div>
             <div className='Drawers'>
               <div className='lable'>
 
-                <h3> Popular books for your friens</h3>
+                <h3> Popular books from your friens</h3>
               </div>
               <div className='Drawer'>
                 {books.map((o, i) =>
                   <BookCard key={i}
-                    src={o.ImageURLM}
-                    title={o.BookTitle.substr(0, 20) + "..."}
+                  src={o.ImageURLM}
+                  title={o.BookTitle.substr(0, 20) + "..."}
+                  isbn={o.ISBN}
+                  onClick={()=>router.push(`/bookShelf/${o.ISBN}`)}
                   />
 
                 )}
@@ -100,12 +110,27 @@ export default function bookShelf({
               <div className='lable'>
                 <h3> Popular books for your clubs</h3>
               </div>
-              <BookCard />
-            </div>
+              <div className='Drawer'>
+                {books.map((o, i) =>
+                  <BookCard key={i}
+                  src={o.ImageURLM}
+                  title={o.BookTitle.substr(0, 20) + "..."}
+                  isbn={o.ISBN}
+                  onClick={()=>router.push(`/bookShelf/${o.ISBN}`)}
+                  />
 
+                )}
+              </div>
+
+                          
+            </div>
+          
           </div>
 
         </div>
+        
+
+       
         <Footer />
       </div>
     </div>
