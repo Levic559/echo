@@ -15,15 +15,15 @@ a {
     box-sizing: border-box;
 }
 
-.B_Wrapper {
+.sB_Wrapper {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 
-    .B_Container {
+    .Container {
         width: 70%;
         height: 100%;
         display: flex;
@@ -36,87 +36,55 @@ a {
             justify-content: center;
             height: 100%;
         }
-        .B_Nav {
+        .Nav {
             height: 100%;
             width: 70%;
             position: fixed;
-           
         }
-        .B_Content {
+        .Content {
             margin-top: 5rem;
-            height: 100vh;
+            height: 100%;
             width: 100%;
             display: flex;
             flex-direction: row;
             align-items: flex-start;
-            justify-content: flex-end;
+            justify-content: center;
 
             .Side_Bar {
-                width: 70%;
+                width: 35%;
                 min-width: 12.5rem;
-                height: 50%;
+                height: 100%;
                 display: flex;
                 flex-direction: row;
-                justify-content: flex-start;
-                align-items: flex-start;
-                position: absolute;
-              
-                // margin-right:37.5rem;
+                justify-content: center;
+                align-items: center;
 
                 .Pannel {
-                    margin-top: 5rem;
+                    margin-top: 60rem;
                     height: 50rem;
                     width: 9.5%;
                     min-width: 10rem;
                     background-color: #cad2c5;
                     border-radius: 0 1rem 1rem 0;
+                    position: fixed;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    position:fixed;
                     a {
                         font-size: 1.5rem;
                         line-height: 300%;
+                        // color: #7a9b92;
                         font-family: "Baumans", sans-serif;
                         &:hover {
-                            color: pink;
+                            color: #354f52;
                         }
                     }
                 }
             }
-            .Feed_Area {
-                width: 55%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                position:absolute;
-                
-                .Drawers {
-                    height: 25rem;
-                    width: 97.5%;
-                    margin: 1%;
-                    display: flex;
-                    flex-direction: column;
-                    
-                    label h3 {
-                        font-size: 1.5rem;
-                        margin-left: 1rem;
-                        line-height: 200%;
-                        font-family: "Baumans", sans-serif;
-                    }
-                    .Drawer {
-                        width: 100%;
-                        display: flex;
-                        flex-direction: row;
-                        overflow:scroll;
-                        overflow-y:hidden;
-                       
-                    }
-                }
-            }
+           .bookComment{
+            width: 60%;
+           }
         }
     }
 }

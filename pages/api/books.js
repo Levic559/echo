@@ -1,5 +1,5 @@
 // import {Save, Read} from '@/utils/helpers';
-import bookslist from '../../utils/books500.json'
+import bookslist from '@/utils/books500.json'
 import {GoToPage} from '../../utils/function'
 import { filtering,sorting } from '@/utils/filter';
 export default async function handler(req, res) {
@@ -29,10 +29,11 @@ export default async function handler(req, res) {
     lists= GoToPage(bookslist,req.query.page,15)
   }
 
-  // if(req.query.book_id){
-  //   lists=books500.filter(o=>o.bookID=== Number(req.query.book_id));
-  //   console.log(lists)
-  // }
+  if(req.query.book_isbn){
+    lists=bookslist.filter(o=>o.ISBN=== req.query.book_isbn);
+    // console.log(lists)
+    console.log(req.query.book_isbn)
+  }
 //  lists=lists.slice(0,15)
 
   // res.status(200).json(lists);

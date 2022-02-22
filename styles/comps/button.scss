@@ -1,22 +1,22 @@
-.button{
+.myButton{
     font-size: 5rem;
     width:10rem; 
     border-radius:.5rem;
-    color:$textColorD;
-    margin:0;
+    // color:$textColorD;
+    margin:1rem;
     padding:0;
-    @media screen and (max-width: 1200px) {
-        width:9rem;
+    @media screen and (max-width: 1400px) {
+        width:7rem;
         
     }
     p{
         font-size: 1.25rem;
-        @media screen and (max-width: 1200px) {
-            font-size: .75rem;
+        @media screen and (max-width: 1400px) {
+            font-size: 1rem;
             
         }
-        @media screen and (max-width: 600px) {
-            font-size: 1rem;
+        @media screen and (max-width: 1000px) {
+            font-size: .75rem;
         }
     }
 }

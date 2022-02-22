@@ -9,11 +9,14 @@ import { useState } from 'react'
 import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import CommentCard from '@/comps/CommentCard'
+import {comp_theme, text_theme} from'../utils/variables'
+import {useTheme} from '../utils/provider'
 export default function Home({
 
 }) {
   const router = useRouter();
 
+  const {theme} = useTheme();
 
   return <div>
     <Head>
@@ -28,10 +31,13 @@ export default function Home({
           <Nav />
         </div>
         <div className='B_Content'>
-          <div className='Side_Bar'>
-            <div className='Pannel'>
-              <a href="/bookShelf"> BookShelf</a>
-              <a href="/comments"> Comments</a>
+        <div className='Side_Bar'>
+            <div className='Pannel' style={{
+              background:comp_theme[theme].label,
+              color:text_theme[theme].label
+              }}>
+              <a onClick={()=>router.push('/bookShelf')} > BookShelf</a>
+              <a onClick={()=>router.push('/comments')} > Comments</a>
               <a> Friends</a>
               <a> Clubs</a>
               <a> Subscription</a>
