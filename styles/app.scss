@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 @import "./utils/utils.scss";
 @import "./variables/default.scss";
+@import './comps/switchbasic.scss';
 @import  "./comps/bookCard.scss";
 @import  "./comps/inputBox.scss";
 @import  "./comps/logo.scss";
@@ -16,6 +17,4 @@
 @import  "./pages/setting.scss";
 @import  "./pages/singleBook.scss";
 @import  "./pages/bookShelf.scss";
-@import  "./pages/bookShelf.scss";
-@import './comps/switchbasic.scss';
 

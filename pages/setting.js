@@ -11,12 +11,17 @@ import IosSwitch from '@/comps/MuiSwitch'
 import Switch from '@/comps/Switch';
 import {useTheme} from '@/utils/provider' 
 import { comp_theme } from '@/utils/variables';
+import SwitchPanel from'../panels/SwitchPanel'
+import SwitchBasic from'@/comps/SwitchBasic'
 export default function Home({
 
 }) {
   const router = useRouter();
 
   const {theme,setTheme}=useTheme();
+  const handleSwitch = () => {
+    console.log('Switch work')
+}
   return <div>
     <Head>
       <title>Echo</title>
@@ -43,40 +48,9 @@ export default function Home({
             </div>
           </div>
           <div className='settingBox' style={{background:comp_theme[theme].label}}>
-            <div>  
-              <Switch
-                onSwitchClick={() => setTheme(
-                  theme === 'light' ? 'default' : 'light'
-                )}
-                btn={theme === 'light' ? 'Off' : 'On'}
-              />
-             
-            </div>
-            <div>  <div>Descendant </div>
-              <IosSwitch />
-              <div>On </div>
-            </div>
-            <div>  <div>Private </div>
-              <IosSwitch />
-              <div>On </div>
-            </div>
-            <div>  <div>Personal Info </div>
-              <IosSwitch />
-              <div>On </div>
-            </div>
-            <div>  <div>Favorite Book </div>
-              <IosSwitch />
-              <div>On </div>
-            </div>
-            <div>  <div>Friends </div>
-              <IosSwitch />
-              <div>On </div>
-            </div>
-            <div>  <div>Clubs </div>
-              <IosSwitch />
-              <div>On </div>
-            </div>
-
+        <SwitchBasic switchText="Light Mode" switchHandler={()=>setTheme(
+        theme === 'light'? 'default' : 'light'
+    )}/>
 
 
             <Button variant="contained" onClick={()=>router.push('/')} >Log out</Button>
@@ -86,6 +60,7 @@ export default function Home({
         </div>
         <Footer />
       </div>
+          
     </div>
   </div>
 

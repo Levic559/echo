@@ -38,8 +38,8 @@ a {
         }
         .Nav{
             height: 100%;
-            width: 70%;
-            position: fixed;
+            width: 100%;
+            // position: absolute;
         }
         .Content{
             margin-top: 5rem;
@@ -97,26 +97,26 @@ a {
                 justify-content: flex-start;
                 align-items: flex-end;
                 margin: 2.5%;
-                background-color: #354F52;
+                // background-color: #354F52;
                 border-radius: 1rem;
                 padding:5%;
-                div{
-                    height:10%;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    div{  
-                        font-size: 1.5rem;
-                         color:$textColorL;
-                        font-family: 'Baumans', sans-serif;
-                        margin: 1rem;
-                    }
-                    div:last-child {
-                        font-size: 1.25rem;
+                // div{
+                //     height:10%;
+                //     display: flex;
+                //     flex-direction: row;
+                //     justify-content: center;
+                //     align-items: center;
+                //     div{  
+                //         font-size: 1.5rem;
+                //          color:$textColorL;
+                //         font-family: 'Baumans', sans-serif;
+                //         margin: 1rem;
+                //     }
+                //     div:last-child {
+                //         font-size: 1.25rem;
                         
-                    }
-                }
+                //     }
+                // }
                
             }
         }

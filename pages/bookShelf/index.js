@@ -77,7 +77,7 @@ export default function bookShelf({
                 {books.map((o, i) =>
                   <BookCard key={i}
                   onClick={()=>router.push(`/bookShelf/${o.ISBN}`)}
-                    src={o.ImageURLM}
+                    src={o.ImageURLS}
                     title={o.BookTitle.substr(0, 20) + "..."}
                     isbn={o.ISBN}
                   />

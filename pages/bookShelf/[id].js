@@ -50,7 +50,7 @@ export default function BooksID() {
           <div className='Side_Bar'>
 
           <BookCom 
-            src={data.ImageURLM}
+            src={data.ImageURLL}
 
             title={data.BookTitle}
             author={data.BookAuthor}
