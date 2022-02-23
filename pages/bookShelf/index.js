@@ -62,28 +62,7 @@ export default function bookShelf({
   useEffect(() => {
     GetBooks3()
   }, [])
-  const inputFilter = async (txt,lan, person, rc,trc) => {
-    console.log(txt, lan)
-    if (timer) {
-      clearTimeout(timer);
-      timer = null
-    }
-    if (timer===null){
-      timer= setTimeout(async()=>{
-        console.log("async call!!!")
-        const res = await ax.get("/api/books_search",{
-          params:{
-            txt:txt,
-           // sort_type:order_method[order]?.label
-          }
-        })
-
-        console.log(res.data);
-        setData(res.data);
-        timer=null;
-      },1500)
-    }
-  }
+  
   return <div>
     <Head>
       <title>bookShelf</title>

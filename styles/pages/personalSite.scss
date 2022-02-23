@@ -89,9 +89,9 @@ a {
                     padding:5%;
                     .book{
                         font-size: 1rem;
-                        background-color: lightgrey;
+                        background-color: grey;
                         border-radius: 1.25rem;
-                        padding:.5rem;
+                        padding:.5rem 2rem .5rem 1rem;
                         margin:.5rem
                     }
                 }
@@ -114,10 +114,11 @@ a {
                     padding:5%;
                     .book{
                         font-size: 1rem;
-                        background-color: lightgrey;
+                        background-color: grey;
                         border-radius: 1.25rem;
                         // line-height: 200%;
-                        padding:.5rem;
+                        padding:.5rem 2rem .5rem 1rem;
+                       
                         margin:.5rem
                     }
                 }

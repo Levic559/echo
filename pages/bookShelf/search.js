@@ -7,20 +7,21 @@ import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
-import { comp_theme, text_theme } from '../../utils/variables'
-import { useTheme } from '../../utils/provider'
+import { comp_theme, text_theme ,order_method} from '../../utils/variables'
+import { useTheme,useOrder } from '../../utils/provider'
 import MyButton from '@/comps/Button';
 let timer = null;
 export default function bookShelf({
 
 }) {
-
+  const {order} = useOrder();
   const { theme } = useTheme();
   const router = useRouter();
   const [data, setData] = useState([]);
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
   const [curpage, setCurPage] = useState(1);
+  const [publish,setPublish]=useState(false)
   const itemsPerPage = 15;
   var butt_arr = [];
   var start = 1;
@@ -47,7 +48,9 @@ export default function bookShelf({
         const res = await ax.get("/api/books_search",{
           params:{
             txt:txt,
-           // sort_type:order_method[order]?.label
+           sort_type:order_method[order]?.label,
+           year_publish:publish,
+          
           }
         })
 
@@ -56,6 +59,9 @@ export default function bookShelf({
         timer=null;
       },1500)
     }
+  }
+  const OffSort=()=>{
+    setPublish(!publish)
   }
   return <div>
     <Head>

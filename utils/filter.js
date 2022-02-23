@@ -49,7 +49,7 @@ export const filtering = (
 //     YearOfPublication:500,
 //     rating:4
 // })
-export const sorting = (
+export  const sorting = (
     arr = [],
     config = { key: null, type: null }
 ) => {
@@ -83,14 +83,14 @@ export const sorting = (
         return arr ;
     }
 }
-// let f_booklist= filtering(booklist,{
-//     BookTitle:'Harry',
-//     YearOfPublication:500
-// })
+let f_booklist= filtering(booklist,{
+    BookTitle:'Classic',
+    
+})
 
-// f_booklist=sorting(f_booklist, {
-//     key: "BookTitle",
-//     type: "desc"
-// })
+f_booklist=sorting(f_booklist, {
+    key: "ISBN",
+    type: "desc"
+})
 
-// console.log(f_booklist)
+console.log(f_booklist)

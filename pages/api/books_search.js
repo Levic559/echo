@@ -10,19 +10,19 @@ export default async function handler(req, res) {
   //const files = await Read();
 
   //detect if filter/save/read
-const {txt}=req.query
+const {txt,year_publish,sort_type}=req.query
   var lists =[]
   
   if(txt){
 lists =filtering(bookslist,{
   BookTitle:txt
 })}
-//  if(sort_rating){
-//   lists =sorting(lists,{
-//      key:"average_rating",
-//       type:sort_type
-//    })
-//  }
+ if(year_publish){
+  lists =sorting(lists,{
+     key:"YearOfPublication",
+      type:sort_type
+   })
+ }
 
   // var lists = GoToPage(bookslist,1,15);
   // if(req.query.page){

@@ -9,16 +9,16 @@ import InputBox from '@/comps/InputBox';
 import Button from '@mui/material/Button';
 import IosSwitch from '@/comps/MuiSwitch'
 import Switch from '@/comps/Switch';
-import {useTheme} from '@/utils/provider' 
+import { useTheme } from '../utils/provider'
+import { useOrder } from '../utils/provider'
 import { comp_theme, text_theme } from '@/utils/variables';
-import SwitchPanel from'../panels/SwitchPanel'
-import SwitchBasic from'@/comps/SwitchBasic'
+import SwitchBasic from '@/comps/SwitchBasic'
 export default function Home({
 
 }) {
   const router = useRouter();
-
-  const {theme,setTheme}=useTheme();
+  const { order, setOrder } = useOrder();
+  const { theme, setTheme } = useTheme();
 
   return <div>
     <Head>
@@ -45,22 +45,28 @@ export default function Home({
               <Button variant="contained">Submit</Button>
             </div>
           </div>
-          <div className='settingBox' style={{background:comp_theme[theme].label2, color:text_theme[theme].label}}>
-        <SwitchBasic
-      
-        switchText="Light Mode" switchHandler={()=>setTheme(
-        theme === 'light'? 'default' : 'light'
-    )}/>
+          <div className='settingBox' style={{ background: comp_theme[theme].label2, color: text_theme[theme].label }}>
+            <SwitchBasic
+              switchText="Light Mode" switchHandler={() => setTheme(
+                theme === 'light' ? 'default' : 'light'
+              )} />
+            <SwitchBasic
+              switchText="Descendant" switchHandler={() => setOrder(
+                order === 'desc' ? 'default' : 'desc'
+              )} />
+            <Switch label='Order Method' onSwitchClick={() => setOrder(
+              order === 'desc' ? 'default' : 'desc'
 
-
-            <Button variant="contained" onClick={()=>router.push('/')} >Log out</Button>
+            )}
+              btn={order === 'desc' ? 'Desc' : 'Asc'} />
+            <Button variant="contained" onClick={() => router.push('/')} >Log out</Button>
 
           </div>
 
         </div>
         <Footer />
       </div>
-          
+
     </div>
   </div>
 
