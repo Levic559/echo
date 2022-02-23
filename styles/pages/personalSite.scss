@@ -53,11 +53,11 @@ a {
             .Side_Bar {
                 width: 25%;
                 min-width: 20rem;
-                height: 65%;
+                height: 100%;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                align-items: center;
+                align-items: space-between;
 
                
             }

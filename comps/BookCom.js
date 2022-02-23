@@ -23,7 +23,7 @@ const BookCom =({
     src=default_date.ImageURLM
 })=>{
     const {theme} = useTheme();
-return<div className='BookCom'  style={{
+return<div className='bookCom'  style={{
     backgroundColor:comp_theme[theme].label,
     color:text_theme[theme].label
     }}>

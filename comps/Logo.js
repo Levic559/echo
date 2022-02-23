@@ -17,7 +17,7 @@ const Logo = ({
   const [def,setDef]=useState(false)
 
 return <div className="Logo">
-      <p className="TextCon" style={{color:text_theme[theme].label}}> Echo </p> 
+      <p className="TextCon" style={{color:text_theme[theme].title}}> Echo </p> 
       <Lottie className="logoAni" loop={loop}     animationData={sound}  />
      {/* {def? <Lottie className="logoAni" loop={loop}     animationData={sound}  /> :
      

@@ -29,13 +29,13 @@ export default function Home({
         <div className='LogoCon'>
           {/* <p className='welcome'>Welcome</p> */}
           <Logo />
-          <p className="intro" style={{ color: text_theme[theme].label }}> Echo is a reader social media.
+          <p className="intro" style={{ color: text_theme[theme].title }}> Echo is a reader social media.
             In the application, each reader can leave and find comments about books. Also, they can record books to their reading list.
             You may see other people’s reading lists, so you can request a friend connection or subscribe to their new comments. We provide a platform where readers can share their thoughts and find the same or different ideas. The way may give you the other aspect of view to read books. . </p>
 
         </div>
         <div className='CardCon' style={{
-          background: comp_theme[theme].label,
+          background: comp_theme[theme].label2,
           color: text_theme[theme].label
         }}
         >

@@ -1,7 +1,7 @@
 import React from 'react';
 import {comp_theme, text_theme} from'../utils/variables'
 import {useTheme} from '../utils/provider'
-
+import { Icon } from 'semantic-ui-react'
 
 const default_date={
 
@@ -29,6 +29,12 @@ return<div className='userCom'  style={{
     }}>
     <img src={src}/>
     <div className='name'>  {username}</div>
+    <div className='rating'> 
+    <Icon name='heart' size='large' />
+    <Icon name='sticky note' size='large' />
+    <Icon name='edit' size='large' />
+     </div>
+
     <div className='info'>
     <p> {account} </p>
     <p> Gender: {gender}</p>
