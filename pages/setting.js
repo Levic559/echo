@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import IosSwitch from '@/comps/MuiSwitch'
 import Switch from '@/comps/Switch';
 import {useTheme} from '@/utils/provider' 
-import { comp_theme } from '@/utils/variables';
+import { comp_theme, text_theme } from '@/utils/variables';
 import SwitchPanel from'../panels/SwitchPanel'
 import SwitchBasic from'@/comps/SwitchBasic'
 export default function Home({
@@ -47,8 +47,10 @@ export default function Home({
               <Button variant="contained">Submit</Button>
             </div>
           </div>
-          <div className='settingBox' style={{background:comp_theme[theme].label}}>
-        <SwitchBasic switchText="Light Mode" switchHandler={()=>setTheme(
+          <div className='settingBox' style={{background:comp_theme[theme].label2, color:text_theme[theme].label}}>
+        <SwitchBasic
+      
+        switchText="Light Mode" switchHandler={()=>setTheme(
         theme === 'light'? 'default' : 'light'
     )}/>
 

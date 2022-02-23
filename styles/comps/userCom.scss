@@ -1,4 +1,4 @@
-.bookCom {
+.userCom {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -18,12 +18,12 @@
         height: 12.5rem;
         }
     }
-    .BookTitle {
+    .name {
         
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: bold;
         @media screen and (max-width: 1400px) {
-            font-size: 1rem;
+            font-size: 1.5rem;
         }
     }
     .rating{

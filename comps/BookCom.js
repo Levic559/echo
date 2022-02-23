@@ -1,7 +1,7 @@
 import React from 'react';
 import {comp_theme, text_theme} from'../utils/variables'
 import {useTheme} from '../utils/provider'
-
+import { Icon } from 'semantic-ui-react'
 
 const default_date={
     "ISBN": "195153448",
@@ -29,12 +29,19 @@ return<div className='BookCom'  style={{
     }}>
     <img src={src}/>
     <div className='BookTitle'>  {title}</div>
+    <div className='rating'><Icon name='star outline' size='large' />
+            <Icon name='star outline' size='large' />
+            <Icon name='star outline' size='large' />
+            <Icon name='star outline' size='large' />
+           
+     </div>
     <div className='info'>
     <p>  {authors}</p>
     <p> ISBN: {ISBN}</p>
     <p> Year of Publish: {YearOfPublication}</p>
     <p> Publisher: {Publisher}</p>
-        </div>   
+    </div>   
+    
 
 </div>
 }

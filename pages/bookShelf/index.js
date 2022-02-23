@@ -19,6 +19,8 @@ export default function bookShelf({
   const {theme} = useTheme();
   const router = useRouter();
   const [books, setbooks] = useState([]);
+  const [books2, setbooks2] = useState([]);
+  const [books3, setbooks3] = useState([]);
   const [curpage, setCurPage] = useState(1);
   const itemsPerPage = 15;
   var butt_arr = [];
@@ -43,6 +45,24 @@ export default function bookShelf({
     GetBooks()
   },[])
 
+  const GetBooks2 = async (p) => {
+    const res = await ax.get("/api/books2",
+      { params: { page: p } })
+    setbooks2(res.data)
+    setCurPage(p)
+  } 
+  useEffect(()=>{
+    GetBooks2()
+  },[])
+  const GetBooks3 = async (p) => {
+    const res = await ax.get("/api/books3",
+      { params: { page: p } })
+    setbooks3(res.data)
+    setCurPage(p)
+  } 
+  useEffect(()=>{
+    GetBooks3()
+  },[])
 
   return <div>
     <Head>
@@ -68,7 +88,7 @@ export default function bookShelf({
               <a> Subscription</a>
             </div>
           </div>
-          <div className='Feed_Area' style={{color:text_theme[theme].label}}>
+          <div className='Feed_Area' style={{color:text_theme[theme].title}}>
             <div className='Drawers' >
               <div className='lable' >
                 <h3 > Popular books for your Location</h3>
@@ -94,7 +114,7 @@ export default function bookShelf({
                 <h3> Popular books from your friens</h3>
               </div>
               <div className='Drawer'>
-                {books.map((o, i) =>
+                {books2.map((o, i) =>
                   <BookCard key={i}
                   src={o.ImageURLM}
                   title={o.BookTitle.substr(0, 20) + "..."}
@@ -111,7 +131,7 @@ export default function bookShelf({
                 <h3> Popular books for your clubs</h3>
               </div>
               <div className='Drawer'>
-                {books.map((o, i) =>
+                {books3.map((o, i) =>
                   <BookCard key={i}
                   src={o.ImageURLM}
                   title={o.BookTitle.substr(0, 20) + "..."}
@@ -131,7 +151,9 @@ export default function bookShelf({
         
 
        
+
         <Footer />
+       
       </div>
     </div>
   </div>

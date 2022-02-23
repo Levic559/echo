@@ -10,10 +10,12 @@ export const global_theme ={
 
 export const comp_theme ={
     default :{
-        label:"#354F52"
+        label:"#c4c4c4",
+        label2:"#7A9B92"
     },
     light :{
-        label:"#80A6A4"
+        label:"#80A6A4",
+        label2:"#80A6A4 "
     },
 }
 
@@ -21,11 +23,11 @@ export const comp_theme ={
 export const text_theme ={
     default :{
         title:"#CAD2C5",
-        label:"#CAD2C5"
+        label:"#2F3E46"
     },
     light :{
         title:"#4B5163",
-        label:"#4B5163"
+        label:"#CAD2C5"
     },
 }
 
