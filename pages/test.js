@@ -1,5 +1,6 @@
 import React from 'react'
 import SwitchPanel from '@/panels/SwitchPanel'
+import SearchBar from '@/comps/SearchBar'
 
 const test = () => {
   return (
@@ -8,6 +9,7 @@ const test = () => {
         padding: '5%',
     }}>
         <SwitchPanel/>
+        <SearchBar/>
     </div>
   )
 }

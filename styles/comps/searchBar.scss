@@ -1,0 +1,28 @@
+
+.search-bar {
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-input {
+    min-width: 200px;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin: 0 10px;
+    font-size: 1.2rem;
+}
+
+.search-op {
+    min-height: 40px;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+}
+
