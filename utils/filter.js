@@ -1,27 +1,27 @@
-const booklist = require("./booklist.json")
+const booklist = require("./books500.json")
 export const filtering = (
     arr = [],
-    config = { title: null, page: null, rating: null,
-        language_code:null, authors:null, ratings_count:null,text_reviews_count:null }
+    config = { BookTitle: null, YearOfPublication: null, rating: null,
+        language_code:null, BookAuthor:null, ratings_count:null,text_reviews_count:null }
 ) => {
     // console.log(arr.slice(0, 5))
-    const { title, page, rating, authors ,language_code,text_reviews_count,ratings_count} = config
-    if (title || page || rating || language_code ||ratings_count || authors||text_reviews_count) {
+    const { BookTitle, YearOfPublication, rating, BookAuthor ,language_code,text_reviews_count,ratings_count} = config
+    if (BookTitle || YearOfPublication || rating || language_code ||ratings_count || BookAuthor||text_reviews_count) {
 
 
         const filiter_arr = arr.filter((o) => {
             var cond = true;
-            if (title) {
-                cond = cond && o.title.includes(title)
+            if (BookTitle) {
+                cond = cond && o.BookTitle.includes(BookTitle)
             }
-            if (authors) {
-                cond = cond && o.authors.includes(authors)
+            if (BookAuthor) {
+                cond = cond && o.BookAuthor.includes(BookAuthor)
             }
             if (language_code) {
                 cond = cond && o.language_code.includes(language_code)
             }
-            if (page) {
-                cond = cond && Number(o.num_pages) >= Number(page)
+            if (YearOfPublication) {
+                cond = cond && Number(o.num_YearOfPublications) >= Number(YearOfPublication)
             }
             if (ratings_count) {
                 cond = cond && Number(o.ratings_count) >= Number(ratings_count)
@@ -45,8 +45,8 @@ export const filtering = (
 
 };
 // filtering(books,{
-//     // title:"Harry",
-//     page:500,
+//     // BookTitle:"Harry",
+//     YearOfPublication:500,
 //     rating:4
 // })
 export const sorting = (
@@ -84,12 +84,12 @@ export const sorting = (
     }
 }
 // let f_booklist= filtering(booklist,{
-//     title:'Harry',
-//     page:500
+//     BookTitle:'Harry',
+//     YearOfPublication:500
 // })
 
 // f_booklist=sorting(f_booklist, {
-//     key: "title",
+//     key: "BookTitle",
 //     type: "desc"
 // })
 

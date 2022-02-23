@@ -60,7 +60,7 @@ export default function Home({
       <div className='Container'  >
         <div className='Nav'>
 
-          <Nav />
+          <Nav  onClick={()=>router.push('bookShelf/search')}/>
         </div>
         <div className='Content'>
           <div className='Side_Bar'>

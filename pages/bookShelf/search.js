@@ -17,7 +17,7 @@ export default function bookShelf({
 
   const { theme } = useTheme();
   const router = useRouter();
-  const [books, setbooks] = useState([]);
+  const [data, setData] = useState([]);
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
   const [curpage, setCurPage] = useState(1);
@@ -34,36 +34,9 @@ export default function bookShelf({
     curpage - 5 < 0 ? 0 : curpage - 5,
     curpage + 5);
 
-  const GetBooks = async (p) => {
-    const res = await ax.get("/api/books",
-      { params: { page: p } })
-    setbooks(res.data)
-    setCurPage(p)
-  }
-  useEffect(() => {
-    GetBooks()
-  }, [])
-
-  const GetBooks2 = async (p) => {
-    const res = await ax.get("/api/books2",
-      { params: { page: p } })
-    setbooks2(res.data)
-    setCurPage(p)
-  }
-  useEffect(() => {
-    GetBooks2()
-  }, [])
-  const GetBooks3 = async (p) => {
-    const res = await ax.get("/api/books3",
-      { params: { page: p } })
-    setbooks3(res.data)
-    setCurPage(p)
-  }
-  useEffect(() => {
-    GetBooks3()
-  }, [])
-  const inputFilter = async (txt,lan, person, rc,trc) => {
-    console.log(txt, lan)
+  
+  const inputFilter = async (txt) => {
+    console.log(txt,)
     if (timer) {
       clearTimeout(timer);
       timer = null
@@ -93,7 +66,7 @@ export default function bookShelf({
     <div className='B_Wrapper'>
       <div className='B_Container' >
         <div className='B_Nav'>
-          <Nav onClick={()=>router.push('/bookShelf/search')}  />
+          <Nav onChange={(e) => inputFilter(e.target.value)}  />
         </div>
         <div className='B_Content' >
           <div className='Side_Bar'>
@@ -111,57 +84,29 @@ export default function bookShelf({
           <div className='Feed_Area' style={{ color: text_theme[theme].title }}>
             <div className='Drawers' >
               <div className='lable' >
-                <h3 > Popular books for your Location</h3>
+                <h3 > Search result</h3>
               </div>
-              <div className='Drawer'>
-                {books.map((o, i) =>
+              <div className='Drawer_search'>
+                
+                {(data===[]) ? <h4> There is no result.</h4>:
+               ( data.map((o, i) =>
                   <BookCard key={i}
                     onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                     src={o.ImageURLS}
                     title={o.BookTitle.substr(0, 20) + "..."}
                     isbn={o.ISBN}
                   />
-                )}
+                )) 
+              
+              }
 
               </div>
               {/* <MyButton onClick={()=>GetBooks()}>1</MyButton> */}
             </div>
-            <div className='Drawers'>
-              <div className='lable'>
-
-                <h3> Popular books from your friens</h3>
-              </div>
-              <div className='Drawer'>
-                {books2.map((o, i) =>
-                  <BookCard key={i}
-                    src={o.ImageURLM}
-                    title={o.BookTitle.substr(0, 20) + "..."}
-                    isbn={o.ISBN}
-                    onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
-                  />
-
-                )}
-              </div>
-
-            </div>
-            <div className='Drawers'>
-              <div className='lable'>
-                <h3> Popular books for your clubs</h3>
-              </div>
-              <div className='Drawer'>
-                {books3.map((o, i) =>
-                  <BookCard key={i}
-                    src={o.ImageURLM}
-                    title={o.BookTitle.substr(0, 20) + "..."}
-                    isbn={o.ISBN}
-                    onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
-                  />
-
-                )}
-              </div>
+          
 
 
-            </div>
+            
 
           </div>
 

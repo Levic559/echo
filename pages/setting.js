@@ -19,9 +19,7 @@ export default function Home({
   const router = useRouter();
 
   const {theme,setTheme}=useTheme();
-  const handleSwitch = () => {
-    console.log('Switch work')
-}
+
   return <div>
     <Head>
       <title>Echo</title>
@@ -39,7 +37,7 @@ export default function Home({
             <div className='content'>
               <InputBox text="Account" style={{ width: '10rem' }} />
               <InputBox text="User name" />
-              <InputBox text="Leave of Age" />
+              <InputBox text="Age" />
               <InputBox text="Location" />
               <InputBox text="Gender" />
             </div>

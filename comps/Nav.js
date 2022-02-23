@@ -12,6 +12,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import {global_theme} from'../utils/variables'
 const Nav = ({
     users = 'Guest',
+    onChange=()=>{},
+    onClick=()=>{},
 }) => {
 
     const { theme } = useTheme();
@@ -28,7 +30,7 @@ const Nav = ({
                 <NavLogo className="lightColor "  />
             </div>
             <div className="navInputCon">
-                <input className="input" placeholder='Search...'  />
+                <input className="input" placeholder='Search...' onChange={onChange} onClick={onClick} />
                 <Autocomplete
                     disablePortal
                     id="combo-box-demo"
