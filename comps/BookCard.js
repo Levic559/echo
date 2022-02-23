@@ -22,6 +22,7 @@ const BookCard=({
     title=default_date.BookTitle,
     src=default_date.ImageURLM,
     isbn=default_date.ISBN,
+    YearOfPublication=default_date.YearOfPublication,
     onClick=()=>{},
 })=>{
 
@@ -33,6 +34,7 @@ const BookCard=({
         <img src={src}/>
         <p style={{color:text_theme[theme].title}}> {title} </p>
         <p style={{color:text_theme[theme].title}}> {isbn} </p>
+        <p style={{color:text_theme[theme].title}}> {YearOfPublication} </p>
         </div>
 
     )

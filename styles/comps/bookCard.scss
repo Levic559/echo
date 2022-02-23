@@ -1,6 +1,6 @@
 .bookCard {
     width: 20rem;
-    height: 17.5rem;
+    height: 20rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -22,8 +22,10 @@
     }
     p{
         font-size: 1rem;
+        font-weight: 500;
         font-family: 'Courier New', Courier, monospace;
         color:#CAD2C5;
         text-align: center;
+        line-height: 75%;
     }
 }

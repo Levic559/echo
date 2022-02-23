@@ -101,6 +101,7 @@ export default function bookShelf({
                     src={o.ImageURLS}
                     title={o.BookTitle.substr(0, 20) + "..."}
                     isbn={o.ISBN}
+                    YearOfPublication={o.YearOfPublication}
                   />
                 )) 
               
