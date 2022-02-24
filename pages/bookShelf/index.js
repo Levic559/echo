@@ -5,12 +5,8 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
-import styled from 'styled-components';
-import Button from '@mui/material/Button';
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme } from '../../utils/provider'
-import MyButton from '@/comps/Button';
-let timer = null;
 export default function bookShelf({
 
 }) {
@@ -103,7 +99,7 @@ export default function bookShelf({
                 )}
 
               </div>
-              {/* <MyButton onClick={()=>GetBooks()}>1</MyButton> */}
+              
             </div>
             <div className='Drawers'>
               <div className='lable'>
