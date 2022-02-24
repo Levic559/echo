@@ -24,7 +24,7 @@ const CommentCard=({
         
 
         <Image src={booksrc} width={300}
-      height={300} objectFit="fill"/>
+      height={300} objectFit="cover"/>
         <div className='content'> {comment}   </div>
         <div className='user'> 
             <img src={usersrc}/>

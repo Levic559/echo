@@ -73,7 +73,7 @@ export default function BooksID() {
     <div className='sB_Wrapper'>
       <div className='Container' >
         <div className='Nav'>
-          <Nav />
+        <Nav  onClick={()=>router.push('bookShelf/search')}/>
         </div>
         <div className='Content' >
           <div className='Side_Bar'>

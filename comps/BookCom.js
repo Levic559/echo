@@ -2,7 +2,7 @@ import React from 'react';
 import {comp_theme, text_theme} from'../utils/variables'
 import {useTheme} from '../utils/provider'
 import { Icon } from 'semantic-ui-react'
-
+import Image from 'next/image';
 const default_date={
     "ISBN": "195153448",
     "BookTitle": "Classical Mythology",
@@ -27,7 +27,7 @@ return<div className='bookCom'  style={{
     backgroundColor:comp_theme[theme].label,
     color:text_theme[theme].label
     }}>
-    <img src={src}/>
+    <Image src={src} width={400} height={400} objectFit="cover"/>
     <div className='BookTitle'>  {title}</div>
     <div className='rating'><Icon name='star outline' size='large' />
             <Icon name='star outline' size='large' />
