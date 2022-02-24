@@ -7,12 +7,15 @@ import InputBox from '@/comps/InputBox'
 import {useRouter} from 'next/router';
 import{IndexCard} from "../comps/IndexCard"
 import { useState } from 'react'
+import { comp_theme, text_theme } from '../utils/variables'
+import { useTheme } from '../utils/provider'
 
 var page=1
 export default function Home({
   title="Sign Up"
 }) {
   const router = useRouter();
+  const { theme } = useTheme();
   const [component1, setcomponent1] = useState(IndexCard.one.component1);
   const [component2, setcomponent2] = useState(IndexCard.one.component2);
   const nextPage = () => 
@@ -75,15 +78,18 @@ export default function Home({
       <div className='Wrapper'>
       <div className='Container' >
         <div className='LogoCon'>
-          <p className='welcome'>Welcome to</p>
+          <p style={{color:'pink'}} className='welcome'>Welcome to</p>
         <Logo/>
         {/* <p className="intro"> Every literate person is aware of the paragraph. Paragraphs are important in speeches, in writing or a random paragraph can be used as a prop in ads or presentations too! They are like the building blocks. </p> */}
         </div>
-        <div className='CardCon'>
+        <div className='CardCon' style={{
+          background: comp_theme[theme].label2,
+          color: text_theme[theme].label
+        }}>
         <p className='title'>{title}</p>
         {component1}
         {component2}
-        <div className='ButtonCon'>
+        <div className='ButtonCon' >
         <MyButton onClick={backPage} text="Back"/>
         <MyButton text="Next" onClick={nextPage}/>
         </div>
