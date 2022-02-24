@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Logo from '@/comps/Logo'
 import MyButton from '@/comps/Button'
-import styled from'styled-components'
 import Footer from '@/comps/Footer' 
 import InputBox from '@/comps/InputBox'
 import {useRouter} from 'next/router';

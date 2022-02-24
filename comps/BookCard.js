@@ -1,7 +1,7 @@
 import {header_theme, text_theme} from'../utils/variables'
 import {useTheme} from '../utils/provider'
 import React from 'react';
-
+import Image from 'next/image'
 
 const default_date={
 
@@ -31,7 +31,8 @@ const BookCard=({
     return (
     <div className='bookCard' onClick={onClick} >
 
-        <img src={src}/>
+        <Image src={src} width={500}
+      height={500} objectFit="cover"/>
         <p style={{color:text_theme[theme].title}}> {title} </p>
         <p style={{color:text_theme[theme].title}}> {isbn} </p>
         <p style={{color:text_theme[theme].title}}> {YearOfPublication} </p>
