@@ -50,10 +50,10 @@ export default function Home({
               switchText="Light Mode" switchHandler={() => setTheme(
                 theme === 'light' ? 'default' : 'light'
               )} />
-            <SwitchBasic
+            {/* <SwitchBasic
               switchText="Descendant" switchHandler={() => setOrder(
                 order === 'desc' ? 'default' : 'desc'
-              )} />
+              )} /> */}
             <Switch label='Order Method' onSwitchClick={() => setOrder(
               order === 'desc' ? 'default' : 'desc'
 

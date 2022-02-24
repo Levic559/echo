@@ -5,35 +5,25 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
-import styled from 'styled-components';
-import Button from '@mui/material/Button';
+
+import Switch from '@/comps/Switch'
 import { comp_theme, text_theme ,order_method} from '../../utils/variables'
 import { useTheme,useOrder } from '../../utils/provider'
-import MyButton from '@/comps/Button';
+
 let timer = null;
-export default function bookShelf({
+export default function Bookshelf({
 
 }) {
-  const {order} = useOrder();
+  // const {order} = useOrder();
   const { theme } = useTheme();
+
+
   const router = useRouter();
   const [data, setData] = useState([]);
-  const [books2, setbooks2] = useState([]);
-  const [books3, setbooks3] = useState([]);
-  const [curpage, setCurPage] = useState(1);
   const [publish,setPublish]=useState(false)
-  const itemsPerPage = 15;
-  var butt_arr = [];
-  var start = 1;
-  for (var i = 1; i < 1000; i += itemsPerPage) {
-    // butt_arr.push(i)
-    butt_arr.push(((i - 1) / itemsPerPage) + 1);
-    // start++
-  }
 
-  butt_arr = butt_arr.slice(
-    curpage - 5 < 0 ? 0 : curpage - 5,
-    curpage + 5);
+
+
 
   
   const inputFilter = async (txt) => {
@@ -89,8 +79,14 @@ export default function bookShelf({
           </div>
           <div className='Feed_Area' style={{ color: text_theme[theme].title }}>
             <div className='Drawers' >
-              <div className='lable' >
+              <div className='label' >
                 <h3 > Search result</h3>
+            
+                {/* <Switch label='Order Method' onSwitchClick={() => setOrder(
+              order === 'desc' ? 'default' : 'desc'
+
+            )}
+              btn={order === 'desc' ? 'Desc' : 'Asc'} /> */}
               </div>
               <div className='Drawer_search'>
                 

@@ -7,7 +7,7 @@ import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme } from '../../utils/provider'
-export default function bookShelf({
+export default function Bookshelf({
 
 }) {
 
