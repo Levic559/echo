@@ -8,7 +8,7 @@ import BookCard from '@/comps/BookCard'
 
 import Switch from '@/comps/Switch'
 import { comp_theme, text_theme ,order_method} from '../../utils/variables'
-import { useTheme,useOrder } from '../../utils/provider'
+import { useTheme } from '../../utils/provider'
 
 let timer = null;
 export default function Bookshelf({
@@ -82,11 +82,7 @@ export default function Bookshelf({
               <div className='label' >
                 <h3 > Search result</h3>
             
-                {/* <Switch label='Order Method' onSwitchClick={() => setOrder(
-              order === 'desc' ? 'default' : 'desc'
-
-            )}
-              btn={order === 'desc' ? 'Desc' : 'Asc'} /> */}
+            
               </div>
               <div className='Drawer_search'>
                 
