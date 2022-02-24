@@ -40,7 +40,7 @@ export default function Home({
     } 
     else  if (page == 4)
     {
-         router.push("/bookshelf")
+         router.push("/bookShelf")
     } 
     console.log("page " + page)
   }

@@ -68,7 +68,7 @@ export default function Bookshelf({
     <div className='B_Wrapper'>
       <div className='B_Container' >
         <div className='B_Nav'>
-          <Nav onClick={()=>router.push('/bookshelf/search')}  />
+          <Nav onClick={()=>router.push('/bookShelf/search')}  />
         </div>
         <div className='B_Content' >
           <div className='Side_Bar'>
