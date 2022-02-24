@@ -31,8 +31,8 @@ const BookCard=({
     return (
     <div className='bookCard' onClick={onClick} >
 
-        <Image src={src} width={500}
-      height={500} objectFit="cover"/>
+        <Image src={src} width={150}
+      height={150} objectFit="cover" />
         <p style={{color:text_theme[theme].title}}> {title} </p>
         <p style={{color:text_theme[theme].title}}> {isbn} </p>
         <p style={{color:text_theme[theme].title}}> {YearOfPublication} </p>
