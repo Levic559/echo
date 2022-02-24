@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {useTheme} from '../utils/provider'
-import {comp_theme} from'../utils/variables'
+import {comp_theme, text_theme} from'../utils/variables'
 import Button from '@mui/material/Button';
 
 const Container =styled.div`
@@ -31,10 +31,11 @@ margin-bottom:1rem;
     color: #f3f6f4;
   }
 `
-const SwitchLabel=styled.p`
+const SwitchLabel=styled.div`
 color:${props=>props.color};
 font-size:1.5rem;
-margin:1rem
+margin-right:1rem;
+font-family: 'Baumans', sans-serif;
 `
 
 const Switch=({
@@ -45,8 +46,8 @@ const Switch=({
     const {theme} = useTheme();
     // console.log(theme)
     return <Container>
-        <SwitchLabel color={comp_theme[theme].label}> {label} </SwitchLabel>
-       <Button onClick={onSwitchClick}  style={{background:comp_theme[theme].label}}> {btn} </Button>
+        <SwitchLabel color={text_theme[theme].label}> {label} </SwitchLabel>
+       <Button onClick={onSwitchClick}  style={{background:comp_theme[theme].label ,color:text_theme[theme].label}}> {btn} </Button>
        
 </Container>
 }

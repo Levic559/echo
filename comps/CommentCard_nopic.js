@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-
+import {comp_theme, text_theme} from'../utils/variables'
+import {useTheme} from '../utils/provider'
 const default_date={
   
   "comment":"Every literate person is aware of the paragraph. Paragraphs are important in speeches, in writing or a random paragraph can be used as a prop in ads or presentations too! They are like the building blocks. Since paragraphs have so many roles to play and it is needed, websites on the internet have developed a tool called Random Paragraph Generator which is a great help for those who are in search of random paragraphs for working purposes.",
@@ -17,18 +18,30 @@ const CommentCard_nopic=({
   username=default_date.username
 
 })=>{
+  const {theme} = useTheme();
 
 
-
-    return <div className='CommentCard_Con_nopic'>
+    return <div className='CommentCard_Con_nopic'  style={{
+      
+      color:text_theme[theme].title
+      }}>
         
 
         
-        <div className='content'> {comment}   </div>
+        <div className='content'style={{
+      
+      color:text_theme[theme].title
+      }} > {comment}    </div>
         <div className='user'> 
             <img src={usersrc}/>
-            <h3> {username}</h3>
-            <Button variant="contained">more</Button>
+            <h3 style={{
+      
+      color:text_theme[theme].title
+      }}> {username}</h3>
+            <Button variant="contained" style={{
+      
+      color:text_theme[theme].label
+      }}>more</Button>
           </div>
 
 

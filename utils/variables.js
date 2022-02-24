@@ -14,7 +14,7 @@ export const comp_theme ={
         label2:"#7A9B92"
     },
     light :{
-        label:"#80A6A4",
+        label:"#4B5163",
         label2:"#80A6A4 "
     },
 }
