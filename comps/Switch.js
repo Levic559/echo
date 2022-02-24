@@ -47,7 +47,7 @@ const Switch=({
     // console.log(theme)
     return <Container>
         <SwitchLabel color={text_theme[theme].label}> {label} </SwitchLabel>
-       <Button onClick={onSwitchClick}  style={{background:comp_theme[theme].label ,color:text_theme[theme].label}}> {btn} </Button>
+       <Button onClick={onSwitchClick}  style={{background:comp_theme[theme].label2 ,color:text_theme[theme].label}}> {btn} </Button>
        
 </Container>
 }

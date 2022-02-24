@@ -38,7 +38,7 @@ export default function Bookshelf({
         const res = await ax.get("/api/books_search",{
           params:{
             txt:txt,
-           sort_type:order_method[order]?.label,
+          //  sort_type:order_method[order]?.label,
            year_publish:publish,
           
           }
