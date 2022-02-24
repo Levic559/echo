@@ -2,7 +2,7 @@ import React from 'react';
 import {comp_theme, text_theme} from'../utils/variables'
 import {useTheme} from '../utils/provider'
 import { Icon } from 'semantic-ui-react'
-
+import Image from 'next/image'
 const default_date={
 
     "src": "https://news.artnet.com/app/news-upload/2021/12/RachelUffner-byJasonFrankRothenberg-2015-750x550.jpg",
@@ -27,7 +27,7 @@ return<div className='userCom'  style={{
     backgroundColor:comp_theme[theme].label,
     color:text_theme[theme].label
     }}>
-    <img src={src}/>
+    <Image src={src} width={500} height={500} objectFit="cover"/>
     <div className='name'>  {username}</div>
     <div className='rating'> 
     <Icon name='heart' size='large' />
