@@ -16,7 +16,7 @@ export default function Home({
   const { theme } = useTheme();
   const router = useRouter();
   const logIn = () => {
-    router.push("/bookShelf")
+    router.push("/bookshelf")
   }
   return <div>
     <Head>

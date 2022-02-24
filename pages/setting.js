@@ -29,7 +29,7 @@ export default function Home({
     <div className='s_Wrapper'>
       <div className='Container'  >
         <div className='Nav'>
-          <Nav />
+        <Nav onClick={()=>router.push('/bookshelf/search')}  />
         </div>
         <div className='Content'>
           <div className='personInfo'>

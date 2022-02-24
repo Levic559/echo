@@ -37,7 +37,7 @@ export default function Home({
     } 
     else  if (page == 4)
     {
-         router.push("/bookShelf")
+         router.push("/bookshelf")
     } 
     console.log("page " + page)
   }

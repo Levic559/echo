@@ -9,7 +9,6 @@ import { Card } from "../comps/IndexCard"
 import { useState } from 'react'
 import Nav from '@/comps/Nav'
 import UserCom from '@/comps/UserCom'
-import SwitchBasic from '@/comps/SwitchBasic'
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
 
@@ -46,7 +45,7 @@ const [read,setRead]=useState(read_list)
     <div className='P_Wrapper'>
       <div className='Container' >
         <div className='Nav'>
-          <Nav />
+        <Nav onClick={()=>router.push('/bookshelf/search')}  />
         </div>
         <div className='Content' >
           <div className='Side_Bar'>

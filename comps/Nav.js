@@ -26,7 +26,7 @@ const Nav = ({
     return (
 
         <div className="navBar" style={{background:global_theme[theme].body }} >
-            <div className="navLogoCon  " onClick={() => router.push("/bookShelf")}>
+            <div className="navLogoCon  " onClick={() => router.push("/bookshelf")}>
                 <NavLogo className="lightColor "  />
             </div>
             <div className="navInputCon">
