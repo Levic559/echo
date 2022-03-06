@@ -14,15 +14,20 @@ const Nav = ({
     users = 'Guest',
     onChange=()=>{},
     onClick=()=>{},
+    options,
+    value,
+    onValueChange=()=>{},
+    placeholder
 }) => {
 
     const { theme } = useTheme();
     const router = useRouter()
-    const top100Films = [
+    const filter = [
+        { label: 'BookTitle' },
         { label: 'Author' },
         { label: 'ISBN' },
-        { label: 'Year of Publish ' },
-    ];
+        { label: 'Year_Publish' }
+      ];
     return (
 
         <div className="navBar" style={{background:global_theme[theme].body }} >
@@ -30,13 +35,16 @@ const Nav = ({
                 <NavLogo className="lightColor "  />
             </div>
             <div className="navInputCon">
-                <input className="input" placeholder='Search...' onChange={onChange} onClick={onClick} />
+                <input className="input" placeholder={placeholder} onChange={onChange} onClick={onClick} />
                 <Autocomplete
+                value={value}
+                onChange={onValueChange}
                     disablePortal
                     id="combo-box-demo"
-                    options={top100Films}
-                    sx={{ width: 100, background: "#cad2c5", borderRadius: 1.5 }}
-                    renderInput={(params) => <TextField {...params} label="filiter" />}
+                    options={filter}
+                    sx={{ width: 165, background: "#cad2c5", borderRadius: 1.5}}
+                    renderInput={(params) => <TextField {...params} label="filter" /> }
+                    
                 />
             </div>
             <div className="navUsers " style={{color:text_theme[theme].title}}>
@@ -44,7 +52,7 @@ const Nav = ({
             </div>
             <div className="iconCon">
 
-                <Icon name='user' size='large' onClick={() => router.push("/personalSite")} style={{color:text_theme[theme].title}}/>
+                <Icon name='user' size='large' onClick={() => router.push("/personalsite")} style={{color:text_theme[theme].title}}/>
                 <Icon name='setting' size='large' onClick={() => router.push("/setting")} style={{color:text_theme[theme].title}}/>
             </div>
             <div>

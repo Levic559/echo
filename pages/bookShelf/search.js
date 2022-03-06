@@ -9,31 +9,32 @@ import BookCard from '@/comps/BookCard'
 import Switch from '@/comps/Switch'
 import { comp_theme, text_theme ,order_method} from '../../utils/variables'
 import { useTheme } from '../../utils/provider'
-
+const filter = [
+  { label: 'BookTitle' },
+  { label: 'Author' },
+  { label: 'ISBN' },
+  { label: 'Year_Publish' }
+];
 let timer = null;
 export default function Bookshelf({
 
 }) {
   // const {order} = useOrder();
+  const [value, setValue] = useState(filter[0]);
   const { theme } = useTheme();
-
-
   const router = useRouter();
   const [data, setData] = useState([]);
   const [publish,setPublish]=useState(false)
-
-
-
-
-  
-  const inputFilter = async (txt) => {
-    console.log(txt,)
+  // console.log(value.label)
+  const searchTitle = async (txt) => {
+    console.log(txt)
     if (timer) {
       clearTimeout(timer);
       timer = null
     }
     if (timer===null){
       timer= setTimeout(async()=>{
+        console.log(value)
         console.log("async call!!!")
         const res = await ax.get("/api/books_search",{
           params:{
@@ -43,7 +44,79 @@ export default function Bookshelf({
           
           }
         })
+        console.log(res.data);
+        setData(res.data);
+        timer=null;
+      },1500)
+    }
+  }
+  const searchAuthor = async (people) => {
+    console.log(people)
+    if (timer) {
+      clearTimeout(timer);
+      timer = null
+    }
+    if (timer===null){
+      timer= setTimeout(async()=>{
+        console.log(value)
+        console.log("async call!!!")
+        const res = await ax.get("/api/books_search",{
+          params:{
+            people:people,
+          //  sort_type:order_method[order]?.label,
+           year_publish:publish,
+          
+          }
+        })
 
+        console.log(res.data);
+        setData(res.data);
+        timer=null;
+      },1500)
+    }
+  }
+  const searchPublishYear = async (year) => {
+    console.log(year)
+    if (timer) {
+      clearTimeout(timer);
+      timer = null
+    }
+    if (timer===null){
+      timer= setTimeout(async()=>{
+        console.log(value)
+        console.log("async call!!!")
+        const res = await ax.get("/api/books_search",{
+          params:{
+            year:year,
+          //  sort_type:order_method[order]?.label,
+           year_publish:publish,
+          
+          }
+        })
+        console.log(res.data);
+        setData(res.data);
+        timer=null;
+      },1500)
+    }
+  }
+  const searchISBN = async (num) => {
+    console.log(num)
+    if (timer) {
+      clearTimeout(timer);
+      timer = null
+    }
+    if (timer===null){
+      timer= setTimeout(async()=>{
+        console.log(value)
+        console.log("async call!!!")
+        const res = await ax.get("/api/books_search",{
+          params:{
+            num:num,
+          //  sort_type:order_method[order]?.label,
+           year_publish:publish,
+          
+          }
+        })
         console.log(res.data);
         setData(res.data);
         timer=null;
@@ -62,7 +135,46 @@ export default function Bookshelf({
     <div className='B_Wrapper'>
       <div className='B_Container' >
         <div className='B_Nav'>
-          <Nav onChange={(e) => inputFilter(e.target.value)}  />
+          {value.label=="Author"?
+          <Nav 
+          onChange={(e) => searchAuthor(e.target.value)}
+          options={filter} 
+          placeholder="Search for a author"
+          value={value}
+          onValueChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          /> : null}
+          {value.label=="ISBN"?
+          <Nav 
+          onChange={(e) => searchISBN(e.target.value)}
+          options={filter} 
+          placeholder="Search for an ISBN"
+          value={value}
+          onValueChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          /> : null}
+          {value.label=="BookTitle"?
+          <Nav 
+          onChange={(e) => searchTitle(e.target.value)}
+          options={filter} 
+          placeholder="Search for a  booktitle"
+          value={value}
+          onValueChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          /> :null}
+          {value.label=="Year_Publish"?
+          <Nav 
+          onChange={(e) => searchPublishYear(e.target.value)}
+          options={filter} 
+          placeholder="Search for YearPublish"
+          value={value}
+          onValueChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          /> :null}
         </div>
         <div className='B_Content' >
           <div className='Side_Bar'>
@@ -81,8 +193,6 @@ export default function Bookshelf({
             <div className='Drawers' >
               <div className='label' >
                 <h3 > Search result</h3>
-            
-            
               </div>
               <div className='Drawer_search'>
                 
@@ -92,7 +202,7 @@ export default function Bookshelf({
                     onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                     src={o.ImageURLS}
                     title={o.BookTitle.substr(0, 20) + "..."}
-                    isbn={o.ISBN}
+                    BookAuthor={o.BookAuthor}
                     YearOfPublication={o.YearOfPublication}
                   />
                 )) 

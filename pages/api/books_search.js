@@ -10,12 +10,15 @@ export default async function handler(req, res) {
   //const files = await Read();
 
   //detect if filter/save/read
-const {txt,year_publish,sort_type}=req.query
+const {txt,year_publish,sort_type,people,num,year}=req.query
   var lists =[]
   
-  if(txt){
+  if(txt ||people||num||year){
 lists =filtering(bookslist,{
-  BookTitle:txt
+  BookTitle:txt,
+  BookAuthor:people,
+  YearOfPublication:year,
+  ISBN:num
 })}
  if(year_publish){
   lists =sorting(lists,{

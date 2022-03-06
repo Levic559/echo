@@ -93,8 +93,9 @@ export default function Bookshelf({
                   <BookCard key={i}
                     onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                     src={o.ImageURLS}
+                    YearOfPublication={o.YearOfPublication}
                     title={o.BookTitle.substr(0, 20) + "..."}
-                    isbn={o.ISBN}
+                    BookAuthor={o.BookAuthor}
                   />
                 )}
 
@@ -111,7 +112,8 @@ export default function Bookshelf({
                   <BookCard key={i}
                     src={o.ImageURLM}
                     title={o.BookTitle.substr(0, 20) + "..."}
-                    isbn={o.ISBN}
+                    BookAuthor={o.BookAuthor}
+                    YearOfPublication={o.YearOfPublication}
                     onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                   />
 
@@ -128,7 +130,8 @@ export default function Bookshelf({
                   <BookCard key={i}
                     src={o.ImageURLM}
                     title={o.BookTitle.substr(0, 20) + "..."}
-                    isbn={o.ISBN}
+                    BookAuthor={o.BookAuthor}
+                    YearOfPublication={o.YearOfPublication}
                     onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                   />
 

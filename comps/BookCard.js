@@ -21,7 +21,7 @@ const default_date={
 const BookCard=({
     title=default_date.BookTitle,
     src=default_date.ImageURLM,
-    isbn=default_date.ISBN,
+    BookAuthor=default_date.BookAuthor,
     YearOfPublication=default_date.YearOfPublication,
     onClick=()=>{},
 })=>{
@@ -34,7 +34,7 @@ const BookCard=({
         <Image src={src} width={150}
       height={150} objectFit="cover" />
         <p style={{color:text_theme[theme].title}}> {title} </p>
-        <p style={{color:text_theme[theme].title}}> {isbn} </p>
+        <p style={{color:text_theme[theme].title}}> {BookAuthor} </p>
         <p style={{color:text_theme[theme].title}}> {YearOfPublication} </p>
         </div>
 

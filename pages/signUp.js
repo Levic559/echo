@@ -18,6 +18,7 @@ export default function Home({
   const [page1, setPage1] = useState(true)
   const [page2, setPage2] = useState(false)
   const [page3, setPage3] = useState(false)
+  const [e_warn, setE_Warn] = useState(false)
   const [warn, setWarn] = useState(false)
   const [register, setRegister] = useState({
     email: "",
@@ -29,9 +30,10 @@ export default function Home({
   })
   const nextPage = () => {
     if (page1) {
-
+      let emailRegex = /^([A-Za-z\d\.-]+)@([A-Za-z\d-]+)\.([A-Za-z]{2,6})(\.[A-Za-z]{2,6})?$/
+      let e_valid =emailRegex.test(register.email)
       let oneLowerCaseLetter = /(?=.+[a-z])/;
-      let oneUppperCaseLetter = /(?=.+[A-Z])/;
+      let oneUppperCaseLetter = /(?=[A-Z])/;
       let oneDigit = /(?=.+[0-9])/;
       let oneSpecailCharacter = /(?=.+[!@#$%^&*])/;
       let minmunEnglishCharacter = /(?=.{8,})/;
@@ -42,15 +44,21 @@ export default function Home({
         oneSpecailCharacter.test(register.password) &&
         minmunEnglishCharacter.test(register.password);
 
-      if ( valid && register.email!==""  ) {
+      if (e_valid&& valid  ) {
        
         setPage1(false)
         setPage2(true)
         setPage3(false)
         setWarn(false)
+        setE_Warn(false)
       }
-      else  {
+      else if(!e_valid)  {
+        setE_Warn(true)
+        setWarn(false)
+      }
+      else if(!valid)  {
         setWarn(true)
+        setE_Warn(false)
       }
     }
 
@@ -59,6 +67,9 @@ export default function Home({
       setPage1(false)
       setPage2(false)
       setPage3(true)
+    }
+    else{
+      router.push("/")
     }
     console.log("page " + page)
   }
@@ -98,8 +109,10 @@ export default function Home({
         }}>
           <p className='title'>{title}</p>
           <InputBox text="Email" value={register.email} onChange={e => setRegister({ ...register, email: e.target.value })} />
+          {e_warn ? <p style={{ color: "#ba1141" }}><b>The eamil is invalid</b></p> : null}
           <InputBox text="Password" value={register.password} onChange={e => setRegister({ ...register, password: e.target.value })} />
-          {warn ? <p style={{ color: "pink" }}><b>The password is invalid</b></p> : null}
+          <p>The password requires a smaall and upper caselettter, a character, a number, and eight digits.</p>
+          {warn ? <p style={{ color: "#ba1141" }}><b>The password is invalid</b></p> : null}
           <div className='ButtonCon' >
             <MyButton onClick={backPage} text="Back" />
             <MyButton text="Next" onClick={nextPage} />
