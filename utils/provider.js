@@ -7,10 +7,8 @@ const initialStates = {
     setTheme:()=>{},
     order:"asc",
     setOrder:()=>{},
-    code:"eng",
-    setCode:()=>{},
-    rc:"1000",
-    setRC:()=>{},
+    readlist:{},
+    setReadlist:()=>{}
 }
 
 const MyContext = createContext(initialStates);
@@ -19,10 +17,10 @@ export default function AppProvider({children}){
     //children all the pages/components insider this provider
     const [theme,setTheme]=useState(initialStates.theme)
     const [order,setOrder]=useState(initialStates.order)
-    const [code,setCode]=useState(initialStates.code)
-    const [rc,setRC]=useState(initialStates.rc)
+    const [readlist,setReadlist]=useState(initialStates.readlist)
+    console.log("readlist",readlist)
     //put in the variables you want to share
-    return <MyContext.Provider value={{theme,setTheme, order,setOrder,code,setCode,rc,setRC}}>
+    return <MyContext.Provider value={{theme,setTheme, order,setOrder,readlist,setReadlist}}>
     <style jsx global>{`
     body{
         background-color:${global_theme[theme].body}
@@ -47,14 +45,8 @@ export function useOrder(){
     return {order,setOrder}
 }
 
-export function useCode(){
-    const {code,setCode} = useContext(MyContext)
+export function useRead(){
 
-    return {code,setCode}
-}
-
-export function useRC(){
-    const {rc,setRC} = useContext(MyContext)
-
-    return {rc,setRC}
+    const {readlist,setReadlist}=useContext(MyContext)
+    return{readlist,setReadlist};
 }

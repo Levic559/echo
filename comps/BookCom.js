@@ -20,7 +20,9 @@ const BookCom =({
     ISBN=default_date.ISBN,
     YearOfPublication=default_date.YearOfPublication,
     Publisher=default_date.Publisher,
-    src=default_date.ImageURLM
+    src=default_date.ImageURLM,
+    heart=()=>{},
+    // checked=()=>{}
 })=>{
     const {theme} = useTheme();
 return<div className='bookCom'  style={{
@@ -33,6 +35,7 @@ return<div className='bookCom'  style={{
             <Icon name='star outline' size='large' />
             <Icon name='star outline' size='large' />
             <Icon name='star outline' size='large' />
+            <Icon name='star outline' size='large' />
            
      </div>
     <div className='info'>
@@ -41,7 +44,11 @@ return<div className='bookCom'  style={{
     <p> Year of Publish: {YearOfPublication}</p>
     <p> Publisher: {Publisher}</p>
     </div>   
-    
+    <div className='rating'> 
+   <input name='heart' size='large' type="checkbox"  onChange={heart} />
+    <Icon name='sticky note' size='large' />
+    <Icon name='edit' size='large' />
+     </div>
 
 </div>
 }

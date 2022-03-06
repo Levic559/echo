@@ -25,7 +25,7 @@ a {
 
     .Container {
         width: 70%;
-        height: 100%;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -38,11 +38,11 @@ a {
         }
         .Nav {
             height: 100%;
-            width: 70%;
-            position: fixed;
+            width: 100%;
+            // position: fixed;
         }
         .Content {
-            margin-top: 10%;
+            margin-top: 2.5%;
             height: 100%;
             width: 100%;
             display: flex;
@@ -53,7 +53,7 @@ a {
             .Side_Bar {
                 width: 25%;
                 min-width: 20rem;
-                height: 100%;
+                height: 70%;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
@@ -64,7 +64,7 @@ a {
            .userContent{
            
             width: 70%;
-            height: 95%;
+            height: 100%;
             display: flex;
                 flex-direction: column;
                 justify-content: space-between;

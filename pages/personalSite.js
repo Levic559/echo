@@ -11,7 +11,8 @@ import Nav from '@/comps/Nav'
 import UserCom from '@/comps/UserCom'
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
-
+import {useRead}from '@/utils/provider'
+import {readlist} from'@/utils/provider'
 const favorite_book=[
   {"title":"Classical Mythology"},
   {"title":"Tell Me This Isn't Happening"}, 
@@ -28,11 +29,14 @@ const favorite_book=[
     {"title":"Thief of Time"},
     {"title":"Born Confused"},
     ]
+    
 export default function Home({
 
 }) {
   const { theme } = useTheme();
-
+  const {readlist,setReadlist}=useRead()
+ 
+  console.log(Object.values(readlist))
 const [fav,setFav]=useState(favorite_book)
 const [read,setRead]=useState(read_list)
 
@@ -59,18 +63,21 @@ const [read,setRead]=useState(read_list)
                 {fav.map((o,i)=>
                  <div className='book' key={i}> {o.title} </div> 
                 )}
-             
-             
-
               </div>
             </div>
             <div className='readlist'
               style={{ background: comp_theme[theme].label2 }}>
               <div className='title'>Read list </div>
               <div className='content'>
-              {read.map((o,i)=>
+              {/* {read.map((o,i)=>
                  <div className='book' key={i}> {o.title} </div> 
+                )}  */}
+                
+                {Object.values(readlist).map((o,i)=>
+                 <div className='book' key={i}> {o.BookTitle} <button>x</button> </div> 
                 )}
+                
+               
               </div>
             </div>
             <div className='friends'
@@ -84,7 +91,6 @@ const [read,setRead]=useState(read_list)
                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWkSP3EKcAp15vWWiw1o8SERDOD5DoQDryFzN0DzBpQ-LY0FChuI2ADvmTq1DUYglQ3C4&usqp=CAU' />
                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9Xd1w6AWRAVtdqZnQ4IhJ9xMzFvPJSo-4rROiBz_FlvWb_luhbt0W8CiE4YvVudLJ2wI&usqp=CAU' />
                 <img src='https://i.insider.com/5cb8b133b8342c1b45130629?width=700' />
-
               </div>
             </div>
             <div className='clubs'

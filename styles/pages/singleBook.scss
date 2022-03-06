@@ -38,8 +38,8 @@ a {
         }
         .Nav {
             height: 100%;
-            width: 70%;
-            position: fixed;
+            width: 100%;
+            // position: absolute;
         }
         .Content {
             margin-top: 5rem;
@@ -62,11 +62,15 @@ a {
                 
             }
            .bookComment{
+               padding-top: 20rem;
                display: flex;
                flex-direction: column;
                justify-content: center;
                align-items: center;
                 width: 70%;
+                height:85vh;
+                overflow:scroll;
+                overflow-x:hidden;
            }
         }
     }

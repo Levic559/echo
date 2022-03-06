@@ -10,6 +10,10 @@ import Nav from '@/comps/Nav'
 import CommentCard_nopic from '@/comps/CommentCard_nopic'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme } from '../../utils/provider'
+import { v4 as uuidv4 } from 'uuid';
+import {useRead}from '@/utils/provider'
+
+
 const book_comments = [
   {
 
@@ -44,7 +48,7 @@ export default function BooksID() {
   const [data, setDate] = useState(null)
   const { theme } = useTheme();
   const [bcomment, setbComment] = useState(book_comments)
-
+  const {readlist,setReadlist}=useRead()
   useEffect(() => {
     if (id) {
       const GetBook = async () => {
@@ -61,6 +65,26 @@ export default function BooksID() {
       GetBook()
     }
   }, [id])
+  const StoreReadlist = (checked, obj) => {
+    //store the favourites to be used on the next page
+    console.log(checked,obj)
+    if(checked){
+      const n_readlist={...readlist}
+      n_readlist[obj.ISBN]=obj;
+      // var key="aaa"
+      // n_fav[key]=obj;
+      setReadlist(n_readlist)
+    // console.log(n_readlist)
+
+    }else {
+      const n_readlist ={
+        ...readlist
+      }
+      delete n_readlist[obj.ISBN];
+      setReadlist(n_readlist)
+    }
+ 
+  }
   if (data === null) {
     return <div> 404 Can not find the book. </div>
   }
@@ -80,15 +104,14 @@ export default function BooksID() {
 
             <BookCom
               src={data.ImageURLL}
-
               title={data.BookTitle}
               author={data.BookAuthor}
               ISBN={data.ISBN}
               YearOfPublication={data.YearOfPublication}
               Publisher={data.Publisher}
-
+              heart={(e)=> StoreReadlist(e.target.checked, data)}
+              checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
             />
-
           </div>
           <div className='bookComment'>
             {bcomment.map((o, i) =>
@@ -97,7 +120,6 @@ export default function BooksID() {
               comment={o.comment}
               usersrc={o.usersrc}
               username={o.username}
-              
               />
             )}
           </div>
