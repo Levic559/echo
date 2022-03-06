@@ -11,7 +11,7 @@ import Nav from '@/comps/Nav'
 import UserCom from '@/comps/UserCom'
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
-import {useRead}from '@/utils/provider'
+import {useRead,useUser}from '@/utils/provider'
 import {readlist} from'@/utils/provider'
 const favorite_book=[
   {"title":"Classical Mythology"},
@@ -34,12 +34,20 @@ export default function Home({
 
 }) {
   const { theme } = useTheme();
+  const { user } = useUser();
   const {readlist,setReadlist}=useRead()
- 
-  console.log(Object.values(readlist))
+  const router = useRouter();
+  // console.log(Object.values(readlist))
 const [fav,setFav]=useState(favorite_book)
 const [read,setRead]=useState(read_list)
-
+const handleRemove=(i)=>{
+  console.log(i)
+  let list =Object.values(readlist)
+  setReadlist([
+    ...list.slice(0,i),
+    ...list.slice(i+1)
+  ]);
+}
   return <div>
     <Head>
       <title>Echo</title>
@@ -49,11 +57,20 @@ const [read,setRead]=useState(read_list)
     <div className='P_Wrapper'>
       <div className='Container' >
         <div className='Nav'>
-        <Nav onClick={()=>router.push('/bookShelf/search')}  />
+          {user ?
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
+        :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='Content' >
           <div className='Side_Bar'>
-            <UserCom />
+           {user ? <UserCom  username={user.username}
+             account={user.email} 
+             gender={user.gender}
+             age={user.age}
+            location={user.location}
+          
+             
+             /> : <UserCom/>}
           </div>
           <div className='userContent'  style={{ color:text_theme[theme].label}}>
             <div className='favorite'
@@ -74,7 +91,9 @@ const [read,setRead]=useState(read_list)
                 )}  */}
                 
                 {Object.values(readlist).map((o,i)=>
-                 <div className='book' key={i}> {o.BookTitle} <button>x</button> </div> 
+                 <div className='book' key={i} onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}> {o.BookTitle} 
+                 <button  
+                 onClick={()=> handleRemove(i)}>x</button> </div> 
                 )}
                 
                

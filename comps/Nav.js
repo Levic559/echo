@@ -9,7 +9,8 @@ import NavLogo from "./NavLogo";
 import { Icon } from 'semantic-ui-react'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import {global_theme} from'../utils/variables'
+import {global_theme} from'../utils/variables';
+
 const Nav = ({
     users = 'Guest',
     onChange=()=>{},

@@ -8,6 +8,7 @@ import { IndexCard } from "../comps/IndexCard"
 import { useState } from 'react'
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
+import { useUser } from '../utils/provider'
 
 var page = 1
 export default function Home({
@@ -20,6 +21,7 @@ export default function Home({
   const [page3, setPage3] = useState(false)
   const [e_warn, setE_Warn] = useState(false)
   const [warn, setWarn] = useState(false)
+  const {user,setUser}=useUser()
   const [register, setRegister] = useState({
     email: "",
     password: "",
@@ -69,6 +71,7 @@ export default function Home({
       setPage3(true)
     }
     else{
+      setUser(register)
       router.push("/")
     }
     console.log("page " + page)
@@ -111,7 +114,7 @@ export default function Home({
           <InputBox text="Email" value={register.email} onChange={e => setRegister({ ...register, email: e.target.value })} />
           {e_warn ? <p style={{ color: "#ba1141" }}><b>The eamil is invalid</b></p> : null}
           <InputBox text="Password" value={register.password} onChange={e => setRegister({ ...register, password: e.target.value })} />
-          <p>The password requires a smaall and upper caselettter, a character, a number, and eight digits.</p>
+          <p className='warning'>The password requires a smaall and upper caselettter, a character, a number, and eight digits.</p>
           {warn ? <p style={{ color: "#ba1141" }}><b>The password is invalid</b></p> : null}
           <div className='ButtonCon' >
             <MyButton onClick={backPage} text="Back" />

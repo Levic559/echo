@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import IosSwitch from '@/comps/MuiSwitch'
 import Switch from '@/comps/Switch';
 import { useTheme } from '../utils/provider'
-import { useOrder } from '../utils/provider'
+import { useOrder,useUser } from '../utils/provider'
 import { comp_theme, text_theme } from '@/utils/variables';
 import SwitchBasic from '@/comps/SwitchBasic'
 export default function Home({
@@ -19,6 +19,7 @@ export default function Home({
   const router = useRouter();
   const { order, setOrder } = useOrder();
   const { theme, setTheme } = useTheme();
+  const { user } = useUser();
 
   return <div>
     <Head>
@@ -29,7 +30,9 @@ export default function Home({
     <div className='s_Wrapper'>
       <div className='Container'  >
         <div className='Nav'>
-        <Nav onClick={()=>router.push('/bookShelf/search')}  />
+        {user ?
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
+        :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='Content'>
           <div className='personInfo'>

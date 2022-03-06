@@ -3,7 +3,7 @@ import ax from 'axios';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Footer from '@/comps/Footer';
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useContext } from 'react'
 import BookCom from '@/comps/BookCom';
 import MyButton, { Button } from '@/comps/Button';
 import Nav from '@/comps/Nav'

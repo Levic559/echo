@@ -6,12 +6,13 @@ import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme } from '../../utils/variables'
-import { useTheme } from '../../utils/provider'
+import { useTheme,useUser } from '../../utils/provider'
 export default function Bookshelf({
 
 }) {
 
   const { theme } = useTheme();
+  const { user } = useUser();
   const router = useRouter();
   const [books, setbooks] = useState([]);
   const [books2, setbooks2] = useState([]);
@@ -68,7 +69,9 @@ export default function Bookshelf({
     <div className='B_Wrapper'>
       <div className='B_Container' >
         <div className='B_Nav'>
-          <Nav onClick={()=>router.push('/bookShelf/search')}  />
+        {user ?
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
+        :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='B_Content' >
           <div className='Side_Bar'>
