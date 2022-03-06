@@ -1,12 +1,14 @@
 const booklist = require("./books500.json")
 export const filtering = (
     arr = [],
-    config = { BookTitle: null, YearOfPublication: null, rating: null,
-        language_code:null, BookAuthor:null, ratings_count:null,text_reviews_count:null }
+    config = {
+        BookTitle: null, YearOfPublication: null, rating: null,
+        language_code: null, BookAuthor: null, ratings_count: null, text_reviews_count: null
+,ISBN:null    }
 ) => {
     // console.log(arr.slice(0, 5))
-    const { BookTitle, YearOfPublication, rating, BookAuthor ,language_code,text_reviews_count,ratings_count} = config
-    if (BookTitle || YearOfPublication || rating || language_code ||ratings_count || BookAuthor||text_reviews_count) {
+    const { BookTitle, YearOfPublication, rating, BookAuthor, language_code, text_reviews_count, ratings_count,ISBN } = config
+    if (BookTitle || BookAuthor || YearOfPublication || rating || language_code || ratings_count || text_reviews_count||ISBN) {
 
 
         const filiter_arr = arr.filter((o) => {
@@ -21,13 +23,16 @@ export const filtering = (
                 cond = cond && o.language_code.includes(language_code)
             }
             if (YearOfPublication) {
-                cond = cond && Number(o.num_YearOfPublications) >= Number(YearOfPublication)
+                cond = cond && Number(o.YearOfPublication) >= Number(YearOfPublication)
             }
             if (ratings_count) {
                 cond = cond && Number(o.ratings_count) >= Number(ratings_count)
             }
             if (rating) {
                 cond = cond && Number(o.average_rating) >= Number(rating)
+            }
+            if (ISBN) {
+                cond = cond && o.ISBN.includes(ISBN)
             }
             if (ratings_count) {
                 cond = cond && Number(o.ratings_count) >= Number(ratings_count)
@@ -49,7 +54,7 @@ export const filtering = (
 //     YearOfPublication:500,
 //     rating:4
 // })
-export  const sorting = (
+export const sorting = (
     arr = [],
     config = { key: null, type: null }
 ) => {
@@ -80,15 +85,15 @@ export  const sorting = (
             return 0
         })
         // console.log(arr.slice(0, 10))
-        return arr ;
+        return arr;
     }
 }
-let f_booklist= filtering(booklist,{
-    BookTitle:'Classic',
-    
+let f_booklist = filtering(booklist, {
+    BookTitle: 'Classic',
+
 })
 
-f_booklist=sorting(f_booklist, {
+f_booklist = sorting(f_booklist, {
     key: "ISBN",
     type: "desc"
 })
