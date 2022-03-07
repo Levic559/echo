@@ -14,13 +14,16 @@
         height: 10rem;
         background-color: pink;
         border-radius: 50%;
+        
         @media screen and (max-width: 1500px) {
             width: 7.5rem;
             height: 7.5rem;
             
         }
     }
-    p{
+    .discription{
+        margin-top: 1rem;
+    p{  
         width: 10rem;
         font-size: 1rem;
         font-weight: 550;
@@ -29,5 +32,5 @@
         text-align: center;
         line-height: 100%;
         // margin-top: 1rem;
-    }
+    }}
 }

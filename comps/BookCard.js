@@ -33,9 +33,11 @@ const BookCard=({
 
         <Image src={src} width={150}
       height={150} objectFit="cover" />
+      <div className='discription'>
         <p style={{color:text_theme[theme].title}}> {title} </p>
         <p style={{color:text_theme[theme].title}}> {BookAuthor} </p>
         <p style={{color:text_theme[theme].title}}> {YearOfPublication} </p>
+      </div>
         </div>
 
     )
