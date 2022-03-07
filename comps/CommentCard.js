@@ -26,7 +26,7 @@ const CommentCard=({
     return <div className='CommentCard_Con'>
         
 
-        <Image src={booksrc} width={275}
+        <Image src={booksrc} width={180}
       height={275} objectFit="cover"/>
         <div className='content'style={{
       

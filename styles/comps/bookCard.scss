@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    margin:1rem;
+    margin:1.5rem;
     &:hover{
         opacity:.25
     }
@@ -21,6 +21,7 @@
         }
     }
     p{
+        width: 10rem;
         font-size: 1rem;
         font-weight: 550;
         font-family: 'Courier New', Courier, monospace;
