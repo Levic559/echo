@@ -58,135 +58,143 @@ a {
                 flex-direction: row;
                 justify-content: center;
                 align-items: space-between;
-
-               
             }
-           .userContent{
-            width: 70%;
-            height: 100%;
-            display: flex;
+            .userContent {
+                width: 70%;
+                height: 90vh;
+                display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: center;
-            .favorite{
-                width: 95%;
-                height: 100%;
-                border-radius: 1rem;
-                margin-bottom: 1rem;
-                display: flex;
-                flex-direction: column;
-                    
-                .title{
-                    font-size: 1.5rem;
-                    margin-left: 5%;
-                    margin-top: 2.5%;
-                }
-                .content{
+                overflow-y: scroll;
+                overflow-x: hidden;
+                .favorite {
+                    width: 95%;
+                    height: 100%;
+                    border-radius: 1rem;
+                    margin-bottom: 1rem;
                     display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    padding:5%;
-                    .book{
-                        font-size: 1rem;
-                        background-color: grey;
-                        border-radius: 1.25rem;
-                        padding:.5rem 2rem .5rem 1rem;
-                        margin:.5rem
+                    flex-direction: column;
+
+                    .title {
+                        font-size: 1.5rem;
+                        margin-left: 5%;
+                        margin-top: 2.5%;
+                    }
+                    .fav_v {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        padding: 5%;
+                        .book {
+                            font-size: 1rem;
+                            background-color: grey;
+                            border-radius: 1.25rem;
+                            padding: 0.5rem 2rem 0.5rem 1rem;
+                            margin: 0.5rem;
+                        }
+                    }
+                    .fav_h {
+                       visibility: hidden;
                     }
                 }
-            }
-            .readlist{
-                width: 95%;
-                height: 100%;
-                border-radius: 1rem;
-                margin-bottom: 1rem;
-               
-                .title{
-                    font-size: 1.5rem;
-                    margin-left: 5%;
-                    margin-top: 2.5%;
-                }
-                .content{
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    padding:5%;
-                    .book{
-                        font-size: 1rem;
-                        background-color: grey;
-                        border-radius: 1.25rem;
-                        // line-height: 200%;
-                        padding:.5rem 1rem .5rem 1rem;
-                        margin:.5rem;
-                        &:hover{
-                            border:2px dashed pink;
-                        }
-                        button{
-                            background-color:lightgrey;
-                            margin-left:10px;
-                            color:grey;
-                            border:1px solid lightgrey;
-                            border-radius: 50%;
-                            &:hover{
-                                opacity: .5;
+                .readlist {
+                    width: 95%;
+                    height: 100%;
+                    border-radius: 1rem;
+                    margin-bottom: 1rem;
+
+                    .title {
+                        font-size: 1.5rem;
+                        margin-left: 5%;
+                        margin-top: 2.5%;
+                    }
+                    .read_v {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        padding: 5%;
+                        .book {
+                            font-size: 1rem;
+                            background-color: grey;
+                            border-radius: 1.25rem;
+                            // line-height: 200%;
+                            padding: 0.5rem 1rem 0.5rem 1rem;
+                            margin: 0.5rem;
+                            &:hover {
+                                border: 2px dashed pink;
+                            }
+                            button {
+                                background-color: lightgrey;
+                                margin-left: 10px;
+                                color: grey;
+                                border: 1px solid lightgrey;
+                                border-radius: 50%;
+                                &:hover {
+                                    opacity: 0.5;
+                                }
                             }
                         }
                     }
+                    .fav_h {
+                        visibility: hidden;
+                     }
                 }
-            }
-            .friends{
-                width: 95%;
-                height: 100%;
-                border-radius: 1rem;
-                margin-bottom: 1rem;
-                .title{
-                    font-size: 1.5rem;
-                    margin-left: 5%;
-                    margin-top: 2.5%;
-                }
-                .content{
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    padding:5%;
-                    img{
-                        width:7.5rem;
-                        height: 7.5rem;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        margin:1%;
+                .friends {
+                    width: 95%;
+                    height: 100%;
+                    border-radius: 1rem;
+                    margin-bottom: 1rem;
+                    .title {
+                        font-size: 1.5rem;
+                        margin-left: 5%;
+                        margin-top: 2.5%;
                     }
-                }
-
-            }
-            .clubs{
-                width: 95%;
-                height: 100%;
-                border-radius: 1rem;
-                margin-bottom: 1rem;
-                .title{
-                    font-size: 1.5rem;
-                    margin-left: 5%;
-                    margin-top: 2.5%;
-                }
-                .content{
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    padding:5%;
-                    img{
-                        width:7.5rem;
-                        height: 7.5rem;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        margin:1%;
+                    .friends_v {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        padding: 5%;
+                        img {
+                            width: 7.5rem;
+                            height: 7.5rem;
+                            border-radius: 50%;
+                            object-fit: cover;
+                            margin: 1%;
+                        }
                     }
-
-
+                    .friends_h {
+                        visibility: hidden;
+                     }
                 }
-
+                .clubs {
+                    width: 95%;
+                    height: 100%;
+                    border-radius: 1rem;
+                    margin-bottom: 1rem;
+                    .title {
+                        font-size: 1.5rem;
+                        margin-left: 5%;
+                        margin-top: 2.5%;
+                    }
+                    .clubs_v {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        padding: 5%;
+                        img {
+                            width: 7.5rem;
+                            height: 7.5rem;
+                            border-radius: 50%;
+                            object-fit: cover;
+                            margin: 1%;
+                        }
+                    }
+                    .clubs_h {
+                        visibility: hidden;
+                     }
+                }
             }
-           }
         }
     }
 }

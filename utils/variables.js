@@ -40,6 +40,54 @@ export const order_method ={
     },
 }
 
+export const private_method ={
+    default :{
+        label:"private_h"
+    },
+    none :{
+        label:"private_v"
+    },
+}
+export const info_method ={
+    default :{
+        label:"info_v"
+    },
+    none :{
+        label:"info_h"
+    },
+}
+export const fav_method ={
+    default :{
+        label:"fav_v"
+    },
+    none :{
+        label:"fav_h"
+    },
+}
+export const read_method ={
+    default :{
+        label:"read_v"
+    },
+    none :{
+        label:"read_h"
+    },
+}
+export const friends_method ={
+    default :{
+        label:"friends_v"
+    },
+    none :{
+        label:"friends_h"
+    },
+}
+export const clubs_method ={
+    default :{
+        label:"clubs_v"
+    },
+    none :{
+        label:"clubs_h"
+    },
+}
 
 export const code_method ={
     default :{

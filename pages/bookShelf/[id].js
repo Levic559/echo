@@ -109,8 +109,8 @@ export default function BooksID() {
               ISBN={data.ISBN}
               YearOfPublication={data.YearOfPublication}
               Publisher={data.Publisher}
-              heart={(e)=> StoreReadlist(e.target.checked, data)}
               checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
+              heart={(e)=> StoreReadlist(e.target.checked, data)}
             />
           </div>
           <div className='bookComment'>

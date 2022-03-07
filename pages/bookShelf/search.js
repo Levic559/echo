@@ -5,10 +5,9 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
-
 import Switch from '@/comps/Switch'
 import { comp_theme, text_theme ,order_method} from '../../utils/variables'
-import { useTheme } from '../../utils/provider'
+import { useTheme,useUser,useOrder } from '../../utils/provider'
 const filter = [
   { label: 'BookTitle' },
   { label: 'Author' },
@@ -19,13 +18,14 @@ let timer = null;
 export default function Bookshelf({
 
 }) {
-  // const {order} = useOrder();
+  const {order} = useOrder();
   const [value, setValue] = useState(filter[0]);
   const { theme } = useTheme();
+  const { user } = useUser();
   const router = useRouter();
   const [data, setData] = useState([]);
   const [publish,setPublish]=useState(false)
-  // console.log(value.label)
+  console.log("user",user.username)
   const searchTitle = async (txt) => {
     console.log(txt)
     if (timer) {
@@ -38,8 +38,8 @@ export default function Bookshelf({
         console.log("async call!!!")
         const res = await ax.get("/api/books_search",{
           params:{
-            txt:txt,
-          //  sort_type:order_method[order]?.label,
+          txt:txt,
+           sort_type:order_method[order]?.label,
            year_publish:publish,
           
           }
@@ -63,7 +63,7 @@ export default function Bookshelf({
         const res = await ax.get("/api/books_search",{
           params:{
             people:people,
-          //  sort_type:order_method[order]?.label,
+           sort_type:order_method[order]?.label,
            year_publish:publish,
           
           }
@@ -88,7 +88,7 @@ export default function Bookshelf({
         const res = await ax.get("/api/books_search",{
           params:{
             year:year,
-          //  sort_type:order_method[order]?.label,
+           sort_type:order_method[order]?.label,
            year_publish:publish,
           
           }
@@ -112,7 +112,7 @@ export default function Bookshelf({
         const res = await ax.get("/api/books_search",{
           params:{
             num:num,
-          //  sort_type:order_method[order]?.label,
+           sort_type:order_method[order]?.label,
            year_publish:publish,
           
           }
@@ -134,9 +134,11 @@ export default function Bookshelf({
     </Head>
     <div className='B_Wrapper'>
       <div className='B_Container' >
+      
         <div className='B_Nav'>
           {value.label=="Author"?
           <Nav 
+          users={user.username}
           onChange={(e) => searchAuthor(e.target.value)}
           options={filter} 
           placeholder="Search for a author"
@@ -147,6 +149,7 @@ export default function Bookshelf({
           /> : null}
           {value.label=="ISBN"?
           <Nav 
+          users={user.username}
           onChange={(e) => searchISBN(e.target.value)}
           options={filter} 
           placeholder="Search for an ISBN"
@@ -156,7 +159,9 @@ export default function Bookshelf({
           }}
           /> : null}
           {value.label=="BookTitle"?
+          
           <Nav 
+          users={user.username}
           onChange={(e) => searchTitle(e.target.value)}
           options={filter} 
           placeholder="Search for a  booktitle"
@@ -167,6 +172,7 @@ export default function Bookshelf({
           /> :null}
           {value.label=="Year_Publish"?
           <Nav 
+          users={user.username}
           onChange={(e) => searchPublishYear(e.target.value)}
           options={filter} 
           placeholder="Search for YearPublish"
@@ -175,7 +181,7 @@ export default function Bookshelf({
             setValue(newValue);
           }}
           /> :null}
-        </div>
+        </div>) 
         <div className='B_Content' >
           <div className='Side_Bar'>
             <div className='Pannel' style={{

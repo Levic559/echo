@@ -9,9 +9,10 @@ import InputBox from '@/comps/InputBox';
 import Button from '@mui/material/Button';
 import IosSwitch from '@/comps/MuiSwitch'
 import Switch from '@/comps/Switch';
-import { useTheme } from '../utils/provider'
-import { useOrder,useUser } from '../utils/provider'
-import { comp_theme, text_theme } from '@/utils/variables';
+import { useTheme, useOrder } from '../utils/provider'
+import { useUser, useShow } from '@/utils/provider'
+import { useShow2, useShow3,useShow4,useShow5,useShow6} from '@/utils/provider'
+import { comp_theme, text_theme, color_method } from '@/utils/variables';
 import SwitchBasic from '@/comps/SwitchBasic'
 export default function Home({
 
@@ -19,6 +20,13 @@ export default function Home({
   const router = useRouter();
   const { order, setOrder } = useOrder();
   const { theme, setTheme } = useTheme();
+  const { show, setShow } = useShow();
+  const { show2, setShow2 } = useShow2();
+  const { show3, setShow3 } = useShow3();
+  const { show4, setShow4 } = useShow4();
+  const { show5, setShow5 } = useShow5();
+  const { show6, setShow6 } = useShow6();
+  const { status, setStatus } = useShow();
   const { user } = useUser();
 
   return <div>
@@ -30,13 +38,13 @@ export default function Home({
     <div className='s_Wrapper'>
       <div className='Container'  >
         <div className='Nav'>
-        {user ?
-        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
-        :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
+          {user ?
+            <Nav onClick={() => router.push('/bookShelf/search')} users={user.username} />
+            : <Nav onClick={() => router.push('/bookShelf/search')} />}
         </div>
         <div className='Content'>
           <div className='personInfo'>
-            <img src="https://news.artnet.com/app/news-upload/2021/12/RachelUffner-byJasonFrankRothenberg-2015-750x550.jpg" />
+            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80" />
             <div className='content'>
               <InputBox text="Account" style={{ width: '10rem' }} />
               <InputBox text="User name" />
@@ -52,16 +60,53 @@ export default function Home({
             <SwitchBasic
               switchText="Light Mode" switchHandler={() => setTheme(
                 theme === 'light' ? 'default' : 'light'
-              )} />
-            {/* <SwitchBasic
+              )}
+              btn={theme === 'light' ? 'On' : 'Off'}
+              slideColor={theme === 'light' ? 'switch-body switch-body-on' : 'switch-body'} />
+            <SwitchBasic
               switchText="Descendant" switchHandler={() => setOrder(
-                order === 'desc' ? 'default' : 'desc'
-              )} /> */}
-            <Switch label='Order Method' onSwitchClick={() => setOrder(
-              order === 'desc' ? 'default' : 'desc'
+                order === 'default' ? 'desc' : 'default'
+              )}
+              btn={order === 'default' ? 'On' : 'Off'}
+              slideColor={order === 'default' ? 'switch-body switch-body-on' : 'switch-body'} />
 
-            )}
-              btn={order === 'desc' ? 'Desc' : 'Asc'} />
+            <SwitchBasic
+              switchText="Private" switchHandler={() => setShow(
+                show === 'default' ? 'none' : 'default'
+              )}
+              btn={show === 'default' ? 'On' : 'Off'}
+              slideColor={show === 'default' ? 'switch-body switch-body-on' : 'switch-body'} 
+                          />
+             <SwitchBasic
+              switchText="Personal Info" switchHandler={() => setShow2(
+                show2 === 'default' ? 'none' : 'default'
+              )}
+              btn={show2 === 'default' ? 'On' : 'Off'}
+              slideColor={show2 === 'default' ? 'switch-body switch-body-on' : 'switch-body'} />
+              <SwitchBasic
+              switchText="Favo Books" switchHandler={() => setShow3(
+                show3 === 'default' ? 'none' : 'default'
+              )}
+              btn={show3 === 'default' ? 'On' : 'Off'}
+              slideColor={show3 === 'default' ? 'switch-body switch-body-on' : 'switch-body'} />
+               <SwitchBasic
+              switchText="Read List" switchHandler={() => setShow4(
+                show4 === 'default' ? 'none' : 'default'
+              )}
+              btn={show4 === 'default' ? 'On' : 'Off'}
+              slideColor={show4 === 'default' ? 'switch-body switch-body-on' : 'switch-body'} />
+                <SwitchBasic
+              switchText="Friends" switchHandler={() => setShow5(
+                show5 === 'default' ? 'none' : 'default'
+              )}
+              btn={show5 === 'default' ? 'On' : 'Off'}
+              slideColor={show5 === 'default' ? 'switch-body switch-body-on' : 'switch-body'} />
+                <SwitchBasic
+              switchText="Clubs" switchHandler={() => setShow6(
+                show6 === 'default' ? 'none' : 'default'
+              )}
+              btn={show6 === 'default' ? 'On' : 'Off'}
+              slideColor={show6 === 'default' ? 'switch-body switch-body-on' : 'switch-body'} />
             <Button variant="contained" onClick={() => router.push('/')} >Log out</Button>
 
           </div>

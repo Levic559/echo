@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 const SwitchBasic = ({
     switchText='Label',
     switchHandler=()=>{},
+    btn="on",
+    slideColor="switch-body switch-body-on"
 }) => {
 
     const [status, setStatus] = useState(false)
@@ -17,12 +19,13 @@ const SwitchBasic = ({
             <div>{switchText}</div>
             <div 
                 onClick={clickHandler}
-                className={ status? 'switch-body switch-body-on' :'switch-body'}
+                // className={ status? 'switch-body switch-body-on' :'switch-body'}
+                className={ slideColor}
             >
                 <div className='switch-btn'></div>
             </div>
             <div className='switch-status'>
-                {status? 'On' : 'Off'}
+                {btn}
             </div>
         </div>
     )

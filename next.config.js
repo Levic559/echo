@@ -3,7 +3,7 @@ module.exports = {
 }
 module.exports = {
   images: {
-    domains: ['images.amazon.com','news.artnet.com']
+    domains: ['images.amazon.com','news.artnet.com','images.unsplash.com']
    
   },
 }

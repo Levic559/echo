@@ -1,14 +1,14 @@
 import React from 'react';
-import {comp_theme, text_theme} from'../utils/variables'
+import {comp_theme, text_theme,private_method} from'../utils/variables'
 import {useTheme} from '../utils/provider'
 import { Icon } from 'semantic-ui-react'
 import Image from 'next/image'
 const default_date={
 
-    "src": "https://news.artnet.com/app/news-upload/2021/12/RachelUffner-byJasonFrankRothenberg-2015-750x550.jpg",
-    "account": "Sophia@gmail.com",
-    "username": "Sophia",
-    "gender": "female",
+    "src": "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
+    "account": "Alex@gmail.com",
+    "username": "Alex",
+    "gender": "Male",
     "age": "45",
     "location": "Vancouver",
   
@@ -21,6 +21,8 @@ const default_date={
     gender=default_date.gender,
     age=default_date.age,
     location=default_date.location,
+    private_m="private_v",
+    info_m="info_v"
 })=>{
     const {theme} = useTheme();
 return<div className='userCom'  style={{
@@ -29,13 +31,13 @@ return<div className='userCom'  style={{
     }}>
     <Image src={src} width={500} height={500} objectFit="cover"/>
     <div className='name'>  {username}</div>
-    <div className='rating'> 
+    <div className={private_m}> 
     <Icon name='heart' size='large' />
     <Icon name='sticky note' size='large' />
     <Icon name='edit' size='large' />
      </div>
 
-    <div className='info'>
+    <div className={info_m}>
     <p> {account} </p>
     <p> Gender: {gender}</p>
     <p> Age: {age}</p>

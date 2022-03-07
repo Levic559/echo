@@ -1,7 +1,7 @@
 .userCom {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
     padding: 10%;
@@ -27,14 +27,30 @@
             font-size: 1.5rem;
         }
     }
-    .rating{
+    .private_v{
         width:75%;
         display: flex;
+        visibility: visible;
         flex-direction: row;
         justify-content: space-around;
         margin:20%;
     }
-    .info {
+    .private_h{
+        width:75%;
+        visibility: hidden;
+        flex-direction: row;
+        justify-content: space-around;
+        margin:20%;
+    }
+    .info_v{
+        visibility: visible;
+        p{
+        font-size: 1rem;
+        line-height: 100%;
+       text-align:center;}
+    }
+    .info_h{
+        visibility: hidden;
         p{
         font-size: 1rem;
         line-height: 100%;
