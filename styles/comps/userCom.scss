@@ -13,13 +13,15 @@
         object-fit: cover;
         border-radius: 50%;
         margin:5%;
+        // overflow: 'hidden';
         @media screen and (max-width: 1400px) {
-            width: 12rem;
-        height: 12rem;
+            width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        overflow: 'hidden';
         }
     }
     .name {
-        
         font-size: 2rem;
         font-weight: bold;
         margin:5%;

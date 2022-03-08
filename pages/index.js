@@ -35,7 +35,7 @@ export default function Home({
           color: text_theme[theme].label
         }}
         >
-          <p className='title'>{title}</p>
+          <div className='title'>{title}</div>
           <div className='InputCon'>
 
             <InputBox />
