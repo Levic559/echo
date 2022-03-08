@@ -109,7 +109,9 @@ export default function BooksID() {
               ISBN={data.ISBN}
               YearOfPublication={data.YearOfPublication}
               Publisher={data.Publisher}
+              // checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
               checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
+
               heart={(e)=> StoreReadlist(e.target.checked, data)}
             />
           </div>

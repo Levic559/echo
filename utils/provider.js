@@ -34,6 +34,7 @@ export default function AppProvider({children}){
     const [theme,setTheme]=useState(initialStates.theme)
     const [order,setOrder]=useState(initialStates.order)
     const [readlist,setReadlist]=useState(initialStates.readlist)
+    const [favlist,setFavlist]=useState(initialStates.favlist)
     const [user,setUser]=useState(initialStates.user)
     const [show,setShow]=useState(initialStates.show)
     const [show2,setShow2]=useState(initialStates.show2)
@@ -46,11 +47,12 @@ export default function AppProvider({children}){
     console.log("readlist",readlist)
     console.log("user",user)
     console.log("useOrder",order)
+    console.log("useFav",favlist)
 
     //put in the variables you want to share
     return <MyContext.Provider value={{theme,setTheme, order,setOrder,readlist,setReadlist,
     user,setUser,show,setShow,status,setStatus,show2,setShow2,show3,setShow3,show4,setShow4
-    ,show5,setShow5,show6,setShow6}}>
+    ,show5,setShow5,show6,setShow6,favlist,setFavlist}}>
     <style jsx global>{`
     body{
         background-color:${global_theme[theme].body}
@@ -107,7 +109,11 @@ export function useRead(){
     const {readlist,setReadlist}=useContext(MyContext)
     return{readlist,setReadlist};
 }
+export function useFav(){
 
+    const {favlist,setFavlist}=useContext(MyContext)
+    return{favlist,setFavlist};
+}
 export function useUser(){
 
     const {user,setUser}=useContext(MyContext)
