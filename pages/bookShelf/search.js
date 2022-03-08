@@ -181,7 +181,7 @@ export default function Bookshelf({
             setValue(newValue);
           }}
           /> :null}
-        </div>) 
+        </div>
         <div className='B_Content' >
           <div className='Side_Bar'>
             <div className='Pannel' style={{
