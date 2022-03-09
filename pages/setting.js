@@ -46,11 +46,11 @@ export default function Home({
           <div className='personInfo'>
             <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80" />
             <div className='content'>
-              <InputBox text="Account" style={{ width: '10rem' }} />
-              <InputBox text="User name" />
-              <InputBox text="Age" />
-              <InputBox text="Location" />
-              <InputBox text="Gender" />
+              <InputBox text="Account"   value={user.email}/>
+              <InputBox text="User name" value={user.username}/>
+              <InputBox text="Age" value={user.age}/>
+              <InputBox text="Location" value={user.location}/>
+              <InputBox text="Gender" value={user.gender}/>
             </div>
             <div className='button'>
               <Button variant="contained">Submit</Button>

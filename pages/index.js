@@ -3,6 +3,7 @@ import Logo from '@/comps/Logo'
 import MyButton from '@/comps/Button'
 import Footer from '@/comps/Footer'
 import InputBox from '@/comps/InputBox'
+import { useState } from 'react'
 import { useRouter } from 'next/router';
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
@@ -11,6 +12,8 @@ export default function Home({
   title = "Log in"
 }) {
   const { theme } = useTheme();
+  const [e_warn, setE_Warn] = useState(false)
+  const [warn, setWarn] = useState(false)
   const router = useRouter();
   const logIn = () => {
     router.push("/bookShelf")
@@ -39,7 +42,9 @@ export default function Home({
           <div className='InputCon'>
 
             <InputBox />
+          {e_warn ? <p style={{ color: "#ba1141" }}><b>The eamil is invalid</b></p> : null}
             <InputBox text="Password" />
+            {warn ? <p style={{ color: "#ba1141" }}><b>The password is invalid</b></p> : null}
           </div>
           <div className='ButtonCon'>
             <MyButton onClick={() => router.push("/signUp")} text="Sign Up" />

@@ -42,7 +42,7 @@ a {
             // position: absolute;
         }
         .Content{
-            margin-top: 5%;
+            margin-top: 10%;
             height: 100%;
             width: 100%;
             display: flex;
@@ -53,9 +53,9 @@ a {
             
 
             .personInfo{
-               padding: 2.5%;
+              
                 width: 55%;
-                height:100%;
+                height:60rem;
                 display: flex;
                 flex-direction: column;
                 justify-content:flex-start;
@@ -75,12 +75,17 @@ a {
                     flex-wrap: wrap;
                     justify-content:center;
                     align-items: center;
+                    margin-top:10%;
                     margin-right:10%;
                     margin-left:10%;
+                    div{
+                        height:5rem;
+                        
+                    }
                     
                 }
                 .button{
-                    width:100%;
+                     width:65%;
                     display: flex;
                     flex-direction: row;
                     justify-content:flex-end;
@@ -90,33 +95,15 @@ a {
 
             }
             .settingBox{
-                width: 40%;
+                width: 45%;
                 height:60rem;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-end;
-                margin: 2.5%;
                 // background-color: #354F52;
                 border-radius: 1rem;
                 padding:5%;
-                // div{
-                //     height:10%;
-                //     display: flex;
-                //     flex-direction: row;
-                //     justify-content: center;
-                //     align-items: center;
-                //     div{  
-                //         font-size: 1.5rem;
-                //          color:$textColorL;
-                //         font-family: 'Baumans', sans-serif;
-                //         margin: 1rem;
-                //     }
-                //     div:last-child {
-                //         font-size: 1.25rem;
-                        
-                //     }
-                // }
                
             }
         }

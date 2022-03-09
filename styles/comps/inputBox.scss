@@ -4,8 +4,9 @@
     justify-content: center;
     align-items:flex-start ;
     width: 80%;
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
+    height:5rem;
+    // margin-top: 2.5%;
+    // margin-bottom: 2.5%;
     p{
         font-size: 1.5rem;
         margin-bottom: .1rem;
@@ -14,5 +15,6 @@
     .input{
         width:100%;
         border-radius:.5rem;
+    
     }
 }
