@@ -96,7 +96,7 @@ export default function BooksID() {
   const heartClick = (value,obj) => {
     if (heartIcon =='heart outline') {
       setHeartIcon('heart')
-      // console.log("heart:",heartIcon)
+     
       const n_readlist = { ...readlist}
       n_readlist[obj.ISBN] = obj;
       // var key="aaa"

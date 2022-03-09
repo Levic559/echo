@@ -91,6 +91,7 @@ export default function Home({
     ]);
     }
   }
+ 
   // const [board, setBoard] = useState([]);
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -145,9 +146,9 @@ export default function Home({
                   {Object.values(favlist).map((o, i) =>{
                return <ReadListCom 
                 key={i} 
-                onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
+                OnDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                 ReadlistClick={() => handleRemove_fav(i)}
-                text={o.BookTitle}
+                text={o.BookTitle} 
                 />}
                 )}
               </div> :
@@ -155,7 +156,7 @@ export default function Home({
                 {Object.values(fav).map((o, i) =>{
                return <ReadListCom 
                 key={i} 
-                onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
+                OnDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                 ReadlistClick={() => handleRemove_fav(i)}
                 text={o.BookTitle}
                 />}
@@ -175,9 +176,9 @@ export default function Home({
                 {Object.values(readlist).map((o, i) =>{
                return <ReadListCom 
                 key={i} 
-                onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
+                OnDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                 ReadlistClick={() => handleRemove(i)}
-                text={o.BookTitle}
+                text={o.BookTitle+ " "+o.ISBN}
                 />}
 
               
