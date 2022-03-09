@@ -3,7 +3,7 @@ import ax from 'axios';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Footer from '@/comps/Footer';
-import { useEffect, useState,useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import BookCom from '@/comps/BookCom';
 import MyButton, { Button } from '@/comps/Button';
 import Nav from '@/comps/Nav'
@@ -11,7 +11,7 @@ import CommentCard_nopic from '@/comps/CommentCard_nopic'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
-import {useRead}from '@/utils/provider'
+import { useRead, useIstatus} from '@/utils/provider'
 
 
 const book_comments = [
@@ -47,8 +47,16 @@ export default function BooksID() {
   const { id } = router.query;
   const [data, setDate] = useState(null)
   const { theme } = useTheme();
+  const { istatus,setIStatus } = useIstatus();
   const [bcomment, setbComment] = useState(book_comments)
-  const {readlist,setReadlist}=useRead()
+  const { readlist, setReadlist } = useRead()
+  const [heartIcon, setHeartIcon] = useState()
+
+  // useEffect(()=>{
+  
+  //   setHeartIcon('heart outline') 
+  // },[id])
+
   useEffect(() => {
     if (id) {
       const GetBook = async () => {
@@ -64,30 +72,50 @@ export default function BooksID() {
       }
       GetBook()
     }
+    const setHeart= ()=>{
+      if(Object.values(readlist).includes("195153448")===true){
+        setHeartIcon('heart')
+      }
+    }
+    setHeart()
   }, [id])
-  const StoreReadlist = (checked, obj) => {
-    //store the favourites to be used on the next page
-    console.log(checked,obj)
-    if(checked){
-      const n_readlist={...readlist}
-      n_readlist[obj.ISBN]=obj;
+  console.log("heartIcon",heartIcon)
+
+ 
+  
+
+  
+  if (data === null) {
+    return <div>
+      404 Can not find the book. </div>
+  }
+
+
+// console.log(Object.values(readlist).includes('195153448'))
+
+  const heartClick = (value,obj) => {
+    if (heartIcon =='heart outline') {
+      setHeartIcon('heart')
+      // console.log("heart:",heartIcon)
+      const n_readlist = { ...readlist}
+      n_readlist[obj.ISBN] = obj;
       // var key="aaa"
       // n_fav[key]=obj;
       setReadlist(n_readlist)
-    // console.log(n_readlist)
-
-    }else {
-      const n_readlist ={
-        ...readlist
-      }
-      delete n_readlist[obj.ISBN];
-      setReadlist(n_readlist)
+      // setIStatus(heartIcon)
+      // console.log(istatus)
     }
- 
+    else  {
+      setHeartIcon('heart outline')
+      const n_readlist = {
+        ...readlist  }
+    delete n_readlist[obj.ISBN];
+    setReadlist(n_readlist)
+    // setIStatus(heartIcon)
+
   }
-  if (data === null) {
-    return <div> 404 Can not find the book. </div>
-  }
+  
+}
   return <div>
     <Head>
       <title>Echo</title>
@@ -97,31 +125,33 @@ export default function BooksID() {
     <div className='sB_Wrapper'>
       <div className='Container' >
         <div className='Nav'>
-        <Nav  onClick={()=>router.push('/bookShelf/search')}/>
+          <Nav onClick={() => router.push('/bookShelf/search')} />
         </div>
         <div className='Content' >
           <div className='Side_Bar'>
-
-            <BookCom
-              src={data.ImageURLL}
-              title={data.BookTitle}
-              author={data.BookAuthor}
-              ISBN={data.ISBN}
-              YearOfPublication={data.YearOfPublication}
-              Publisher={data.Publisher}
-              // checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
-              checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
-
-              heart={(e)=> StoreReadlist(e.target.checked, data)}
-            />
+        
+          <BookCom
+            src={data.ImageURLL}
+            title={data.BookTitle}
+            author={data.BookAuthor}
+            ISBN={data.ISBN}
+            YearOfPublication={data.YearOfPublication}
+            Publisher={data.Publisher}
+            // checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
+            // checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
+           
+            heartClick={(e)=> heartClick(e.target.value, data)}
+            iconName={heartIcon}
+          // heart={(e)=> StoreReadlist(e.target.checked, data)}
+          />
           </div>
           <div className='bookComment'>
             {bcomment.map((o, i) =>
-              <CommentCard_nopic 
-              key={i}
-              comment={o.comment}
-              usersrc={o.usersrc}
-              username={o.username}
+              <CommentCard_nopic
+                key={i}
+                comment={o.comment}
+                usersrc={o.usersrc}
+                username={o.username}
               />
             )}
           </div>

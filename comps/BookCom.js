@@ -2,6 +2,7 @@ import React from 'react';
 import {comp_theme, text_theme} from'../utils/variables'
 import {useTheme} from '../utils/provider'
 import { Icon } from 'semantic-ui-react'
+import HeartBut from './HeartBut';
 import Image from 'next/image';
 const default_date={
     "ISBN": "195153448",
@@ -21,7 +22,8 @@ const BookCom =({
     YearOfPublication=default_date.YearOfPublication,
     Publisher=default_date.Publisher,
     src=default_date.ImageURLM,
-    heart=()=>{},
+    heartClick=()=>{},
+    iconName="heart outline"
     // checked=()=>{}
 })=>{
     const {theme} = useTheme();
@@ -45,8 +47,9 @@ return<div className='bookCom'  style={{
     <p> Publisher: {Publisher}</p>
     </div>   
     <div className='rating'> 
-   <input name='heart' size='large' type="checkbox"  onChange={heart} />
-    <Icon name='sticky note' size='large' />
+    <HeartBut iconName={iconName} onClick={heartClick}/>
+   {/* <input name='heart' size='large' type="checkbox"  onChange={heart} /> */}
+    {/* <Icon name='sticky note' size='large' /> */}
     <Icon name='edit' size='large' />
      </div>
 

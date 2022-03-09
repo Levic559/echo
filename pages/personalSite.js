@@ -96,10 +96,12 @@ export default function Home({
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "book",
     drop: (item) => addImageToBoard(item.id),
+   
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),}))
     const addImageToBoard = (id) => {
+      console.log(id)
       const flist = Object.values(readlist).filter((item) => id === item.id);
       setFav((fav) => [...fav, flist[0]]);
       setFavlist(flist)
@@ -140,21 +142,23 @@ export default function Home({
               <div className='title'>Favorite books </div>
               {favlist?
               <div className={fav_method[show3].label} >
-                  {Object.values(favlist).map((o, i) =>
-                  <ReadListCom 
-                  key={i} onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
-                  ReadlistClick={() => handleRemove_fav(i)}
-                  text={o.BookTitle}
-                  />
+                  {Object.values(favlist).map((o, i) =>{
+               return <ReadListCom 
+                key={i} 
+                onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
+                ReadlistClick={() => handleRemove_fav(i)}
+                text={o.BookTitle}
+                />}
                 )}
               </div> :
               <div className={fav_method[show3].label} >
-                {Object.values(fav).map((o, i) =>
-                <ReadListCom 
-                key={i}onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
+                {Object.values(fav).map((o, i) =>{
+               return <ReadListCom 
+                key={i} 
+                onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
                 ReadlistClick={() => handleRemove_fav(i)}
                 text={o.BookTitle}
-                />
+                />}
               )}
             </div>
               
@@ -168,12 +172,13 @@ export default function Home({
                  <div className='book' key={i}> {o.title} </div> 
                 )}  */}
 
-                {Object.values(readlist).map((o, i) =>
-                  <ReadListCom 
-                  key={i} onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
-                  ReadlistClick={() => handleRemove(i)}
-                  text={o.BookTitle}
-                  />
+                {Object.values(readlist).map((o, i) =>{
+               return <ReadListCom 
+                key={i} 
+                onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}
+                ReadlistClick={() => handleRemove(i)}
+                text={o.BookTitle}
+                />}
 
               
                   // <div className='book' key={i} onDoubleClick={() => router.push(`/bookShelf/${o.ISBN}`)}> {o.BookTitle}
