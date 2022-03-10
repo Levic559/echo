@@ -40,7 +40,7 @@ export default function Bookshelf({
           params:{
           txt:txt,
            sort_type:order_method[order]?.label,
-           year_publish:publish,
+          pub_year:publish,
           
           }
         })
@@ -64,7 +64,7 @@ export default function Bookshelf({
           params:{
             people:people,
            sort_type:order_method[order]?.label,
-           year_publish:publish,
+           pub_year:publish,
           
           }
         })
@@ -89,7 +89,7 @@ export default function Bookshelf({
           params:{
             year:year,
            sort_type:order_method[order]?.label,
-           year_publish:publish,
+           pub_year:publish,
           
           }
         })
@@ -113,7 +113,7 @@ export default function Bookshelf({
           params:{
             num:num,
            sort_type:order_method[order]?.label,
-           year_publish:publish,
+           pub_year:publish,
           
           }
         })
@@ -205,11 +205,11 @@ export default function Bookshelf({
                 {(data===[]) ? <h4> There is no result.</h4>:
                ( data.map((o, i) =>
                   <BookCard key={i}
-                    onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
-                    src={o.ImageURLS}
-                    title={o.BookTitle.substr(0, 20) + "..."}
-                    BookAuthor={o.BookAuthor}
-                    YearOfPublication={o.YearOfPublication}
+                    onClick={() => router.push(`/bookShelf/${o._id}`)}
+                    src={o.image_s}
+                    title={o.title.substr(0, 20) + "..."}
+                    BookAuthor={o.author}
+                    YearOfPublication={o.pub_year}
                   />
                 )) 
               

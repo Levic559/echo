@@ -99,12 +99,18 @@ a {
                 height:60rem;
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-start;
+                width: 45%;
                 align-items: flex-end;
                 // background-color: #354F52;
                 border-radius: 1rem;
                 padding:5%;
-               
+               .logout{
+                height:10rem;
+                width: 100%;
+                display: flex;
+               justify-content: center;
+                align-items: flex-end;
+               }
             }
         }
     }

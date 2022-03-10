@@ -1,5 +1,5 @@
 // import {Save, Read} from '@/utils/helpers';
-import bookslist from '@/utils/books500.json'
+import bookslist from '@/utils/books.json'
 import {GoToPage} from '../../utils/function'
 import { filtering,sorting } from '@/utils/filter';
 export default async function handler(req, res) {
@@ -10,19 +10,19 @@ export default async function handler(req, res) {
   //const files = await Read();
 
   //detect if filter/save/read
-const {txt,year_publish,sort_type,people,num,year}=req.query
+const {txt,pub_year,sort_type,people,num,year}=req.query
   var lists =[]
   
   if(txt ||people||num||year){
 lists =filtering(bookslist,{
-  BookTitle:txt,
-  BookAuthor:people,
-  YearOfPublication:year,
-  ISBN:num
+  title:txt,
+  authors:people,
+  pub_year:year,
+  isbn:num
 })}
- if(year_publish){
+ if(pub_year){
   lists =sorting(lists,{
-     key:"YearOfPublication",
+     key:"pub_year",
       type:sort_type
    })
  }
@@ -32,8 +32,8 @@ lists =filtering(bookslist,{
   //   lists= GoToPage(bookslist,req.query.page,15)
   // }
 
-  if(req.query.book_isbn){
-    lists=bookslist.filter(o=>o.ISBN=== req.query.book_isbn);
+  if(req.query._id){
+    lists=bookslist.filter(o=>o._id=== req.query._id);
     // console.log(lists)
     // console.log(req.query.book_isbn)
   }

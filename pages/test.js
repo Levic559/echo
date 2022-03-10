@@ -2,6 +2,7 @@ import React from 'react'
 import SwitchPanel from '@/panels/SwitchPanel'
 import SearchBar from '@/comps/SearchBar'
 import HeartBut from '@/comps/HeartBut'
+import DropMenu from '@/comps/DropMenu'
 const test = () => {
   return (
     <div style={{
@@ -12,6 +13,7 @@ const test = () => {
         <SearchBar/>
 
         <HeartBut/>
+        <DropMenu/>
     </div>
   )
 }

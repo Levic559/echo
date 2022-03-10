@@ -52,17 +52,22 @@ export default function BooksID() {
   const { readlist, setReadlist } = useRead()
   const [heartIcon, setHeartIcon] = useState()
 
-  // useEffect(()=>{
-  
-  //   setHeartIcon('heart outline') 
-  // },[id])
+  useEffect(()=>{
+    if (id) {
+      if(Object.keys(readlist).includes(id)){
+        setHeartIcon('heart')
+      }else{
+        setHeartIcon('heart outline')
+      }
+     }
+  },[id])
 
   useEffect(() => {
     if (id) {
       const GetBook = async () => {
         const res = await ax.get("/api/books", {
           params: {
-            book_isbn: id,
+            _id: id,
           }
         });
         // console.log(res.data)
@@ -72,12 +77,12 @@ export default function BooksID() {
       }
       GetBook()
     }
-    const setHeart= ()=>{
-      if(Object.values(readlist).includes("195153448")===true){
-        setHeartIcon('heart')
-      }
-    }
-    setHeart()
+    // const setHeart= ()=>{
+    //   if(Object.keys(readlist).includes("195153448")===true){
+    //     setHeartIcon('heart')
+    //   }
+    // }
+    // setHeart()
   }, [id])
   console.log("heartIcon",heartIcon)
 
@@ -98,7 +103,7 @@ export default function BooksID() {
       setHeartIcon('heart')
      
       const n_readlist = { ...readlist}
-      n_readlist[obj.ISBN] = obj;
+      n_readlist[obj._id] = obj;
       // var key="aaa"
       // n_fav[key]=obj;
       setReadlist(n_readlist)
@@ -109,7 +114,7 @@ export default function BooksID() {
       setHeartIcon('heart outline')
       const n_readlist = {
         ...readlist  }
-    delete n_readlist[obj.ISBN];
+    delete n_readlist[obj._id];
     setReadlist(n_readlist)
     // setIStatus(heartIcon)
 
@@ -131,12 +136,12 @@ export default function BooksID() {
           <div className='Side_Bar'>
         
           <BookCom
-            src={data.ImageURLL}
-            title={data.BookTitle}
-            author={data.BookAuthor}
-            ISBN={data.ISBN}
-            YearOfPublication={data.YearOfPublication}
-            Publisher={data.Publisher}
+            src={data.image_l}
+            title={data.title}
+            author={data.authors}
+            ISBN={data.isbn}
+            YearOfPublication={data.pub_year}
+            Publisher={data.publisher}
             // checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
             // checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
            

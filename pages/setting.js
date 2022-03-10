@@ -12,7 +12,7 @@ import Switch from '@/comps/Switch';
 import { useTheme, useOrder } from '../utils/provider'
 import { useUser, useShow } from '@/utils/provider'
 import { useShow2, useShow3,useShow4,useShow5,useShow6} from '@/utils/provider'
-import { comp_theme, text_theme, color_method } from '@/utils/variables';
+import { comp_theme, text_theme, color_method,global_theme } from '@/utils/variables';
 import SwitchBasic from '@/comps/SwitchBasic'
 export default function Home({
 
@@ -27,8 +27,11 @@ export default function Home({
   const { show5, setShow5 } = useShow5();
   const { show6, setShow6 } = useShow6();
   const { status, setStatus } = useShow();
-  const { user } = useUser();
-
+  const { user,setUser } = useUser();
+  const [newUser,setNewUser]=useState()
+  const submit=()=>{
+    setUser(newUser)
+  }
   return <div>
     <Head>
       <title>Echo</title>
@@ -46,14 +49,16 @@ export default function Home({
           <div className='personInfo'>
             <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80" />
             <div className='content'>
-              <InputBox text="Account"   value={user.email}/>
-              <InputBox text="User name" value={user.username}/>
-              <InputBox text="Age" value={user.age}/>
-              <InputBox text="Location" value={user.location}/>
-              <InputBox text="Gender" value={user.gender}/>
+              <InputBox text="Email :"   placeholder={user.email}/>
+              <InputBox text="User name :" placeholder={user.username} onChange={e => setNewUser({ ...user, username: e.target.value })}/>
+              <InputBox text="Age :" placeholder={user.age} onChange={e => setNewUser({ ...user, age: e.target.value })}/>
+              <InputBox text="Location :" placeholder={user.location} onChange={e => setNewUser({ ...user, location: e.target.value })}/>
+              <InputBox text="Gender :" placeholder={user.gender} onChange={e => setNewUser({ ...user, gender: e.target.value })}/>
             </div>
             <div className='button'>
-              <Button variant="contained">Submit</Button>
+              <Button variant="contained"
+              style={{ background: text_theme[theme].title, color: text_theme[theme].label}} onClick={submit}
+              >Submit</Button>
             </div>
           </div>
           <div className='settingBox' style={{ background: comp_theme[theme].label2, color: text_theme[theme].label }}>
@@ -107,7 +112,12 @@ export default function Home({
               )}
               btn={show6 === 'default' ? 'On' : 'Off'}
               slideColor={show6 === 'default' ? 'switch-body switch-body-on' : 'switch-body'} />
-            <Button variant="contained" onClick={() => router.push('/')} >Log out</Button>
+              <div className='logout'>
+            <Button variant="contained" onClick={() => router.push('/')} 
+            style={{ background: text_theme[theme].label, color: text_theme[theme].title, 
+            width:"75%"     }}
+            >Log out</Button>
+                </div>
 
           </div>
 

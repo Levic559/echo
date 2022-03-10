@@ -94,11 +94,11 @@ export default function Bookshelf({
               <div className='Drawer'>
                 {books.map((o, i) =>
                   <BookCard key={i}
-                    onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
-                    src={o.ImageURLS}
-                    YearOfPublication={o.YearOfPublication}
-                    title={o.BookTitle.substr(0, 20) + "..."}
-                    BookAuthor={o.BookAuthor}
+                    onClick={() => router.push(`/bookShelf/${o._id}`)}
+                    src={o.image_s}
+                    YearOfPublication={o.pub_year}
+                    title={o.title.substr(0, 20) + "..."}
+                    BookAuthor={o.authors}
                   />
                 )}
 
@@ -113,11 +113,11 @@ export default function Bookshelf({
               <div className='Drawer'>
                 {books2.map((o, i) =>
                   <BookCard key={i}
-                    src={o.ImageURLM}
-                    title={o.BookTitle.substr(0, 20) + "..."}
-                    BookAuthor={o.BookAuthor}
-                    YearOfPublication={o.YearOfPublication}
-                    onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
+                  onClick={() => router.push(`/bookShelf/${o._id}`)}
+                  src={o.image_s}
+                  YearOfPublication={o.pub_year}
+                  title={o.title.substr(0, 20) + "..."}
+                  BookAuthor={o.authors}
                   />
 
                 )}
@@ -131,11 +131,11 @@ export default function Bookshelf({
               <div className='Drawer'>
                 {books3.map((o, i) =>
                   <BookCard key={i}
-                    src={o.ImageURLM}
-                    title={o.BookTitle.substr(0, 20) + "..."}
-                    BookAuthor={o.BookAuthor}
-                    YearOfPublication={o.YearOfPublication}
-                    onClick={() => router.push(`/bookShelf/${o.ISBN}`)}
+                  onClick={() => router.push(`/bookShelf/${o._id}`)}
+                  src={o.image_s}
+                  YearOfPublication={o.pub_year}
+                  title={o.title.substr(0, 20) + "..."}
+                  BookAuthor={o.authors}
                   />
 
                 )}

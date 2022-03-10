@@ -35,9 +35,9 @@ const UserCom = ({
         </div>
         <div className='name'>  {username}</div>
         <div className={private_m}>
-            <Icon name='heart' size='large' />
-            <Icon name='sticky note' size='large' />
-            <Icon name='edit' size='large' />
+            <Icon name='address book outline' size='large' />
+            <Icon name='bell outline' size='large' />
+            <Icon name='comments outline' size='large' />
         </div>
 
         <div className={info_m}>

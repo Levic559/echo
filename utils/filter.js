@@ -2,28 +2,28 @@ const booklist = require("./books500.json")
 export const filtering = (
     arr = [],
     config = {
-        BookTitle: null, YearOfPublication: null, rating: null,
-        language_code: null, BookAuthor: null, ratings_count: null, text_reviews_count: null
-,ISBN:null    }
+        title: null, pub_year: null, rating: null,
+        language_code: null, authors: null, ratings_count: null, text_reviews_count: null
+,isbn:null    }
 ) => {
     // console.log(arr.slice(0, 5))
-    const { BookTitle, YearOfPublication, rating, BookAuthor, language_code, text_reviews_count, ratings_count,ISBN } = config
-    if (BookTitle || BookAuthor || YearOfPublication || rating || language_code || ratings_count || text_reviews_count||ISBN) {
+    const { title, pub_year, rating, authors, language_code, text_reviews_count, ratings_count,isbn } = config
+    if (title || authors || pub_year || rating || language_code || ratings_count || text_reviews_count||isbn) {
 
 
         const filiter_arr = arr.filter((o) => {
             var cond = true;
-            if (BookTitle) {
-                cond = cond && o.BookTitle.includes(BookTitle)
+            if (title) {
+                cond = cond && o.title.includes(title)
             }
-            if (BookAuthor) {
-                cond = cond && o.BookAuthor.includes(BookAuthor)
+            if (authors) {
+                cond = cond && o.authors.includes(authors)
             }
             if (language_code) {
                 cond = cond && o.language_code.includes(language_code)
             }
-            if (YearOfPublication) {
-                cond = cond && Number(o.YearOfPublication) >= Number(YearOfPublication)
+            if (pub_year) {
+                cond = cond && Number(o.pub_year) >= Number(pub_year)
             }
             if (ratings_count) {
                 cond = cond && Number(o.ratings_count) >= Number(ratings_count)
@@ -31,8 +31,8 @@ export const filtering = (
             if (rating) {
                 cond = cond && Number(o.average_rating) >= Number(rating)
             }
-            if (ISBN) {
-                cond = cond && o.ISBN.includes(ISBN)
+            if (isbn) {
+                cond = cond && o.isbn.includes(isbn)
             }
             if (ratings_count) {
                 cond = cond && Number(o.ratings_count) >= Number(ratings_count)
@@ -50,8 +50,8 @@ export const filtering = (
 
 };
 // filtering(books,{
-//     // BookTitle:"Harry",
-//     YearOfPublication:500,
+//     // title:"Harry",
+//     pub_year:500,
 //     rating:4
 // })
 export const sorting = (
@@ -94,7 +94,7 @@ let f_booklist = filtering(booklist, {
 })
 
 f_booklist = sorting(f_booklist, {
-    key: "ISBN",
+    key: "isbn",
     type: "desc"
 })
 
