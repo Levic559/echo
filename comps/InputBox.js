@@ -8,7 +8,8 @@ import {useTheme} from '../utils/provider'
 const InputBox = ({
     text = 'Account :',
     placeholder,
-    onChange=()=>{}
+    onChange=()=>{},
+    value
 }) => {
     
     const {theme} = useTheme();
@@ -19,7 +20,7 @@ const InputBox = ({
     return <div className='inputCon'>
             
                 <p style={{color:text_theme[theme].title}}> {text}</p>
-                <Input className='input' onChange={onChange} placeholder={placeholder} />
+                <Input className='input' onChange={onChange} value={value} placeholder={placeholder} />
         </div>
   
 }

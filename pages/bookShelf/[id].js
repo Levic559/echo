@@ -12,6 +12,7 @@ import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
 import { useRead, useIstatus} from '@/utils/provider'
+import CommentCard_new from '@/comps/CommentCard_new'
 
 
 const book_comments = [
@@ -51,7 +52,13 @@ export default function BooksID() {
   const [bcomment, setbComment] = useState(book_comments)
   const { readlist, setReadlist } = useRead()
   const [heartIcon, setHeartIcon] = useState()
-
+  const [shownewComment, setShowNewComment] = useState(false)
+  const [post, setPost] = useState()
+  const [newcomment, setNewComment] = useState({
+  comment: "input your comment",
+  usersrc: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
+  username: "Alex"
+  })
   useEffect(()=>{
     if (id) {
       if(Object.keys(readlist).includes(id)){
@@ -84,7 +91,6 @@ export default function BooksID() {
     // }
     // setHeart()
   }, [id])
-  console.log("heartIcon",heartIcon)
 
  
   
@@ -94,10 +100,9 @@ export default function BooksID() {
     return <div>
       404 Can not find the book. </div>
   }
-
-
-// console.log(Object.values(readlist).includes('195153448'))
-
+  const editClick = () => {
+    setShowNewComment(true)
+  }
   const heartClick = (value,obj) => {
     if (heartIcon =='heart outline') {
       setHeartIcon('heart')
@@ -116,10 +121,14 @@ export default function BooksID() {
         ...readlist  }
     delete n_readlist[obj._id];
     setReadlist(n_readlist)
-    // setIStatus(heartIcon)
 
   }
   
+}
+const postcomment=()=>{
+  setPost([newcomment])
+  setShowNewComment(false)
+  console.log(post)
 }
   return <div>
     <Head>
@@ -142,15 +151,28 @@ export default function BooksID() {
             ISBN={data.isbn}
             YearOfPublication={data.pub_year}
             Publisher={data.publisher}
-            // checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
-            // checked={readlist[data.ISBN]!==undefined && readlist[data.ISBN]!==null}
-           
             heartClick={(e)=> heartClick(e.target.value, data)}
             iconName={heartIcon}
-          // heart={(e)=> StoreReadlist(e.target.checked, data)}
+            editClick={editClick}
           />
           </div>
           <div className='bookComment'>
+           { shownewComment? <CommentCard_new
+           onCancleClick={()=>setShowNewComment(false)}
+            placeholder={newcomment.comment}
+           onChange={ e => setNewComment({...newcomment, comment: e.target.value })}
+           onPost={postcomment}
+           /> : null}
+           
+            {post? post.map((o, i) =>
+              <CommentCard_nopic
+                key={i}
+                comment={o.comment}
+                usersrc={o.usersrc}
+                username={o.username}
+              />
+            ):null}
+          
             {bcomment.map((o, i) =>
               <CommentCard_nopic
                 key={i}

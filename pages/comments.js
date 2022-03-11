@@ -76,6 +76,7 @@ export default function Home({
             </div>
           </div>
           <div className='Feed_Area'>
+            
            {comment.map((o,i)=>
            
            <CommentCard  key={i} 

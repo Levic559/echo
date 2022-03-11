@@ -9,10 +9,10 @@ import InputBox from '@/comps/InputBox';
 import Button from '@mui/material/Button';
 import IosSwitch from '@/comps/MuiSwitch'
 import Switch from '@/comps/Switch';
-import { useTheme, useOrder } from '../utils/provider'
+import { useTheme, useOrder,useRead,useFav } from '../utils/provider'
 import { useUser, useShow } from '@/utils/provider'
 import { useShow2, useShow3,useShow4,useShow5,useShow6} from '@/utils/provider'
-import { comp_theme, text_theme, color_method,global_theme } from '@/utils/variables';
+import { comp_theme, text_theme, color_method,global_theme, } from '@/utils/variables';
 import SwitchBasic from '@/comps/SwitchBasic'
 export default function Home({
 
@@ -27,10 +27,18 @@ export default function Home({
   const { show5, setShow5 } = useShow5();
   const { show6, setShow6 } = useShow6();
   const { status, setStatus } = useShow();
+  const { readlist, setReadlist } = useRead();
+  const { favlist, setFavlist} = useFav();
   const { user,setUser } = useUser();
   const [newUser,setNewUser]=useState()
   const submit=()=>{
     setUser(newUser)
+  }
+  const logout=()=>{
+    router.push('/');
+    setUser('')
+    setReadlist('')
+    setFavlist('')
   }
   return <div>
     <Head>
@@ -113,7 +121,7 @@ export default function Home({
               btn={show6 === 'default' ? 'On' : 'Off'}
               slideColor={show6 === 'default' ? 'switch-body switch-body-on' : 'switch-body'} />
               <div className='logout'>
-            <Button variant="contained" onClick={() => router.push('/')} 
+            <Button variant="contained" onClick={logout} 
             style={{ background: text_theme[theme].label, color: text_theme[theme].title, 
             width:"75%"     }}
             >Log out</Button>

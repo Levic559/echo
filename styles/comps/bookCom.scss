@@ -14,8 +14,8 @@
         border-radius: 50%;
         
         @media screen and (max-width: 1400px) {
-            width: 12.5rem;
-        height: 12.5rem;
+            width: 15rem;
+        height: 15rem;
         }
     }
     .BookTitle {
@@ -36,5 +36,15 @@
         font-size: 1rem;
         line-height: 80%;
        text-align:center;
+    }
+    .heart{
+        &:hover{
+            opacity: .5;
+        }
+    }
+    .edit{
+        &:hover{
+            opacity: .5;
+        }
     }
 }

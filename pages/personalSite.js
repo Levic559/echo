@@ -148,7 +148,8 @@ export default function Home({
               <div className={fav_method[show3].label} >
                   {Object.values(favlist).map((o, i) =>{
                return <ReadListCom 
-               key={i}
+               key={i._id}
+
               // key={i}
               //  _id={o._id}  
                 OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
@@ -160,7 +161,7 @@ export default function Home({
               <div className={fav_method[show3].label} >
                 {Object.values(fav).map((o,i) =>{
                return <ReadListCom 
-               key={i}
+               key={i._id}
               //  key={i}
               //  _id={o._id}  
                 OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
@@ -182,7 +183,7 @@ export default function Home({
 
                 {Object.values(readlist).map((o,i) =>{
                return <ReadListCom 
-               key={i}
+               key={i._id}
               // key={i}
               //  _id={o._id}   
                 OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}

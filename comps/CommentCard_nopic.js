@@ -40,7 +40,8 @@ const CommentCard_nopic=({
       }}> {username}</h3>
             <Button variant="contained" style={{
       
-      color:text_theme[theme].label
+      color: text_theme[theme].label,
+          background:text_theme[theme].title
       }}>more</Button>
           </div>
 

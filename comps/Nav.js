@@ -53,8 +53,8 @@ const Nav = ({
             </div>
             <div className="iconCon">
 
-                <Icon name='user' size='large' onClick={() => router.push("/personalSite")} style={{color:text_theme[theme].title}}/>
-                <Icon name='setting' size='large' onClick={() => router.push("/setting")} style={{color:text_theme[theme].title}}/>
+                <Icon classNane='user' name='user' size='large' onClick={() => router.push("/personalSite")} style={{color:text_theme[theme].title}}/>
+                <Icon className='setting' name='setting' size='large' onClick={() => router.push("/setting")} style={{color:text_theme[theme].title}}/>
             </div>
             <div>
 

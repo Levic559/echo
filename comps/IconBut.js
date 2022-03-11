@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Icon } from 'semantic-ui-react'
 
-const HeartBut = ({
+const IconBut = ({
     iconName,
     onClick=()=>{}
 }) => {
@@ -14,4 +14,4 @@ const HeartBut = ({
     )
 }
 
-export default HeartBut
+export default IconBut

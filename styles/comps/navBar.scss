@@ -18,6 +18,9 @@
 
     .navLogoCon {
         width: 10%;
+        &:hover{
+            opacity: .5;
+        }
     }
     .navInputCon {
         display: flex;
@@ -45,8 +48,17 @@
         justify-content: space-around;
         width: 10%;
         color: $textColorL;
-       
-        
+      
+        .user{
+            &:hover{
+                opacity: .5;
+            }
+        }
+        .setting{
+            &:hover{
+                opacity: .5;
+            }
+        }
         
     }
 }
