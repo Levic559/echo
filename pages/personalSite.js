@@ -1,14 +1,14 @@
 import Head from 'next/head'
 import Footer from '@/comps/Footer'
 import { useRouter } from 'next/router';
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import UserCom from '@/comps/UserCom'
 import FriendCard from '@/comps/FriendCard'
 import { comp_theme, text_theme,private_method,info_method,fav_method,read_method,
   friends_method,clubs_method } from '../utils/variables'
 import { useShow, useTheme,useShow2,useShow3,useShow4,useShow5,useShow6 } from '../utils/provider'
-import { useRead, useUser,useFav } from '@/utils/provider'
+import { useRead, useUser,useFavlist } from '@/utils/provider'
 import ReadListCom from '@/comps/ReadListCom';
 import { useDrop } from "react-dnd";
 const favorite_book = [
@@ -61,12 +61,14 @@ export default function Home({
   const { show6 } = useShow6();
   const { user } = useUser();
   const { readlist, setReadlist } = useRead()
-  const { favlist, setFavlist } = useFav()
+  const { favlist, setFavlist } = useFavlist()
   const router = useRouter();
   // console.log(Object.values(readlist))
   const [fav, setFav] = useState([])
-  const [read, setRead] = useState(read_list)
+
   const [friends, setFriends] = useState(friends_list)
+
+
   const handleRemove = (i) => {
     console.log(i)
     let list = Object.values(readlist)
@@ -76,21 +78,15 @@ export default function Home({
     ]);
   }
   const handleRemove_fav = (i) => {
-    console.log(i)
-    if(favlist){
-    let list = Object.values(favlist)
-    setFavlist([
-      ...list.slice(0, i),
-      ...list.slice(i + 1)
-    ]);}
-    else{
+    
       let list = Object.values(fav)
     setFav([
       ...list.slice(0, i),
       ...list.slice(i + 1)
     ]);
-    }
+    
   }
+
  
   // const [board, setBoard] = useState([]);
 
@@ -105,12 +101,13 @@ export default function Home({
     const addBookToFav = (_id) => {
       console.log("_id",_id)
       
-      const flist = Object.values(readlist).filter((o)=> _id === o.id);
+      const flist = Object.values(readlist).filter((o)=> _id === o._id);
       console.log("flist",flist)
-      setFav((fav) => [...fav, flist[0]]);
-      setFavlist(flist)
-      
+      // fav.concat(...fav,flist)
+      setFav((fav)=>[...fav, flist[0]]);
+    
     };
+  
   return <>
     <Head>
       <title>Echo</title>
@@ -144,34 +141,21 @@ export default function Home({
             <div className="favorite" ref={drop}
               style={{ background: comp_theme[theme].label2 }}>
               <div className='title'>Favorite books </div>
-              {favlist?
+             
               <div className={fav_method[show3].label} >
-                  {Object.values(favlist).map((o, i) =>{
-               return <ReadListCom 
-               key={i._id}
+              {Object.values(fav).map((o, i) =>{
+           return <ReadListCom 
+          
 
-              // key={i}
-              //  _id={o._id}  
-                OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
-                ReadlistClick={() => handleRemove_fav(i)}
-                text={o.title} 
-                />}
-                )}
-              </div> :
-              <div className={fav_method[show3].label} >
-                {Object.values(fav).map((o,i) =>{
-               return <ReadListCom 
-               key={i._id}
-              //  key={i}
-              //  _id={o._id}  
-                OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
-                ReadlistClick={() => handleRemove_fav(i)}
-                text={o.title}
-                />}
-              )}
-            </div>
+          key={i._id}
+           _id={o._id}  
+            OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
+            ReadlistClick={() => handleRemove_fav(i)}
+            text={o.title} 
+            />}
+            )}
+          </div>
               
-              }
             </div>
             <div className='readlist'
               style={{ background: comp_theme[theme].label2 }}>
@@ -183,9 +167,9 @@ export default function Home({
 
                 {Object.values(readlist).map((o,i) =>{
                return <ReadListCom 
-               key={i._id}
+          key={i._id}
               // key={i}
-              //  _id={o._id}   
+               _id={o._id}   
                 OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
                 ReadlistClick={() => handleRemove(i)}
                 text={o.title}

@@ -20,7 +20,8 @@ const FriendCard=({
    
     src=default_date.ImageURLM,
     friends=default_date.Friends,
-   
+   height="130",
+   width="130",
     onClick=()=>{},
 })=>{
 
@@ -29,8 +30,8 @@ const FriendCard=({
     return (
     <div className='friendCard' onClick={onClick} >
 
-        <Image src={src} width={130}
-      height={130} objectFit="cover" />
+        <Image src={src} width={width}
+      height={height} objectFit="cover" />
         <p style={{color:text_theme[theme].title}}> {friends} </p>
     
         </div>

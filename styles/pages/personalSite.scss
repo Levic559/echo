@@ -77,9 +77,12 @@ a {
                     flex-direction: column;
 
                     .title {
-                        font-size: 1.5rem;
+                        width:90%;
+                        font-size: 1.25rem;
                         margin-left: 5%;
                         margin-top: 2.5%;
+                        padding-bottom: 1%;
+                        border-bottom: 1px solid darkgray;
                     }
                     .fav_v {
                         display: flex;
@@ -105,9 +108,12 @@ a {
                     margin-bottom: 1rem;
 
                     .title {
-                        font-size: 1.5rem;
+                        width:90%;
+                        font-size: 1.25rem;
                         margin-left: 5%;
                         margin-top: 2.5%;
+                        padding-bottom: 1%;
+                        border-bottom: 1px solid darkgray;
                     }
                     .read_v {
                         display: flex;
@@ -145,23 +151,21 @@ a {
                     height: 100%;
                     border-radius: 1rem;
                     margin-bottom: 1rem;
+                    
                     .title {
-                        font-size: 1.5rem;
+                        width:90%;
+                        font-size: 1.25rem;
                         margin-left: 5%;
                         margin-top: 2.5%;
+                        padding-bottom: 1%;
+                        border-bottom: 1px solid darkgray;
                     }
                     .friends_v {
                         display: flex;
                         flex-direction: row;
                         flex-wrap: wrap;
-                        padding: 5%;
-                        img {
-                            width: 7.5rem;
-                            height: 7.5rem;
-                            border-radius: 50%;
-                            object-fit: cover;
-                            margin: 1%;
-                        }
+                        padding: 2.5%;
+                       
                     }
                     .friends_h {
                         visibility: hidden;
@@ -173,15 +177,18 @@ a {
                     border-radius: 1rem;
                     margin-bottom: 1rem;
                     .title {
-                        font-size: 1.5rem;
+                        width:90%;
+                        font-size: 1.25rem;
                         margin-left: 5%;
                         margin-top: 2.5%;
+                        padding-bottom: 1%;
+                        border-bottom: 1px solid darkgray;
                     }
                     .clubs_v {
                         display: flex;
                         flex-direction: row;
                         flex-wrap: wrap;
-                        padding: 5%;
+                        padding: 2.5%;
                         img {
                             width: 7.5rem;
                             height: 7.5rem;

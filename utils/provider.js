@@ -25,6 +25,8 @@ const initialStates = {
     setShow6:()=>{},
     status:{},
     setStatus:()=>{},
+    favlist:{},
+    setFavlist:()=>{}
 }
 
 const MyContext = createContext(initialStates);
@@ -111,7 +113,7 @@ export function useRead(){
     const {readlist,setReadlist}=useContext(MyContext)
     return{readlist,setReadlist};
 }
-export function useFav(){
+export function useFavlist(){
 
     const {favlist,setFavlist}=useContext(MyContext)
     return{favlist,setFavlist};
