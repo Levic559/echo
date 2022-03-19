@@ -4,7 +4,6 @@ import Footer from '@/comps/Footer'
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
-import ClubsCom from '@/comps/ClubsCom'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme,useUser } from '../../utils/provider'
 import ClubCard from '@/comps/ClubCard';

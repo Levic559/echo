@@ -3,13 +3,9 @@ import Footer from '@/comps/Footer';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Nav from '@/comps/Nav';
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import InputBox from '@/comps/InputBox';
 import Button from '@mui/material/Button';
-import IosSwitch from '@/comps/MuiSwitch'
-import Switch from '@/comps/Switch';
-import { useTheme, useOrder,useRead,useFav } from '../utils/provider'
+import { useTheme, useOrder,useRead,useFavlist } from '../utils/provider'
 import { useUser, useShow } from '@/utils/provider'
 import { useShow2, useShow3,useShow4,useShow5,useShow6} from '@/utils/provider'
 import { comp_theme, text_theme, color_method,global_theme, } from '@/utils/variables';
@@ -28,7 +24,7 @@ export default function Home({
   const { show6, setShow6 } = useShow6();
   const { status, setStatus } = useShow();
   const { readlist, setReadlist } = useRead();
-  const { favlist, setFavlist} = useFav();
+  const { favlist, setFavlist} = useFavlist();
   const { user,setUser } = useUser();
   const [newUser,setNewUser]=useState()
   const submit=()=>{

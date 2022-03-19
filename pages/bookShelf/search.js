@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
-import Switch from '@/comps/Switch'
 import { comp_theme, text_theme ,order_method} from '../../utils/variables'
 import { useTheme,useUser,useOrder } from '../../utils/provider'
 const filter = [

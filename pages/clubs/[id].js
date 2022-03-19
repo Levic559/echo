@@ -1,17 +1,14 @@
 import Head from 'next/head';
 import ax from 'axios';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import Footer from '@/comps/Footer';
 import { useEffect, useState, useContext } from 'react'
 import ClubsCom from '@/comps/ClubsCom';
 import Nav from '@/comps/Nav'
-import CommentCard_nopic from '@/comps/CommentCard_nopic'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
 import { useRead, useIstatus } from '@/utils/provider'
-import CommentCard_new from '@/comps/CommentCard_new'
 import FriendPic from '@/comps/FriendPic';
 import Button from '@mui/material/Button';
 import { Icon } from 'semantic-ui-react'

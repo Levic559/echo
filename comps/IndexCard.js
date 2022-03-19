@@ -1,5 +1,4 @@
 import InputBox from "./InputBox"
-import MyButton from "./Button"
 
 export const IndexCard={
     one:{

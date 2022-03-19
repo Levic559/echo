@@ -1,4 +1,4 @@
-const booklist = require("./books500.json")
+// const booklist = require("./books.json")
 export const filtering = (
     arr = [],
     config = {
@@ -88,14 +88,14 @@ export const sorting = (
         return arr;
     }
 }
-let f_booklist = filtering(booklist, {
-    BookTitle: 'Classic',
+// let f_booklist = filtering(booklist, {
+//     BookTitle: 'Classic',
 
-})
+// })
 
-f_booklist = sorting(f_booklist, {
-    key: "isbn",
-    type: "desc"
-})
+// f_booklist = sorting(f_booklist, {
+//     key: "isbn",
+//     type: "desc"
+// })
 
-console.log(f_booklist)
+// console.log(f_booklist)

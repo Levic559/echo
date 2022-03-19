@@ -4,7 +4,6 @@ import MyButton from '@/comps/Button'
 import Footer from '@/comps/Footer'
 import InputBox from '@/comps/InputBox'
 import { useRouter } from 'next/router';
-import { IndexCard } from "../comps/IndexCard"
 import { useState } from 'react'
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
