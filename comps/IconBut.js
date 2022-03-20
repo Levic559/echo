@@ -8,7 +8,7 @@ const IconBut = ({
 
     
     return (
-        <div className='HeartBut' onClick={onClick}>
+        <div className='bookmark outline' onClick={onClick}>
           <Icon name={iconName} size='large' />
         </div>
     )

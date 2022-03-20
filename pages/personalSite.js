@@ -64,7 +64,7 @@ export default function Home({
   const { favlist, setFavlist } = useFavlist()
   const router = useRouter();
   // console.log(Object.values(readlist))
-  const [fav, setFav] = useState([])
+  // const [fav, setFav] = useState([])
 
   const [friends, setFriends] = useState(friends_list)
 
@@ -79,8 +79,8 @@ export default function Home({
   }
   const handleRemove_fav = (i) => {
     
-      let list = Object.values(fav)
-    setFav([
+      let list = Object.values(favlist)
+    setFavlist([
       ...list.slice(0, i),
       ...list.slice(i + 1)
     ]);
@@ -103,9 +103,8 @@ export default function Home({
       
       const flist = Object.values(readlist).filter((o)=> _id === o._id);
       console.log("flist",flist)
-      // fav.concat(...fav,flist)
-      setFav((fav)=>[...fav, flist[0]]);
-    
+      setFavlist((fav)=>[...fav, flist[0]]);
+      
     };
   
   return <>
@@ -143,7 +142,7 @@ export default function Home({
               <div className='title'>Favorite books </div>
              
               <div className={fav_method[show3].label} >
-              {Object.values(fav).map((o, i) =>{
+              {Object.values(favlist).map((o, i) =>{
            return <ReadListCom 
           
 

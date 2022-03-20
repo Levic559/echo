@@ -51,7 +51,7 @@ export default function BooksID() {
   const { istatus,setIStatus } = useIstatus();
   const [bcomment, setbComment] = useState(book_comments)
   const { readlist, setReadlist } = useRead()
-  const [heartIcon, setHeartIcon] = useState()
+  const [bookIcon, setBookIcon] = useState()
   const [shownewComment, setShowNewComment] = useState(false)
   const [post, setPost] = useState()
   const [newcomment, setNewComment] = useState({
@@ -62,9 +62,9 @@ export default function BooksID() {
   useEffect(()=>{
     if (id) {
       if(Object.keys(readlist).includes(id)){
-        setHeartIcon('heart')
+        setBookIcon('bookmark')
       }else{
-        setHeartIcon('heart outline')
+        setBookIcon('bookmark outline')
       }
      }
   },[id])
@@ -84,12 +84,7 @@ export default function BooksID() {
       }
       GetBook()
     }
-    // const setHeart= ()=>{
-    //   if(Object.keys(readlist).includes("195153448")===true){
-    //     setHeartIcon('heart')
-    //   }
-    // }
-    // setHeart()
+
   }, [id])
 
  
@@ -104,19 +99,19 @@ export default function BooksID() {
     setShowNewComment(true)
   }
   const heartClick = (value,obj) => {
-    if (heartIcon =='heart outline') {
-      setHeartIcon('heart')
+    if (bookIcon =='bookmark outline') {
+      setBookIcon('bookmark')
      
       const n_readlist = { ...readlist}
       n_readlist[obj._id] = obj;
       // var key="aaa"
       // n_fav[key]=obj;
       setReadlist(n_readlist)
-      // setIStatus(heartIcon)
+      // setIStatus(bookIcon)
       // console.log(istatus)
     }
     else  {
-      setHeartIcon('heart outline')
+      setBookIcon('bookmark outline')
       const n_readlist = {
         ...readlist  }
     delete n_readlist[obj._id];
@@ -152,7 +147,7 @@ const postcomment=()=>{
             YearOfPublication={data.pub_year}
             Publisher={data.publisher}
             heartClick={(e)=> heartClick(e.target.value, data)}
-            iconName={heartIcon}
+            iconName={bookIcon}
             editClick={editClick}
           />
           </div>
