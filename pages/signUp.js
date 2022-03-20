@@ -8,7 +8,8 @@ import { useState } from 'react'
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
 import { useUser } from '../utils/provider'
-
+import DropMenu from '@/comps/DropMenu'
+import DropMenuAge from '@/comps/DropMenuAge'
 var page = 1
 export default function Home({
   title = "Sign Up"
@@ -21,6 +22,9 @@ export default function Home({
   const [e_warn, setE_Warn] = useState(false)
   const [warn, setWarn] = useState(false)
   const {user,setUser}=useUser()
+const [gendervalue, setGendervalue]= useState("Gender")
+const [age, setAge]= useState("Age Level")
+
   const [register, setRegister] = useState({
     email: "",
     password: "",
@@ -91,7 +95,52 @@ export default function Home({
     }
     console.log("page " + page)
   }
-
+  const maleOnClick=()=>{
+    setGendervalue("Male")
+    setRegister({ ...register, gender:"Male"})
+  }
+  const femaleOnClick=()=>{
+    setGendervalue("Female")
+  
+    setRegister({ ...register, gender:"Female"})
+  }
+  const secretOnClick=()=>{
+    setGendervalue("Secret")
+    setRegister({ ...register, gender:"Secret"})
+  }
+  const OneOnClick=()=>{
+    setAge("11-20")
+    setRegister({ ...register, age:"11-20"})
+  }
+  const TwoOnClick=()=>{
+    setAge("21-30")
+    setRegister({ ...register, age:"21-30"})
+  }
+  const ThreeOnClick=()=>{
+    setAge("31-40")
+    setRegister({ ...register, age:"31-40"})
+  }
+  const FourOnClick=()=>{
+    setAge("41-50")
+    setRegister({ ...register, age:"41-50"})
+  }
+  const FiveOnClick=()=>{
+    setAge("51-60")
+    setRegister({ ...register, age:"51-60"})
+  }
+  const SixOnClick=()=>{
+    setAge("61-70")
+    setRegister({ ...register, age:"61-70"})
+  }
+  const SevenOnClick=()=>{
+    setAge("71-80")
+    setRegister({ ...register, age:"71-80"})
+  }
+  const EightOnClick=()=>{
+    setAge("81-90")
+    setRegister({ ...register, age:"81-90"})
+  }
+  console.log(gendervalue)
   return <div>
     <Head>
       <title>Echo</title>
@@ -127,7 +176,10 @@ export default function Home({
         }}>
           <p className='title'>{title}</p>
           <InputBox text="Username" value={register.username} onChange={e => setRegister({ ...register, username: e.target.value })} />
-          <InputBox text="Gender" value={register.gender} onChange={e => setRegister({ ...register, gender: e.target.value })} />
+          {/* <InputBox text="Gender" value={register.gender} onChange={e => setRegister({ ...register, gender: e.target.value })} /> */}
+          <DropMenu text={gendervalue} maleOnClick={maleOnClick}  
+          femaleOnClick={femaleOnClick} secretOnClick={secretOnClick} value={register.gender}
+            />
           <div className='ButtonCon' >
             <MyButton onClick={backPage} text="Back" />
             <MyButton text="Next" onClick={nextPage} />
@@ -139,7 +191,10 @@ export default function Home({
           color: text_theme[theme].label
         }}>
           <p className='title'>{title}</p>
-          <InputBox text="Age" value={register.age} onChange={e => setRegister({ ...register, age: e.target.value })} />
+          {/* <InputBox text="Age" value={register.age} onChange={e => setRegister({ ...register, age: e.target.value })} /> */}
+          <DropMenuAge text={age} OneOnClick={OneOnClick}  TwoOnClick={TwoOnClick}  ThreeOnClick={ThreeOnClick} value={register.age}
+          FourOnClick={FourOnClick} SixOnClick={SixOnClick} SevenOnCSevenk={SevenOnClick} EightOnClick={EightOnClick}
+          /> 
           <InputBox text="Location" value={register.location} onChange={e => setRegister({ ...register, location: e.target.value })} />
           <div className='ButtonCon' >
             <MyButton onClick={backPage} text="Back" />

@@ -1,4 +1,5 @@
 import InputBox from "./InputBox"
+import DropMenu from "./DropMenu"
 
 export const IndexCard={
     one:{

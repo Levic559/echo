@@ -70,7 +70,7 @@ export default function Home({
               <a onClick={() => router.push('/bookShelf')} > BookShelf</a>
               <a onClick={() => router.push('/comments')} > Comments</a>
               <a> Friends</a>
-              <a> Clubs</a>
+              <a onClick={() => router.push('/clubs')}> Clubs</a>
               <a> Subscription</a>
             </div>
           </div>
