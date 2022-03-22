@@ -75,6 +75,7 @@ const [age, setAge]= useState("Age Level")
     }
     else{
       setUser(register)
+      localStorage.setItem("user", JSON.stringify(register));
       router.push("/")
     }
     console.log("page " + page)

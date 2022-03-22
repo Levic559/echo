@@ -61,10 +61,10 @@ export default function Home({
   const { show6 } = useShow6();
   const { user } = useUser();
   const { readlist, setReadlist } = useRead()
-  const { favlist, setFavlist } = useFavlist()
+  const { favlist, setFavlist } = useFavlist([])
   const router = useRouter();
   // console.log(Object.values(readlist))
-  // const [fav, setFav] = useState([])
+  const [fav, setFav] = useState([])
 
   const [friends, setFriends] = useState(friends_list)
 
@@ -79,8 +79,8 @@ export default function Home({
   }
   const handleRemove_fav = (i) => {
     
-      let list = Object.values(favlist)
-    setFavlist([
+      let list = Object.values(fav)
+    setFav([
       ...list.slice(0, i),
       ...list.slice(i + 1)
     ]);
@@ -103,8 +103,7 @@ export default function Home({
       
       const flist = Object.values(readlist).filter((o)=> _id === o._id);
       console.log("flist",flist)
-      setFavlist((fav)=>[...fav, flist[0]]);
-      
+      setFav((fav)=>[...fav, flist[0]]);
     };
   
   return <>
@@ -142,17 +141,22 @@ export default function Home({
               <div className='title'>Favorite books </div>
              
               <div className={fav_method[show3].label} >
-              {Object.values(favlist).map((o, i) =>{
-           return <ReadListCom 
-          
-
-          key={i._id}
-           _id={o._id}  
-            OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
-            ReadlistClick={() => handleRemove_fav(i)}
-            text={o.title} 
-            />}
-            )}
+            
+         
+             {  Object.values(fav).map((o, i) =>{
+                return <ReadListCom 
+               
+     
+               key={i._id}
+                _id={o._id}  
+                 OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
+                 ReadlistClick={() => handleRemove_fav(i)}
+                 text={o.title} 
+                 />}
+                 ) 
+              
+              
+              }
           </div>
               
             </div>
