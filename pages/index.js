@@ -54,7 +54,7 @@ export default function Home({
 
             <InputBox text="Email" />
           {e_warn ? <p style={{ color: "#ba1141" }}><b>The eamil is invalid</b></p> : null}
-            <InputBox text="Password" />
+            <InputBox text="Password" type="password"/>
             {warn ? <p style={{ color: "#ba1141" }}><b>The password is invalid</b></p> : null}
           </div>
           <div className='ButtonCon'>

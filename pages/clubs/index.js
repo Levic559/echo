@@ -53,11 +53,11 @@ export default function Bookshelf({
               background: comp_theme[theme].label,
               color: text_theme[theme].label
             }}>
-              <a onClick={() => router.push('/bookShelf')} > BookShelf</a>
+               <a onClick={() => router.push('/bookShelf')} > BookShelf</a>
               <a onClick={() => router.push('/comments')} > Comments</a>
-              <a> Friends</a>
-              <a> Clubs</a>
-              <a> Subscription</a>
+              <a  onClick={()=>alert("Constructing")}>  Friends</a>
+              <a onClick={() => router.push('/clubs')}> Clubs</a>
+              <a  onClick={()=>alert("Constructing")}> Subscription</a>
             </div>
           </div>
           <div className='Feed_Area' style={{ color: text_theme[theme].title }}>

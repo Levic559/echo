@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Nav from '@/comps/Nav'
 import CommentCard from '@/comps/CommentCard'
 import { comp_theme, text_theme } from '../utils/variables'
-import { useTheme } from '../utils/provider'
+import { useTheme,useUser } from '../utils/provider'
 
 
 const user_comments = [
@@ -48,7 +48,14 @@ export default function Home({
   const router = useRouter();
   const [comment, setComment] = useState(user_comments)
   const { theme } = useTheme();
- 
+  const {user,setUser}=useUser()
+  useEffect(()=>{
+    var currentUser=  sessionStorage.getItem("user");
+    var currentUser=JSON.parse(currentUser)
+    console.log(currentUser)
+    setUser(currentUser)
+      console.log(user)
+  },[])
   return <div>
     <Head>
       <title>bookShelf</title>
@@ -59,7 +66,9 @@ export default function Home({
       <div className='Container'  >
         <div className='Nav'>
 
-          <Nav onClick={() => router.push('bookShelf/search')} />
+        {user ?
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
+        :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='Content'>
           <div className='Side_Bar'>
@@ -69,9 +78,9 @@ export default function Home({
             }}>
               <a onClick={() => router.push('/bookShelf')} > BookShelf</a>
               <a onClick={() => router.push('/comments')} > Comments</a>
-              <a> Friends</a>
+              <a  onClick={()=>alert("Constructing")}>  Friends</a>
               <a onClick={() => router.push('/clubs')}> Clubs</a>
-              <a> Subscription</a>
+              <a  onClick={()=>alert("Constructing")}> Subscription</a>
             </div>
           </div>
           <div className='Feed_Area'>

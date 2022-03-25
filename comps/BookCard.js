@@ -32,7 +32,7 @@ const BookCard=({
     <div className='bookCard' onClick={onClick} >
 
         <Image src={src} width={150}
-      height={150} objectFit="cover" />
+      height={150} objectFit="cover" alt="book's photo"/>
       <div className='discription'>
         <p style={{color:text_theme[theme].title}}> {title} </p>
         <p style={{color:text_theme[theme].title}}> {BookAuthor} </p>

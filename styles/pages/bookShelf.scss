@@ -31,9 +31,7 @@ a {
         align-items: center;
 
         @media screen and (max-width: 450px) {
-            flex-wrap: wrap;
             justify-content: center;
-            height: 100%;
             width: 95%;
         }
         .B_Nav {
@@ -50,9 +48,9 @@ a {
             justify-content: flex-end;
             // position: absolute;
             @media screen and (max-width: 450px) {
+                justify-content: center;
+                align-items: center;
                 width: 95%;
-                justify-content: flex-start;
-                align-items: flex-start;
             }
             .Side_Bar {
                 width: 20%;
@@ -64,13 +62,10 @@ a {
                 align-items: flex-start;
                 // position: absolute;
                 @media screen and (max-width: 450px) {
-                    display:none
-                   
+                    display: none;
                 }
-                
 
                 .Pannel {
-                    
                     height: 50rem;
                     width: 75%;
                     min-width: 10rem;
@@ -98,11 +93,10 @@ a {
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
-                overflow-y:scroll ;
+                overflow-y: scroll;
                 @media screen and (max-width: 450px) {
                     width: 100%;
                     align-items: flex-start;
-                    
                 }
                 .Drawers {
                     height: 100%;
@@ -110,8 +104,8 @@ a {
                     margin: 1%;
                     display: flex;
                     flex-direction: column;
-                   
-                    h3  {
+
+                    h3 {
                         font-size: 2rem;
                         margin-left: 1rem;
                         line-height: 100%;
@@ -120,29 +114,24 @@ a {
                     }
                     .Drawer {
                         width: 100%;
-                        min-height:22.5rem;
+                        min-height: 22.5rem;
                         display: flex;
                         flex-direction: row;
-                        overflow-x:scroll;
-                        overflow-y:hidden;
-                       
+                        overflow-x: scroll;
+                        overflow-y: hidden;
                     }
                     .Drawer_search {
                         width: 100%;
-                        min-height:30%;
-                        height:90%;
+                        min-height: 30%;
+                        height: 90%;
                         display: flex;
                         flex-direction: row;
                         flex-wrap: wrap;
-                        overflow:scroll;
-                        overflow-x:hidden;
-                       
+                        overflow: scroll;
+                        overflow-x: hidden;
                     }
                 }
-        
             }
-            
         }
-
     }
 }

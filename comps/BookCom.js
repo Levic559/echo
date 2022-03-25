@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme } from '../utils/provider'
 import { Icon } from 'semantic-ui-react'
@@ -32,7 +32,12 @@ const BookCom = ({
 }) => {
     const { theme } = useTheme();
     const [rate, setRate] = useState(default_date.rating);
-    
+    const [windowW,setWindowW]=useState("1000")
+
+    useEffect(()=>{
+    var width= window.innerWidth
+    setWindowW(width)
+    },[])
 
 
 
@@ -41,18 +46,31 @@ const BookCom = ({
 return <div className='bookCom' style={{
     backgroundColor: comp_theme[theme].label,
     color: text_theme[theme].label
-}}>
-    <Image src={src} width={400} height={400} objectFit="cover" />
+}}> {windowW <451 ?
+    <Image src={src} width={300} height={100} objectFit="cover" alt="book's photo" />
+    :
+    <Image src={src} width={400} height={400} objectFit="cover" alt="book's photo" />
+
+}
     <div className='BookTitle'>  {title}</div>
-
+    {windowW <451 ?
         <div className='rating'>
-            <Icon name='star' size='large' />
-            <Icon name='star' size='large' />
-            <Icon name='star' size='large' />
-            <Icon name='star' size='large' />
-            <Icon name='star' size='large' />
+            <Icon name='star'  />
+            <Icon name='star' />
+            <Icon name='star'  />
+            <Icon name='star'  />
+            <Icon name='star'  />
 
-        </div>
+        </div>:
+         <div className='rating'>
+         <Icon name='star' size='large' />
+         <Icon name='star' size='large' />
+         <Icon name='star' size='large' />
+         <Icon name='star' size='large' />
+         <Icon name='star' size='large' />
+
+     </div>
+     }
     
     <div className='info'>
         <p>  {authors}</p>

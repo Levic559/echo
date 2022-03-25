@@ -9,7 +9,7 @@ import MyButton, { Button } from '@/comps/Button';
 import Nav from '@/comps/Nav'
 import CommentCard_nopic from '@/comps/CommentCard_nopic'
 import { comp_theme, text_theme } from '../../utils/variables'
-import { useTheme } from '../../utils/provider'
+import { useTheme,useUser } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
 import { useRead, useIstatus} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
@@ -52,6 +52,7 @@ export default function BooksID() {
   const [bcomment, setbComment] = useState(book_comments)
   const { readlist, setReadlist } = useRead()
   const [bookIcon, setBookIcon] = useState()
+  const {user, setUser} = useUser()
   const [shownewComment, setShowNewComment] = useState(false)
   const [post, setPost] = useState([])
   const [newcomment, setNewComment] = useState({
@@ -59,6 +60,14 @@ export default function BooksID() {
   usersrc: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
   username: "Alex"
   })
+  useEffect(()=>{
+    var currentUser=  sessionStorage.getItem("user");
+    var currentUser=JSON.parse(currentUser)
+    console.log(currentUser)
+    setUser(currentUser)
+      console.log(user)
+  },[])
+
   useEffect(()=>{
     if (id) {
       if(Object.keys(readlist).includes(id)){
@@ -120,19 +129,25 @@ export default function BooksID() {
   }
   
 }
-var sortnewcomment =[];
-var sortnewcomment =newcomment.sort(function(x, y) {
-  return x[0] < y[0] ? -1 : 1;
-});
+// var sortnewcomment =[];
+// var sortnewcomment =newcomment.sort(function(x, y) {
+//   return x[0] < y[0] ? -1 : 1;
+// });
 
 
 const postcomment=()=>{
-  setPost(post.concat([sortnewcomment]))
+  setPost(post.concat(
+    
+    [newcomment].sort(function(left, right) {
+      return left[0] > right[0] ? -1 : 1;
+    })
+    
+    ))
 
 
   setShowNewComment(false)
-  console.log(post)
 }
+console.log(post)
   return <div>
     <Head>
       <title>Echo</title>
@@ -142,7 +157,9 @@ const postcomment=()=>{
     <div className='sB_Wrapper'>
       <div className='Container' >
         <div className='Nav'>
-          <Nav onClick={() => router.push('/bookShelf/search')} />
+        {user ?
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
+        :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='Content' >
           <div className='Side_Bar'>
@@ -172,7 +189,7 @@ const postcomment=()=>{
                 key={i}
                 comment={o.comment}
                 usersrc={o.usersrc}
-                username={o.username}
+                username={user.username}
               />
             ):null}
           
@@ -181,7 +198,7 @@ const postcomment=()=>{
                 key={i}
                 comment={o.comment}
                 usersrc={o.usersrc}
-                username={o.username}
+                username={user.username}
               />
             )}
           </div>

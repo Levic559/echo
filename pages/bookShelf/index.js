@@ -12,12 +12,20 @@ export default function Bookshelf({
 }) {
 
   const { theme } = useTheme();
-  const { user } = useUser();
+  const { user,setUser } = useUser();
   const router = useRouter();
   const [books, setbooks] = useState([]);
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
   const [curpage, setCurPage] = useState(1);
+  useEffect(()=>{
+    var currentUser=  sessionStorage.getItem("user");
+    var currentUser=JSON.parse(currentUser)
+    console.log(currentUser)
+    setUser(currentUser)
+      console.log(user)
+  },[])
+  
   const itemsPerPage = 15;
   var butt_arr = [];
   var start = 1;
@@ -58,7 +66,9 @@ export default function Bookshelf({
   }
   useEffect(() => {
     GetBooks3()
+
   }, [])
+
   
   return <div>
     <Head>
@@ -81,9 +91,9 @@ export default function Bookshelf({
             }}>
               <a onClick={() => router.push('/bookShelf')} > BookShelf</a>
               <a onClick={() => router.push('/comments')} > Comments</a>
-              <a> Friends</a>
-              <a onClick={() => router.push('/clubs')}> Clubs </a>
-              <a> Subscription</a>
+              <a  onClick={()=>alert("Constructing")}>  Friends</a>
+              <a onClick={() => router.push('/clubs')}> Clubs</a>
+              <a  onClick={()=>alert("Constructing")}> Subscription</a>
             </div>
           </div>
           <div className='Feed_Area' style={{ color: text_theme[theme].title }}>

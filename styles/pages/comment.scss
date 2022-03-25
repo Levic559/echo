@@ -31,10 +31,12 @@ a {
         align-items: center;
 
         @media screen and (max-width: 450px) {
-            flex-wrap: wrap;
+            display: flex;
             justify-content: center;
+            align-items: center;
             height: 100%;
-            width: 95%;
+            width: 95%;          
+           
         }
         .Nav {
             width: 100%;

@@ -189,9 +189,9 @@ export default function Bookshelf({
             }}>
               <a onClick={() => router.push('/bookShelf')} > BookShelf</a>
               <a onClick={() => router.push('/comments')} > Comments</a>
-              <a> Friends</a>
-              <a> Clubs</a>
-              <a> Subscription</a>
+              <a  onClick={()=>alert("Constructing")}>  Friends</a>
+              <a onClick={() => router.push('/clubs')}> Clubs</a>
+              <a  onClick={()=>alert("Constructing")}> Subscription</a>
             </div>
           </div>
           <div className='Feed_Area' style={{ color: text_theme[theme].title }}>
@@ -201,7 +201,7 @@ export default function Bookshelf({
               </div>
               <div className='Drawer_search'>
                 
-                {(data===[]) ? <h4> There is no result.</h4>:
+                {(data.length == []) ? <h4> There is no result.</h4>:
                ( data.map((o, i) =>
                   <BookCard key={i}
                     onClick={() => router.push(`/bookShelf/${o._id}`)}

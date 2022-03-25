@@ -55,11 +55,14 @@ a {
             margin: 10%;
             @media screen and (max-width: 960px) {
                 align-items: center;
-                width: 90%;
-            // margin-right: 2.5%;
-            //     margin-left: 2.5%;
+                width: 65%;
                 height: 30%;
-
+                margin-bottom: 0%;
+            }
+            @media screen and (max-width: 450px) {
+                margin: 0%;
+                height: 30%;
+                width: 80%;
             }
 
             .welcome {
@@ -77,20 +80,27 @@ a {
             }
             .intro {
                 font-size: 1.25rem;
+                width:90%;
                 // color: $textColorL;
                 @media screen and (max-width: 1400px) {
                     font-size: 1.15rem;
                 }
                 @media screen and (max-width: 960px) {
                     font-size: .75rem;
-                    margin-right:5%;
-                    margin-left:5%;
                     font-size: 1rem;
+                    margin-bottom: 10%;
+                }
+                @media screen and (max-width: 450px) {
+                   width:100%;
+                   margin-bottom: 15%;
+
                 }
             }
         }
         .CardCon {
-            width: 65%;
+            max-width: 60rem;
+            width:35rem;
+            min-width: 20rem;
             height: 50%;
             display: flex;
             flex-direction: column;
@@ -103,6 +113,11 @@ a {
                 width: 85%;
                 margin: 0%;
                 height: 50%;
+            }
+            @media screen and (max-width: 450px) {
+               
+                margin-top: 5%;
+                
             }
 
             .title {
@@ -135,7 +150,11 @@ a {
             }
             .warning{
                 margin:.1rem;
-                width:80%
+                width:80%;
+                @media screen and (max-width: 450px) {
+                    width: 95%;
+                 
+                }
             }
 
             .ButtonCon {

@@ -13,6 +13,10 @@
     @media screen and (max-width: 1400px) {
         padding: 2rem;
     }
+    @media screen and (max-width: 450px) {
+        height: 25rem;
+        padding: 1rem;
+    }
     img {
        
        border-radius: 50%;
@@ -20,6 +24,9 @@
         @media screen and (max-width: 1400px) {
             width: 15rem;
         height: 15rem;
+        }
+        @media screen and (max-width: 450px) {
+            border-radius: 1rem;
         }
     }
     .BookTitle {
@@ -40,7 +47,14 @@
         font-size: 1rem;
         line-height: 80%;
        text-align:center;
+       @media screen and (max-width: 450px) {
+        font-size: .8rem;
+        p{
+            margin:.25rem
+        }
     }
+    }
+  
     .heart{
         &:hover{
             opacity: .5;
