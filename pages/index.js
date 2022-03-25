@@ -3,21 +3,32 @@ import Logo from '@/comps/Logo'
 import MyButton from '@/comps/Button'
 import Footer from '@/comps/Footer'
 import InputBox from '@/comps/InputBox'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useRouter } from 'next/router';
 import { comp_theme, text_theme } from '../utils/variables'
-import { useTheme } from '../utils/provider'
+import { useTheme,useUser } from '../utils/provider'
 
 export default function Home({
   title = "Log in"
 }) {
   const { theme } = useTheme();
+  const { user,setUser } = useUser();
   const [e_warn, setE_Warn] = useState(false)
   const [warn, setWarn] = useState(false)
   const router = useRouter();
+
   const logIn = () => {
+    if(user){
     router.push("/bookShelf")
   }
+  }
+  useEffect(()=>{
+    var currentUser=  sessionStorage.getItem("user");
+    var currentUser=JSON.parse(currentUser)
+    console.log(currentUser)
+    setUser(currentUser)
+  
+  },[])
   return <div>
     <Head>
       <title>Echo</title>
@@ -41,7 +52,7 @@ export default function Home({
           <div className='title'>{title}</div>
           <div className='InputCon'>
 
-            <InputBox />
+            <InputBox text="Email" />
           {e_warn ? <p style={{ color: "#ba1141" }}><b>The eamil is invalid</b></p> : null}
             <InputBox text="Password" />
             {warn ? <p style={{ color: "#ba1141" }}><b>The password is invalid</b></p> : null}

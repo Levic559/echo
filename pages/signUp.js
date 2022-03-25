@@ -75,7 +75,7 @@ const [age, setAge]= useState("Age Level")
     }
     else{
       setUser(register)
-      localStorage.setItem("user", JSON.stringify(register));
+      sessionStorage.setItem("user", JSON.stringify(register));
       router.push("/")
     }
     console.log("page " + page)
@@ -160,11 +160,13 @@ const [age, setAge]= useState("Age Level")
           color: text_theme[theme].label
         }}>
           <p className='title'>{title}</p>
+          <div className='InputCon'>
           <InputBox text="Email" value={register.email} onChange={e => setRegister({ ...register, email: e.target.value })} />
           {e_warn ? <p style={{ color: "#ba1141" }}><b>The eamil is invalid</b></p> : null}
-          <InputBox text="Password" value={register.password} onChange={e => setRegister({ ...register, password: e.target.value })} />
+          <InputBox type="password" text="Password" value={register.password} onChange={e => setRegister({ ...register, password: e.target.value })} />
           <p className='warning'>The password requires a smaall and upper caselettter, a character, a number, and eight digits.</p>
           {warn ? <p style={{ color: "#ba1141" }}><b>The password is invalid</b></p> : null}
+          </div>
           <div className='ButtonCon' >
             <MyButton onClick={backPage} text="Back" />
             <MyButton text="Next" onClick={nextPage} />
@@ -176,11 +178,13 @@ const [age, setAge]= useState("Age Level")
           color: text_theme[theme].label
         }}>
           <p className='title'>{title}</p>
+          <div className='InputCon'> 
           <InputBox text="Username" value={register.username} onChange={e => setRegister({ ...register, username: e.target.value })} />
           {/* <InputBox text="Gender" value={register.gender} onChange={e => setRegister({ ...register, gender: e.target.value })} /> */}
-          <DropMenu text={gendervalue} maleOnClick={maleOnClick}  
+          <DropMenu text={gendervalue} maleOnClick={maleOnClick} width="35rem"
           femaleOnClick={femaleOnClick} secretOnClick={secretOnClick} value={register.gender}
-            />
+          />
+          </div>
           <div className='ButtonCon' >
             <MyButton onClick={backPage} text="Back" />
             <MyButton text="Next" onClick={nextPage} />
@@ -190,16 +194,19 @@ const [age, setAge]= useState("Age Level")
         {page3 ? (<div className='CardCon' style={{
           background: comp_theme[theme].label2,
           color: text_theme[theme].label
-        }}>
+        }}> 
+
           <p className='title'>{title}</p>
+          <div className='InputCon'> 
           {/* <InputBox text="Age" value={register.age} onChange={e => setRegister({ ...register, age: e.target.value })} /> */}
           <DropMenuAge text={age} OneOnClick={OneOnClick}  TwoOnClick={TwoOnClick}  ThreeOnClick={ThreeOnClick} value={register.age}
           FourOnClick={FourOnClick} SixOnClick={SixOnClick} SevenOnCSevenk={SevenOnClick} EightOnClick={EightOnClick}
           /> 
           <InputBox text="Location" value={register.location} onChange={e => setRegister({ ...register, location: e.target.value })} />
+          </div>
           <div className='ButtonCon' >
             <MyButton onClick={backPage} text="Back" />
-            <MyButton text="Next" onClick={nextPage} />
+            <MyButton text="Submit" onClick={nextPage} />
           </div>
         </div>)
           : null}

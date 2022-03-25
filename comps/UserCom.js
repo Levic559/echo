@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { comp_theme, text_theme, private_method } from '../utils/variables'
 import { useTheme } from '../utils/provider'
 import { Icon } from 'semantic-ui-react'
@@ -25,14 +25,34 @@ const UserCom = ({
     info_m = "info_v"
 }) => {
     const { theme } = useTheme();
+    const [windowW, setWindowW] = useState("1000")
+    useEffect(() => {
+        var width = window.innerWidth
+        console.log(width)
+        setWindowW(width)
+        console.log("windowW", windowW)
+
+    }, [windowW])
+
     return <div className='userCom' style={{
         backgroundColor: comp_theme[theme].label,
         color: text_theme[theme].label
     }}>
-        <div className='img'>
 
-            <Image src={src} width={400} height={400}  objectFit="cover"  />
-        </div>
+            {windowW <451 ?
+            
+                <Image src={src} width={325} height={100} objectFit="cover" alt="user's photo" />
+           
+            :
+          
+            <Image src={src} width={275} height={275} objectFit="cover" alt="user's photo" />
+           
+        }
+       
+            
+            {/* <Image src={src} width={500} height={500} objectFit="cover" alt="user's photo" /> */}
+        
+
         <div className='name'>  {username}</div>
         <div className={private_m}>
             <Icon name='address book outline' size='large' />

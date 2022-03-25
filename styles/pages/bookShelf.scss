@@ -14,7 +14,6 @@ a {
 * {
     box-sizing: border-box;
 }
-
 .B_Wrapper {
     width: 100%;
     height: 100%;
@@ -31,16 +30,14 @@ a {
         justify-content: flex-start;
         align-items: center;
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 450px) {
             flex-wrap: wrap;
             justify-content: center;
             height: 100%;
+            width: 95%;
         }
         .B_Nav {
-            // height: 20%;
             width: 100%;
-            // position: absolute;
-        //    z-index: 5;
         }
         .B_Content {
             margin-top: 2.5%;
@@ -52,6 +49,11 @@ a {
             align-items: flex-start;
             justify-content: flex-end;
             // position: absolute;
+            @media screen and (max-width: 450px) {
+                width: 95%;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
             .Side_Bar {
                 width: 20%;
                 min-width: 12.5rem;
@@ -61,7 +63,10 @@ a {
                 justify-content: flex-start;
                 align-items: flex-start;
                 // position: absolute;
-              
+                @media screen and (max-width: 450px) {
+                    display:none
+                   
+                }
                 
 
                 .Pannel {
@@ -94,15 +99,18 @@ a {
                 justify-content: flex-start;
                 align-items: center;
                 overflow-y:scroll ;
-               
+                @media screen and (max-width: 450px) {
+                    width: 100%;
+                    align-items: flex-start;
+                    
+                }
                 .Drawers {
                     height: 100%;
                     width: 97.5%;
                     margin: 1%;
                     display: flex;
                     flex-direction: column;
-                    // justify-content: space-around;
-                    
+                   
                     h3  {
                         font-size: 2rem;
                         margin-left: 1rem;

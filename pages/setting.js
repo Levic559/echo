@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Footer from '@/comps/Footer';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Nav from '@/comps/Nav';
 import InputBox from '@/comps/InputBox';
 import Button from '@mui/material/Button';
@@ -29,13 +29,23 @@ export default function Home({
   const [newUser,setNewUser]=useState()
   const submit=()=>{
     setUser(newUser)
+    sessionStorage.setItem("user",JSON.stringify(newUser))
   }
   const logout=()=>{
     router.push('/');
     setUser('')
     setReadlist('')
     setFavlist('')
+    sessionStorage.clear();
   }
+  useEffect(()=>{
+  var currentUser=  sessionStorage.getItem("user");
+  var currentUser=JSON.parse(currentUser)
+  console.log(currentUser)
+  setUser(currentUser)
+    console.log(user)
+},[])
+
   return <div>
     <Head>
       <title>Echo</title>

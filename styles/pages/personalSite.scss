@@ -31,11 +31,9 @@ a {
         justify-content: flex-start;
         align-items: center;
 
-        // @media screen and (max-width: 600px) {
-        //     flex-wrap: wrap;
-        //     justify-content: center;
-        //     height: 100%;
-        // }
+        @media screen and (max-width: 450px) {
+            width: 95%;
+        }
         .Nav {
             // height: 100%;
             width: 100%;
@@ -49,6 +47,10 @@ a {
             flex-direction: row;
             align-items: flex-start;
             justify-content: center;
+            @media screen and (max-width: 450px) {
+                flex-direction: column;
+                align-items: center;
+            }
 
             .Side_Bar {
                 width: 25%;
@@ -58,6 +60,13 @@ a {
                 flex-direction: row;
                 justify-content: center;
                 align-items: space-between;
+                @media screen and (max-width: 450px) {
+                    height: 22.5rem;
+                    align-items: flex-start;
+                    margin-bottom:5%;
+                    width: 90%;
+
+                }
             }
             .userContent {
                 width: 70%;
@@ -68,6 +77,10 @@ a {
                 align-items: center;
                 overflow-y: scroll;
                 overflow-x: hidden;
+                @media screen and (max-width: 450px) {
+                    width: 95%;
+                
+                }
                 .favorite {
                     width: 95%;
                     height: 100%;

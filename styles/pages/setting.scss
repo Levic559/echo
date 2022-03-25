@@ -1,18 +1,18 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+        Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .s_Wrapper {
@@ -31,17 +31,19 @@ a {
         justify-content: flex-start;
         align-items: center;
 
-        @media screen and (max-width: 600px) {
-            flex-wrap: wrap;
+        @media screen and (max-width: 450px) {
+            display: flex;
             justify-content: center;
+            align-items: center;
             height: 100%;
+            width: 95%;
         }
-        .Nav{
+        .Nav {
             // height: 100%;
             width: 100%;
             // position: absolute;
         }
-        .Content{
+        .Content {
             margin-top: 10%;
             height: 100%;
             width: 100%;
@@ -50,67 +52,97 @@ a {
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: center;
-            
-
-            .personInfo{
-              
+            @media screen and (max-width: 450px) {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .personInfo {
                 width: 55%;
-                height:60rem;
+                height: 60rem;
                 display: flex;
                 flex-direction: column;
-                justify-content:flex-start;
+                justify-content: flex-start;
                 align-items: center;
-                
-                img{
-                  width:20rem;
-                  height: 20rem;
-                  border-radius: 50%;
-                  object-fit: cover;
-                  margin: 5%;
+                @media screen and (max-width: 450px) {
+                    width: 100%;
+                    height: 30rem;
+                    margin-bottom: 2.5%;
                 }
-                .content{
-                    height:50%;
+                img {
+                    width: 20rem;
+                    height: 20rem;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin: 5%;
+                    @media screen and (max-width: 450px) {
+                        width: 80%;
+                        height: 5rem;
+                        border-radius: 5%;
+                        margin: 2.5%;
+                    }
+                }
+                .content {
+                    height: 50%;
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
-                    justify-content:center;
+                    justify-content: center;
                     align-items: center;
-                    margin-top:10%;
-                    margin-right:10%;
-                    margin-left:10%;
-                    div{
-                        height:5rem;
-                        
+                    margin-top: 10%;
+                    margin-right: 10%;
+                    margin-left: 10%;
+                    div {
+                        height: 5rem;
                     }
-                    
+                    @media screen and (max-width: 450px) {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        height: 50%;
+                        margin-top: 5%;
+
+                        div {
+                            height: 3rem;
+                        }
+                        p {
+                            font-size: 1rem;
+                        }
+                        .inputCon {
+                            width: 45%;
+                        }
+                    }
                 }
-                .button{
-                     width:65%;
+                .button {
+                    width: 65%;
                     display: flex;
                     flex-direction: row;
-                    justify-content:flex-end;
+                    justify-content: flex-end;
                     align-items: flex-end;
                     margin: 2.5%;
                 }
-
             }
-            .settingBox{
-                width: 45%;
-                height:60rem;
+            .settingBox {
+                height: 60rem;
                 display: flex;
                 flex-direction: column;
                 width: 45%;
                 align-items: flex-end;
                 // background-color: #354F52;
                 border-radius: 1rem;
-                padding:5%;
-               .logout{
-                height:10rem;
-                width: 100%;
-                display: flex;
-               justify-content: center;
-                align-items: flex-end;
-               }
+                padding: 5%;
+                .logout {
+                    height: 10rem;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                }
+                @media screen and (max-width: 450px) {
+                    width: 90%;
+                }
             }
         }
     }

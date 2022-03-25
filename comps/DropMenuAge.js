@@ -18,10 +18,10 @@ const DropMenuAge = ({
 }) => {
 
 // console.log(gendervalue)
-  return  <div>
+  return  <>
    
    {/* <p style={{margin:0,padding:0,fontSize:"1.5rem"}}>{title}</p> */}
-  <Menu style={{margin:0,padding:0, width:"20rem"}} vertical>
+  <Menu className='dropMenu' vertical>
     <Dropdown item text={text } onChange={onChange} value={value}>
       <Dropdown.Menu>
         <Dropdown.Item value="11-20"   onClick={OneOnClick}>11-20</Dropdown.Item>
@@ -35,7 +35,7 @@ const DropMenuAge = ({
       </Dropdown.Menu>
     </Dropdown>
   </Menu>
-  </div>
+  </>
 }
 
 export default DropMenuAge

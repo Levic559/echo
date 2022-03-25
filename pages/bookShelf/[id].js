@@ -53,7 +53,7 @@ export default function BooksID() {
   const { readlist, setReadlist } = useRead()
   const [bookIcon, setBookIcon] = useState()
   const [shownewComment, setShowNewComment] = useState(false)
-  const [post, setPost] = useState()
+  const [post, setPost] = useState([])
   const [newcomment, setNewComment] = useState({
   comment: "input your comment",
   usersrc: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
@@ -120,8 +120,16 @@ export default function BooksID() {
   }
   
 }
+var sortnewcomment =[];
+var sortnewcomment =newcomment.sort(function(x, y) {
+  return x[0] < y[0] ? -1 : 1;
+});
+
+
 const postcomment=()=>{
-  setPost([newcomment])
+  setPost(post.concat([sortnewcomment]))
+
+
   setShowNewComment(false)
   console.log(post)
 }

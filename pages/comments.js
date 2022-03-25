@@ -1,7 +1,7 @@
+import React, {useEffect,useState}from 'react'
 import Head from 'next/head'
 import Footer from '@/comps/Footer'
 import { useRouter } from 'next/router';
-import { useState } from 'react'
 import Nav from '@/comps/Nav'
 import CommentCard from '@/comps/CommentCard'
 import { comp_theme, text_theme } from '../utils/variables'
@@ -18,25 +18,25 @@ const user_comments = [
   {
     "booksrc": "http://images.amazon.com/images/P/0002005018.01.LZZZZZZZ.jpg",
     "comment": "I didn't like Burden of Proof but thought I would give this author's books another try. I couldn't finish it so will try no more. He is a good writer but the stories are full of convolution and uninteresting characters. Sadly, I am done.",
-    "usersrc": "https://images.pexels.com/photos/372042/pexels-photo-372042.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "usersrc": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60",
     "username": "Janny"
   },
   {
     "booksrc": "http://images.amazon.com/images/P/0671870432.01.LZZZZZZZ.jpg",
     "comment": "A story about a character with no redeeming features.The story contains endless examples of gratuitous sex and bad language.There are many rambling diversions.Avoid at all costs.",
-    "usersrc": "https://media.istockphoto.com/photos/young-woman-portrait-in-the-city-picture-id1009749608?k=20&m=1009749608&s=612x612&w=0&h=3bnVp0Y1625uKkSwnp7Uh2_y_prWbgRBH6a_6jRew3g=",
+    "usersrc": "https://images.unsplash.com/photo-1614436163996-25cee5f54290?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
     "username": "Ali"
   },
   {
     "booksrc": "http://images.amazon.com/images/P/074322678X.01.LZZZZZZZ.jpg",
     "comment": "After reading all Grisham's books, I have tested Scott Turow. I have enjoyed it very much, but I would not recommend it to anyone whose mother tongue is not (American) English.",
-    "usersrc": "https://i.pinimg.com/originals/31/94/d7/3194d7c2de116c908a50792ece3a54bd.jpg",
+    "usersrc": "https://images.unsplash.com/photo-1546961329-78bef0414d7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
     "username": "Linda"
   },
   {
     "booksrc": "http://images.amazon.com/images/P/3404921038.01.LZZZZZZZ.jpg",
     "comment": "Really good. I'm a Turow fan and I enjoyed this one a lot!",
-    "usersrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-YYQX-SEzg1KB0MwqfQLBjs7MasTpU7KiONxC76gz5F4nrDwzDUOQExULtDnNvx60Bh0&usqp=CAU",
+    "usersrc": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
     "username": "Alice"
   },
 ]
@@ -48,7 +48,7 @@ export default function Home({
   const router = useRouter();
   const [comment, setComment] = useState(user_comments)
   const { theme } = useTheme();
-
+ 
   return <div>
     <Head>
       <title>bookShelf</title>

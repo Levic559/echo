@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Image from 'next/image'
@@ -21,19 +21,26 @@ const CommentCard=({
 })=>{
 
   const {theme} = useTheme();
+  const [windowW, setWindowW] = useState("1000")
+  useEffect(() => {
+      var width = window.innerWidth
+      console.log(width)
+      setWindowW(width)
+      console.log("windowW", windowW)
 
-
+  }, [windowW])
     return <div className='CommentCard_Con'>
-        
-
-        <Image src={booksrc} width={180}
-      height={275} objectFit="cover"/>
+        {windowW < 455 ?
+        <Image src={booksrc} width={100}  height={275} objectFit="cover" alt="book's photo"/>
+        :
+        <Image src={booksrc} width={180}  height={275} objectFit="cover" alt="book's photo"/>
+      }
         <div className='content'style={{
       
       color:text_theme[theme].title
       }}> {comment}   </div>
         <div className='user'> 
-            <img src={usersrc}/>
+            <Image src={usersrc} width={75}  height={75} objectFit="cover" alt="user's image"/>
             <h3 style={{
       
       color:text_theme[theme].title
