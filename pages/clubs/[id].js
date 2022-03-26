@@ -6,7 +6,7 @@ import { useEffect, useState, useContext } from 'react'
 import ClubsCom from '@/comps/ClubsCom';
 import Nav from '@/comps/Nav'
 import { comp_theme, text_theme } from '../../utils/variables'
-import { useTheme } from '../../utils/provider'
+import { useTheme,useClublist } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
 import { useRead, useIstatus } from '@/utils/provider'
 import FriendPic from '@/comps/FriendPic';
@@ -83,13 +83,21 @@ export default function ClubsID() {
   const { id } = router.query;
   const [data, setDate] = useState(null)
   const { theme } = useTheme();
-  const { istatus, setIStatus } = useIstatus();
+  const { clublist, setClublist } = useClublist();
   const { readlist, setReadlist } = useRead()
   const [heartIcon, setHeartIcon] = useState()
   const [member, setMember] = useState(memberList)
   const [post, setPost] = useState()
 
-
+  useEffect(()=>{
+    if (id) {
+      if(Object.keys(clublist).includes(id)){
+        setHeartIcon('heart')
+      }else{
+        setHeartIcon('heart outline')
+      }
+     }
+  },[id])
 
 
   useEffect(() => {
@@ -123,28 +131,26 @@ export default function ClubsID() {
     return <div>
       404 Can not find the book. </div>
   }
-  const editClick = () => {
-    setShowNewComment(true)
-  }
+
   const heartClick = (value, obj) => {
     if (heartIcon == 'heart outline') {
       setHeartIcon('heart')
 
-      const n_readlist = { ...readlist }
-      n_readlist[obj._id] = obj;
+      const n_clublist = { ...clublist }
+      n_clublist[obj._id] = obj;
       // var key="aaa"
       // n_fav[key]=obj;
-      setReadlist(n_readlist)
+      setClublist(n_clublist)
       // setIStatus(heartIcon)
       // console.log(istatus)
     }
     else {
       setHeartIcon('heart outline')
-      const n_readlist = {
-        ...readlist
+      const n_clublist = {
+        ...clublist
       }
-      delete n_readlist[obj._id];
-      setReadlist(n_readlist)
+      delete n_clublist[obj._id];
+      setClublist(n_clublist)
 
     }
 
@@ -176,7 +182,7 @@ export default function ClubsID() {
               Publisher={data.publisher}
               heartClick={(e) => heartClick(e.target.value, data)}
               iconName={heartIcon}
-              editClick={editClick}
+              
             />
             <div className='members' style={{
               background: comp_theme[theme].label2,

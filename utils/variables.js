@@ -42,10 +42,10 @@ export const order_method ={
 
 export const private_method ={
     default :{
-        label:"private_h"
+        label:"private_v"
     },
     none :{
-        label:"private_v"
+        label:"private_h"
     },
 }
 export const info_method ={
