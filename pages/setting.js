@@ -61,7 +61,7 @@ export default function Home({
         </div>
         <div className='Content'>
           <div className='personInfo'>
-            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80" />
+            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80" alt="user's photo"/>
             <div className='content'>
               <InputBox text="Email :"   placeholder={user.email}/>
               <InputBox text="User name :" placeholder={user.username} onChange={e => setNewUser({ ...user, username: e.target.value })}/>
@@ -91,10 +91,10 @@ export default function Home({
 
             <SwitchBasic
               switchText="Private" switchHandler={() => setShow(
-                show === 'default' ? 'none' : 'default'
+                show === 'none' ? 'default' : 'none'
               )}
-              btn={show === 'default' ? 'On' : 'Off'}
-              slideColor={show === 'default' ? 'switch-body switch-body-on' : 'switch-body'} 
+              btn={show === 'none' ? 'On' : 'Off'}
+              slideColor={show === 'default' ?  'switch-body'  : 'switch-body switch-body-on'} 
                           />
              <SwitchBasic
               switchText="Personal Info" switchHandler={() => setShow2(
