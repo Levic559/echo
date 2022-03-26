@@ -10,6 +10,8 @@ import { useTheme } from '../utils/provider'
 import { useUser } from '../utils/provider'
 import DropMenu from '@/comps/DropMenu'
 import DropMenuAge from '@/comps/DropMenuAge'
+import ax from 'axios'
+
 var page = 1
 export default function Home({
   title = "Sign Up"
@@ -75,11 +77,20 @@ const [age, setAge]= useState("Age Level")
     }
     else{
       setUser(register)
-      sessionStorage.setItem("user", JSON.stringify(register));
+      sessionStorage.setItem("user", JSON.stringify(register))
+      //Submit user register to /api/user
+      submitUser(register)
       router.push("/")
     }
     console.log("page " + page)
   }
+
+  // Submit user register
+  const submitUser = async (user) => {
+     const res = await ax.post('/api/userRegister', user)
+     console.log(res)
+  }
+
   const backPage = () => {
     if (page1) {
       router.push("/")

@@ -7,28 +7,35 @@ import { useState,useEffect } from 'react'
 import { useRouter } from 'next/router';
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme,useUser } from '../utils/provider'
+import ax from 'axios'
 
 export default function Home({
   title = "Log in"
 }) {
   const { theme } = useTheme();
-  const { user,setUser } = useUser();
+  const { user, setUser } = useUser();
   const [e_warn, setE_Warn] = useState(false)
   const [warn, setWarn] = useState(false)
+  const [loginData, setLoginData] = useState({email: '', password:''})
   const router = useRouter();
 
-  const logIn = () => {
-    if(user){
-    router.push("/bookShelf")
+  const logIn = async () => {
+
+      const res = await ax.post('/api/login', loginData)
+
+      if(res.data.accessTk){
+        setUser(res.data.accessTk)
+      }
+      router.push("/bookShelf")
   }
-  }
-  useEffect(()=>{
-    var currentUser=  sessionStorage.getItem("user");
-    var currentUser=JSON.parse(currentUser)
-    console.log(currentUser)
-    setUser(currentUser)
+
+  // useEffect(()=>{
+  //   var currentUser=  sessionStorage.getItem("user");
+  //   var currentUser=JSON.parse(currentUser)
+  //   console.log(currentUser)
+  //   setUser(currentUser)
   
-  },[])
+  // },[])
   return <div>
     <Head>
       <title>Echo</title>
@@ -52,9 +59,9 @@ export default function Home({
           <div className='title'>{title}</div>
           <div className='InputCon'>
 
-            <InputBox text="Email" />
+            <InputBox text="Email" value={loginData.email} onChange={e => setLoginData({ ...loginData, email: e.target.value })}/>
           {e_warn ? <p style={{ color: "#ba1141" }}><b>The eamil is invalid</b></p> : null}
-            <InputBox text="Password" type="password"/>
+            <InputBox text="Password" type="password" value={loginData.password} onChange={e => setLoginData({ ...loginData, password: e.target.value })}/>
             {warn ? <p style={{ color: "#ba1141" }}><b>The password is invalid</b></p> : null}
           </div>
           <div className='ButtonCon'>
