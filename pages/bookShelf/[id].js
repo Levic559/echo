@@ -11,7 +11,7 @@ import CommentCard_nopic from '@/comps/CommentCard_nopic'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme,useUser } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
-import { useRead, useIstatus} from '@/utils/provider'
+import { useRead} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
 
 
@@ -48,7 +48,6 @@ export default function BooksID() {
   const { id } = router.query;
   const [data, setDate] = useState(null)
   const { theme } = useTheme();
-  const { istatus,setIStatus } = useIstatus();
   const [bcomment, setbComment] = useState(book_comments)
   const { readlist, setReadlist } = useRead()
   const [bookIcon, setBookIcon] = useState()
