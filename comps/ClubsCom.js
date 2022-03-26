@@ -25,8 +25,7 @@ const ClubsCom = ({
     heartClick = () => { },
     iconName = "heart outline",
     iconName2 = "edit",
-    editClick=()=>{},
-    // checked=()=>{}
+
 
 }) => {
     const { theme } = useTheme();
@@ -38,7 +37,7 @@ return <div className='bookCom' style={{
     color: text_theme[theme].label
 }}>
    
-    <Image src={src} width={400} height={400} objectFit="cover" />
+    <Image src={src} width={400} height={400} objectFit="cover" alt="club's photo" />
    
     <div className='BookTitle'>  {title}</div>
     <div className='info'>
@@ -47,10 +46,9 @@ return <div className='bookCom' style={{
         <p> Create on: {create_date}</p>
         <p> Status: {status}</p>
     </div>
-    {/* <div className='rating'>
+    <div className='rating'>
         <IconBut className="heart" iconName={iconName} onClick={heartClick} />
-        <IconBut className="edit" iconName={iconName2} onClick={editClick} />
-    </div> */}
+    </div>
 
 </div>
 }
