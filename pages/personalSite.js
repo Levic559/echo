@@ -9,7 +9,7 @@ import ClubsCard from '@/comps/ClubsCard'
 import { comp_theme, text_theme,private_method,info_method,fav_method,read_method,
   friends_method,clubs_method } from '../utils/variables'
 import { useShow, useTheme,useShow2,useShow3,useShow4,useShow5,useShow6 } from '../utils/provider'
-import { useRead, useUser,useFavlist,useClublist } from '@/utils/provider'
+import { useRead, useUser,useFavlist,useClublist, useClubreadlist} from '@/utils/provider'
 import ReadListCom from '@/comps/ReadListCom';
 import { useDrop } from "react-dnd";
 import axios from 'axios';
@@ -47,11 +47,13 @@ export default function Home({
   const { show6 } = useShow6();
   const { user } = useUser();
   const { readlist, setReadlist } = useRead()
-  const { clublist, setClublist } = useClublist([])
+  const { clublist, setClublist } = useClublist()
+  const { clubreadlist, setClubreadlist } = useClubreadlist()
   const { favlist, setFavlist } = useFavlist([])
   const router = useRouter();
   // console.log(Object.values(readlist))
   const [fav, setFav] = useState([])
+
 
   const [friends, setFriends] = useState(friends_list)
 
@@ -79,7 +81,6 @@ export default function Home({
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "book",
     drop: (item) => addBookToFav(item.id),
-   
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),}))
@@ -90,6 +91,20 @@ export default function Home({
       console.log("flist",flist)
       setFav((fav)=>[...fav, flist[0]]);
     };
+    const [{ isOver2 }, drop2] = useDrop(() => ({
+      accept: "book",
+      drop2: (item) => addBookToClub(item.id),
+      collect: (monitor) => ({
+        isOver2: !!monitor.isOver(),
+      }),}))
+
+      const addBookToClub = (_id) => {
+        console.log("_id",_id)
+        const flist = Object.values(readlist).filter((o)=> _id === o._id);
+        console.log("flist",flist)
+        setClubreadlist((clubreadlist)=>[...clubreadlist, flist[0]]);
+        console.log("clubreadlist",clubreadlist)
+      };
   
   return <>
     <Head>
@@ -161,8 +176,6 @@ export default function Home({
                 />}
 
                 )}
-
-
               </div>
             </div>
             <div className='friends'
@@ -177,21 +190,22 @@ export default function Home({
                  key={i}
                  src={o.imgsrc}
                  friends={o.friendName}
-                 ref={drop}
+                 
                  />   
                 )  }
               </div>
             </div>
             <div className='clubs'
-              style={{ background: comp_theme[theme].label2 }}>
+              style={{ background: comp_theme[theme].label2 }} >
               <div className='title'>Clubs </div>
-              <div className={clubs_method[show6].label}>
+              <div className={clubs_method[show6].label} >
               {Object.values(clublist).map((o,i)=>{
               return  <ClubsCard 
                  onClick={() => router.push(`/clubs/${o._id}`)}
                  key={i}
                  src={o.image}
                  clubs={o.title}
+                
                  />   
                } ) }
               </div>
