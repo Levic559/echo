@@ -25,8 +25,8 @@ export default function Home({
 
       if(res.data.accessTk){
         setUser(res.data.accessTk)
+        router.push("/bookShelf")
       }
-      router.push("/bookShelf")
   }
 
   // useEffect(()=>{
