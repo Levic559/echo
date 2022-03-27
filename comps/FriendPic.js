@@ -20,6 +20,7 @@ const FriendPic=({
    height="130",
    width="130",
     onClick=()=>{},
+    name='Member'
 })=>{
 
     const {theme} = useTheme();
@@ -29,7 +30,8 @@ const FriendPic=({
 
         <Image src={src} width={width} 
       height={height} objectFit="cover" />
-        </div>
+        <p>{name}</p>
+    </div>
 
     )
 }

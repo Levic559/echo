@@ -7,7 +7,7 @@ const initialStates = {
     setTheme:()=>{},
     order:"default",
     setOrder:()=>{},
-    readlist:{},
+    readlist:[],
     setReadlist:()=>{},
     user:{},
     setUser:()=>{},
