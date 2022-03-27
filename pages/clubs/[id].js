@@ -29,7 +29,7 @@ export default function ClubsID() {
   const { clublist, setClublist } = useClublist();
   const { readlist, setReadlist } = useRead()
   const [heartIcon, setHeartIcon] = useState()
-  const [member, setMember] = useState(memberList)
+  const [member, setMember] = useState()
   const [post, setPost] = useState()
 
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
@@ -47,7 +47,8 @@ export default function ClubsID() {
         })
         setData(res.data.club)
         setMember(res.data.club.members)
-        console.log(res.data.club, res.data.club.members)
+        setReadlist(res.data.club.bookList)
+        console.log(res.data.club, res.data.club.bookList)
 
       }
     if (id) {
@@ -148,11 +149,12 @@ export default function ClubsID() {
               <div className='title'> Members</div>
 
               <div className='membersContent'>
-                {
-                  member.map((o, i) =>
-                    <FriendPic width={35} height={35} key={o._id} src={default_member_img} />
-
+                { member != undefined?
+                  member.map((o) =>
+                    <FriendPic width={35} height={35} key={o.memberID._id} src={default_member_img} name={o.memberID.username}/>
                   )
+                  :
+                  null
                 }
 
               </div>
@@ -166,14 +168,39 @@ export default function ClubsID() {
                 color: text_theme[theme].label
               }}>
                 <div className='title'>Top Ten</div>
-                <div className='content'></div>
+                <div className='content'>
+                  { readlist != undefined? 
+                    readlist.slice(0,10).map((li)=>(
+                        <div key={li.bookID._id}>
+                          <div>Book: {li.bookID.title}</div>
+                          <div>Authors: {li.bookID.authors}</div>
+                          <div>Likes: {li.like_count}</div>
+                        </div>
+                    ))
+                    :
+                    null
+                  }
+                  
+                </div>
               </div>
               <div className='recommendation' style={{
                 backgroundColor: comp_theme[theme].label2,
                 color: text_theme[theme].label
               }}>
                 <div className='title'>Recommendation list</div>
-                <div className='content'></div>
+                <div className='content'>
+                  { readlist != undefined? 
+                    readlist.map((li)=>(
+                        <div key={li.bookID._id}>
+                          <div>Book: {li.bookID.title}</div>
+                          <div>Authors: {li.bookID.authors}</div>
+                          <div>Likes: {li.like_count}</div>
+                        </div>
+                    ))
+                    :
+                    null
+                  }
+                </div>
               </div>
             </div>
 
