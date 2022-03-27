@@ -6,8 +6,6 @@ const loginHandler = async (req, res) => {
     const URL = process.env.BASE_URL + "/auth"
     // const URL = process.env.LOCAL_URL + "/auth"
 
-    console.log(loginData)
-
     try{
         const result = await ax.post(URL, loginData)
         res.json(result.data)

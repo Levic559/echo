@@ -5,31 +5,35 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import { comp_theme, text_theme } from '../../utils/variables'
-import { useTheme,useUser } from '../../utils/provider'
+import { useTheme,useUser, useClublist } from '../../utils/provider'
 import ClubCard from '@/comps/ClubCard';
+
 export default function Bookshelf({
 
 }) {
 
   const { theme } = useTheme();
   const { user } = useUser();
+  const { clublist, setClublist } = useClublist();
   const router = useRouter();
   const [clubs, setClubs] = useState([]);
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
 
 
-
-  
-
-  const GetBooks = async (p) => {
-    const res = await ax.get("/api/clubs",
-      { params: { page: p } })
-    setClubs(res.data)
-   
-  }
   useEffect(() => {
-    GetBooks()
+
+      const getClubs = async (p) => {
+          const res = await ax.get("/api/getClubs", {
+            headers: {
+              "Authorization": `Bearer ${user}`
+            }
+          })
+          setClublist(res.data.clubs)
+      }
+
+      getClubs()
+
   }, [])
 
   
@@ -66,16 +70,16 @@ export default function Bookshelf({
                 <h3 > Popular clubs for your Location</h3>
               </div>
               <div className='Drawer'>
-                {clubs.map((o, i) =>
-                  <ClubCard key={i}
+                {clublist != undefined? clublist.map((o) =>
+                  <ClubCard key={o._id}
                     onClick={() => router.push(`/clubs/${o._id}`)}
-                    src={o.image}
+                    // src={IMG_URL+o.image_s}
                     create_date={o.create_date}
-                    title={o.title.substr(0, 20) + "..."}
-                    host={o.host}
-                    members={o.members}
+                    title={o.title}
+                    host={o.host.username}
+                    // members={o.member_count}
                   />
-                )}
+                ): null}
 
               </div>
               

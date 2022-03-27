@@ -18,13 +18,13 @@ export default function Bookshelf({
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
   const [curpage, setCurPage] = useState(1);
-  useEffect(()=>{
-    var currentUser=  sessionStorage.getItem("user");
-    var currentUser=JSON.parse(currentUser)
-    console.log(currentUser)
-    setUser(currentUser)
-      console.log(user)
-  },[])
+  // useEffect(()=>{
+  //   var currentUser=  sessionStorage.getItem("user");
+  //   var currentUser=JSON.parse(currentUser)
+  //   console.log(currentUser)
+  //   setUser(currentUser)
+  //     console.log(user)
+  // },[])
   
   const itemsPerPage = 15;
   var butt_arr = [];
