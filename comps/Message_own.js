@@ -24,7 +24,7 @@ return <div className='messageCom' >
     style={{ background: text_theme[theme].title, color: text_theme[theme].label }}
     > {message}</div>
      <Image src={src} width={width} 
-      height={height} objectFit="cover"/>
+      height={height} objectFit="cover" alt="speaker's photo"/>
 </div>
 
 

@@ -31,6 +31,11 @@ export default function ClubsID() {
   const [heartIcon, setHeartIcon] = useState()
   const [member, setMember] = useState()
   const [post, setPost] = useState()
+  const [newcomment, setNewComment] = useState({
+    comment: ""
+    // usersrc: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
+    // username: "Alex"
+    })
 
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
 
@@ -109,10 +114,10 @@ export default function ClubsID() {
 
   }
   const postcomment = () => {
-    setPost([newcomment])
-    setShowNewComment(false)
-    console.log(post)
+    var posts=post.concat([newcomment])
+    setPost(posts)
   }
+  console.log(newcomment)
   return <div>
     <Head>
       <title>Echo</title>
@@ -218,12 +223,21 @@ export default function ClubsID() {
               <Message_own/>
 
               <Message    />
-              <Message_own/>
+              {post ? post.map((o,i)=>{
+                return <Message_own 
+                
+                key={i}
+                message={o.comment}               
+                
+                />
+
+              }):null }
               </div>
               <div className='input'>
-                <input />
+                <input  onChange={e => setNewComment({...newcomment, comment: e.target.value })}/>
                 <Button variant="contained"
                   style={{ background: text_theme[theme].title, color: text_theme[theme].label }} 
+                onClick={postcomment}
                 >
                   <Icon name='paper plane' size='large' />
                 </Button>
