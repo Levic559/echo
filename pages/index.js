@@ -29,13 +29,6 @@ export default function Home({
       }
   }
 
-  // useEffect(()=>{
-  //   var currentUser=  sessionStorage.getItem("user");
-  //   var currentUser=JSON.parse(currentUser)
-  //   console.log(currentUser)
-  //   setUser(currentUser)
-  
-  // },[])
   return <div>
     <Head>
       <title>Echo</title>

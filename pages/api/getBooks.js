@@ -1,11 +1,11 @@
 import ax from 'axios'
 
-const getOneClubHandler = async (req, res) => {
+const getBooksHandler = async (req, res) => {
     
     const authHeader = await req.headers.authorization || req.headers.Authorization
-    const clubID = await req.query.id
-    const URL = process.env.BASE_URL + "/club/id"
-    // const URL = process.env.LOCAL_URL + "/club/id"
+    const page = await req.query.page
+    const URL = process.env.BASE_URL + "/books/all"
+    // const URL = process.env.LOCAL_URL + "/books/all"
 
     try{
         const result = await ax.get(URL, {
@@ -13,7 +13,7 @@ const getOneClubHandler = async (req, res) => {
                 "Authorization": authHeader
             },
             params: {
-                id: clubID
+                p: page
             }
         })
         res.json(result.data)
@@ -26,4 +26,4 @@ const getOneClubHandler = async (req, res) => {
     
 }
 
-export default getOneClubHandler
+export default getBooksHandler

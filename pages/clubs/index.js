@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import { comp_theme, text_theme } from '../../utils/variables'
-import { useTheme,useUser, useClublist } from '../../utils/provider'
+import { useTheme, useUser, useClublist } from '../../utils/provider'
 import ClubCard from '@/comps/ClubCard';
 
 export default function Bookshelf({
@@ -20,7 +20,7 @@ export default function Bookshelf({
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
 
-
+  console.log(user)
   useEffect(() => {
 
       const getClubs = async (p) => {

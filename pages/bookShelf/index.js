@@ -18,6 +18,11 @@ export default function Bookshelf({
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
   const [curpage, setCurPage] = useState(1);
+  
+  
+  console.log(user)
+  
+  
   // useEffect(()=>{
   //   var currentUser=  sessionStorage.getItem("user");
   //   var currentUser=JSON.parse(currentUser)
@@ -26,48 +31,49 @@ export default function Bookshelf({
   //     console.log(user)
   // },[])
   
-  const itemsPerPage = 15;
-  var butt_arr = [];
-  var start = 1;
-  for (var i = 1; i < 1000; i += itemsPerPage) {
-    // butt_arr.push(i)
-    butt_arr.push(((i - 1) / itemsPerPage) + 1);
-    // start++
-  }
+  // const itemsPerPage = 15;
+  // var butt_arr = [];
+  // var start = 1;
+  // for (var i = 1; i < 1000; i += itemsPerPage) {
+  //   // butt_arr.push(i)
+  //   butt_arr.push(((i - 1) / itemsPerPage) + 1);
+  //   // start++
+  // }
 
-  butt_arr = butt_arr.slice(
-    curpage - 5 < 0 ? 0 : curpage - 5,
-    curpage + 5);
+  // butt_arr = butt_arr.slice(
+  //   curpage - 5 < 0 ? 0 : curpage - 5,
+  //   curpage + 5);
 
-  const GetBooks = async (p) => {
-    const res = await ax.get("/api/books",
-      { params: { page: p } })
-    setbooks(res.data)
-    setCurPage(p)
-  }
-  useEffect(() => {
-    GetBooks()
-  }, [])
+  // const GetBooks = async (p) => {
+  //   const res = await ax.get("/api/books",
+  //     { params: { page: p } })
+  //   setbooks(res.data)
+  //   setCurPage(p)
+  // }
 
-  const GetBooks2 = async (p) => {
-    const res = await ax.get("/api/books2",
-      { params: { page: p } })
-    setbooks2(res.data)
-    setCurPage(p)
-  }
-  useEffect(() => {
-    GetBooks2()
-  }, [])
-  const GetBooks3 = async (p) => {
-    const res = await ax.get("/api/books3",
-      { params: { page: p } })
-    setbooks3(res.data)
-    setCurPage(p)
-  }
-  useEffect(() => {
-    GetBooks3()
+  // useEffect(() => {
+  //   GetBooks()
+  // }, [])
 
-  }, [])
+  // const GetBooks2 = async (p) => {
+  //   const res = await ax.get("/api/books2",
+  //     { params: { page: p } })
+  //   setbooks2(res.data)
+  //   setCurPage(p)
+  // }
+  // useEffect(() => {
+  //   GetBooks2()
+  // }, [])
+  // const GetBooks3 = async (p) => {
+  //   const res = await ax.get("/api/books3",
+  //     { params: { page: p } })
+  //   setbooks3(res.data)
+  //   setCurPage(p)
+  // }
+  // useEffect(() => {
+  //   GetBooks3()
+
+  // }, [])
 
   
   return <div>
