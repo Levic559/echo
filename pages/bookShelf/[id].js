@@ -46,7 +46,7 @@ const book_comments = [
 export default function BooksID() {
   const router = useRouter();
   const { id } = router.query;
-  const [data, setDate] = useState(null)
+  const [data, setData] = useState(null)
   const { theme } = useTheme();
   const [bcomment, setbComment] = useState(book_comments)
   const { readlist, setReadlist } = useRead()
@@ -59,75 +59,95 @@ export default function BooksID() {
   usersrc: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
   username: "Alex"
   })
+
+  console.log(id)
+
   useEffect(()=>{
-    var currentUser=  sessionStorage.getItem("user");
-    var currentUser=JSON.parse(currentUser)
-    console.log(currentUser)
-    setUser(currentUser)
-      console.log(user)
+    // var currentUser=  sessionStorage.getItem("user");
+    // var currentUser=JSON.parse(currentUser)
+    // console.log(currentUser)
+    // setUser(currentUser)
+    //   console.log(user)
+      const getBook = async () => {
+        const res = await ax.get("/api/getOneBook", {
+          headers: {
+            "Authorization": `Bearer ${user}`
+          },
+          params: {
+            id: id
+          }
+        })
+        console.log(res.data)
+        setData(res.data.book)
+      }
+      getBook()
   },[])
 
-  useEffect(()=>{
-    if (id) {
-      if(Object.keys(readlist).includes(id)){
-        setBookIcon('bookmark')
-      }else{
-        setBookIcon('bookmark outline')
-      }
-     }
-  },[id])
+  const editClick = () => {
+    setShowNewComment(true)
+  }
 
-  useEffect(() => {
-    if (id) {
-      const GetBook = async () => {
-        const res = await ax.get("/api/books", {
-          params: {
-            _id: id,
-          }
-        });
-        // console.log(res.data)
-        if (res.data[0]) {
-          setDate(res.data[0])
-        }
-      }
-      GetBook()
-    }
+  // useEffect(()=>{
+  //   if (id) {
+  //     if(Object.keys(readlist).includes(id)){
+  //       setBookIcon('bookmark')
+  //     }else{
+  //       setBookIcon('bookmark outline')
+  //     }
+  //    }
+  // },[id])
 
-  }, [id])
+  // useEffect(() => {
+  //   if (id) {
+  //     const GetBook = async () => {
+  //       const res = await ax.get("/api/books", {
+  //         params: {
+  //           _id: id,
+  //         }
+  //       });
+  //       // console.log(res.data)
+  //       if (res.data[0]) {
+  //         setDate(res.data[0])
+  //       }
+  //     }
+  //     GetBook()
+  //   }
+
+  // }, [id])
 
  
   
 
   
-  if (data === null) {
-    return <div>
-      404 Can not find the book. </div>
-  }
-  const editClick = () => {
-    setShowNewComment(true)
-  }
-  const heartClick = (value,obj) => {
-    if (bookIcon =='bookmark outline') {
-      setBookIcon('bookmark')
+//   if (data === null) {
+//     return <div>
+//       404 Can not find the book. </div>
+//   }
+//   const editClick = () => {
+//     setShowNewComment(true)
+//   }
+//   const heartClick = (value,obj) => {
+//     if (bookIcon =='bookmark outline') {
+//       setBookIcon('bookmark')
      
-      const n_readlist = { ...readlist}
-      n_readlist[obj._id] = obj;
-      // var key="aaa"
-      // n_fav[key]=obj;
-      setReadlist(n_readlist)
-      // setIStatus(bookIcon)
-      // console.log(istatus)
-    }
-    else  {
-      setBookIcon('bookmark outline')
-      const n_readlist = {
-        ...readlist  }
-    delete n_readlist[obj._id];
-    setReadlist(n_readlist)
+//       const n_readlist = { ...readlist}
+//       n_readlist[obj._id] = obj;
+//       // var key="aaa"
+//       // n_fav[key]=obj;
+//       setReadlist(n_readlist)
+//       // setIStatus(bookIcon)
+//       // console.log(istatus)
+//     }
+//     else  {
+//       setBookIcon('bookmark outline')
+//       const n_readlist = {
+//         ...readlist  }
+//     delete n_readlist[obj._id];
+//     setReadlist(n_readlist)
 
-  }
+//   }
   
-}
+// }
 // var sortnewcomment =[];
 // var sortnewcomment =newcomment.sort(function(x, y) {
 //   return x[0] < y[0] ? -1 : 1;
@@ -164,6 +184,7 @@ console.log(post)
         <div className='Content' >
           <div className='Side_Bar'>
         
+        {data!=null ?
           <BookCom
             src={data.image_l}
             title={data.title}
@@ -175,6 +196,10 @@ console.log(post)
             iconName={bookIcon}
             editClick={editClick}
           />
+          :
+          null
+        }
+        
           </div>
           <div className='bookComment'>
            { shownewComment? <CommentCard_new
@@ -189,7 +214,7 @@ console.log(post)
                 key={i}
                 comment={o.comment}
                 usersrc={o.usersrc}
-                username={user}
+                // username={user}
               />
             ):null}
           
@@ -198,7 +223,7 @@ console.log(post)
                 key={i}
                 comment={o.comment}
                 usersrc={o.usersrc}
-                username={user}
+                // username={user}
               />
             )}
           </div>

@@ -83,7 +83,7 @@ export default function Bookshelf({
       <div className='B_Container' >
         <div className='B_Nav'>
         {user ?
-        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user}  />
         :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='B_Content' >
