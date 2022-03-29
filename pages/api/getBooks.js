@@ -4,8 +4,8 @@ const getBooksHandler = async (req, res) => {
     
     const authHeader = await req.headers.authorization || req.headers.Authorization
     const page = await req.query.page
-    const URL = process.env.BASE_URL + "/books/all"
-    // const URL = process.env.LOCAL_URL + "/books/all"
+    const URL = process.env.BASE_URL + "/books/all/p"
+    // const URL = process.env.LOCAL_URL + "/books/all/p"
 
     try{
         const result = await ax.get(URL, {

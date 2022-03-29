@@ -7,14 +7,14 @@ import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme,useUser } from '../../utils/provider'
-import getAuth from '@/utils/getAuth';
+import getAuth from '@/utils/getAuth'
 
 export default function Bookshelf({
 
 }) {
 
   const { theme } = useTheme();
-  const { user,setUser } = useUser();
+  const { user } = useUser();
   const router = useRouter();
   const [books, setbooks] = useState([]);
   const [books2, setbooks2] = useState([]);
@@ -23,8 +23,26 @@ export default function Bookshelf({
   
   
   console.log(user, router)
+
   useEffect(()=>{
     getAuth(user, router)
+
+    const getBooks = async (pg) => {
+        const res = await ax.get("/api/getBooks", {
+          headers: {
+              "Authorization": `Bearer ${user}`
+          },
+          params: {
+              p: pg
+          }
+        })
+        setbooks((res.data.books).slice(0, 100))
+        setbooks2((res.data.books).slice(100, 200))
+        setbooks3((res.data.books).slice(200, 300))
+      }
+      getBooks(1)
+      console.log(books, books2, books3)
+
   },[])
   
   // useEffect(()=>{
@@ -54,31 +72,6 @@ export default function Bookshelf({
   //   setbooks(res.data)
   //   setCurPage(p)
   // }
-
-  // useEffect(() => {
-  //   GetBooks()
-  // }, [])
-
-  // const GetBooks2 = async (p) => {
-  //   const res = await ax.get("/api/books2",
-  //     { params: { page: p } })
-  //   setbooks2(res.data)
-  //   setCurPage(p)
-  // }
-  // useEffect(() => {
-  //   GetBooks2()
-  // }, [])
-  // const GetBooks3 = async (p) => {
-  //   const res = await ax.get("/api/books3",
-  //     { params: { page: p } })
-  //   setbooks3(res.data)
-  //   setCurPage(p)
-  // }
-  // useEffect(() => {
-  //   GetBooks3()
-
-  // }, [])
-
   
   return <div>
     <Head>
@@ -112,12 +105,12 @@ export default function Bookshelf({
                 <h3 > Popular books for your Location</h3>
               </div>
               <div className='Drawer'>
-                {books.map((o, i) =>
-                  <BookCard key={i}
+                {books.map((o) =>
+                  <BookCard key={o._id}
                     onClick={() => router.push(`/bookShelf/${o._id}`)}
                     src={o.image_s}
                     YearOfPublication={o.pub_year}
-                    title={o.title.substr(0, 20) + "..."}
+                    title={o.title}
                     BookAuthor={o.authors}
                   />
                 )}

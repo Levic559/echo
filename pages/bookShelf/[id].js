@@ -147,6 +147,7 @@ const postcomment=()=>{
   setShowNewComment(false)
 }
 console.log(post)
+
   return <div>
     <Head>
       <title>Echo</title>
@@ -188,7 +189,7 @@ console.log(post)
                 key={i}
                 comment={o.comment}
                 usersrc={o.usersrc}
-                username={user.username}
+                username={user}
               />
             ):null}
           
@@ -197,7 +198,7 @@ console.log(post)
                 key={i}
                 comment={o.comment}
                 usersrc={o.usersrc}
-                username={user.username}
+                username={user}
               />
             )}
           </div>

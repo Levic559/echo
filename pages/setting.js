@@ -28,7 +28,7 @@ export default function Home({
   const { status, setStatus } = useShow();
   const { readlist, setReadlist } = useRead();
   const { favlist, setFavlist} = useFavlist();
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const [userDetail, setUserDetail] = useState()
   const [newUser,setNewUser]=useState()
 
@@ -49,7 +49,8 @@ export default function Home({
   }, [])
 
   const logout = () => {
-    
+     setUser(null)
+     router.push('/')
   }
 
   const submit =()=> {
