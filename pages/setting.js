@@ -36,11 +36,11 @@ export default function Home({
 
   useEffect(()=>{
     
-      getAuth(user, router)
+      getAuth(user.accessTk, router)
       const getUserDetial = async () => {
           const res = await ax.get("/api/getUserDetail", {
             headers: {
-              "Authorization": `Bearer ${user}`
+              "Authorization": `Bearer ${user.accessTk}`
             },
           })
           setUserDetail(res.data.user)

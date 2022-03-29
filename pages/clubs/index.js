@@ -23,12 +23,12 @@ export default function Bookshelf({
 
   console.log(user)
   useEffect(() => {
-      getAuth(user, router)
+      getAuth(user.accessTk, router)
       
       const getClubs = async (p) => {
           const res = await ax.get("/api/getClubs", {
             headers: {
-              "Authorization": `Bearer ${user}`
+              "Authorization": `Bearer ${user.accessTk}`
             }
           })
           setClublist(res.data.clubs)

@@ -52,7 +52,7 @@ export default function Home({
 
 
   useEffect(()=>{
-    getAuth(user, router)
+    getAuth(user.accessTk, router)
 
     var currentUser=  sessionStorage.getItem("user");
     var currentUser=JSON.parse(currentUser)

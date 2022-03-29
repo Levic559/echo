@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import { Icon } from 'semantic-ui-react'
 import Message from '@/comps/Message';
 import Message_own from '@/comps/Message_own';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 
 const memberList = [{
@@ -42,11 +43,11 @@ export default function ClubsID() {
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
 
   useEffect(()=>{
-    
+      console.log(user)
       const getClub = async (p) => {
         const res = await ax.get("/api/getOneClub", {
           headers: {
-            "Authorization": `Bearer ${user}`
+            "Authorization": `Bearer ${user.accessTk}`
           },
           params: {
             id: id

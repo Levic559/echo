@@ -71,7 +71,7 @@ export default function BooksID() {
       const getBook = async () => {
         const res = await ax.get("/api/getOneBook", {
           headers: {
-            "Authorization": `Bearer ${user}`
+            "Authorization": `Bearer ${user.accessTk}`
           },
           params: {
             id: id

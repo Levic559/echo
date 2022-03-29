@@ -76,9 +76,9 @@ const [age, setAge]= useState("Age Level")
       setPage3(true)
     }
     else{
-      setUser(register)
-      sessionStorage.setItem("user", JSON.stringify(register))
-      //Submit user register to /api/user
+      // setUser(register)
+      // sessionStorage.setItem("user", JSON.stringify(register))
+      // //Submit user register to /api/user
       submitUser(register)
       router.push("/")
     }

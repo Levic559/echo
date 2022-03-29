@@ -22,15 +22,15 @@ export default function Bookshelf({
   const [curpage, setCurPage] = useState(1);
   
   
-  console.log(user, router)
+  console.log(user.accessTk, router)
 
   useEffect(()=>{
-    getAuth(user, router)
+    getAuth(user.accessTk, router)
 
     const getBooks = async (pg) => {
         const res = await ax.get("/api/getBooks", {
           headers: {
-              "Authorization": `Bearer ${user}`
+              "Authorization": `Bearer ${user.accessTk}`
           },
           params: {
               p: pg
@@ -82,8 +82,8 @@ export default function Bookshelf({
     <div className='B_Wrapper'>
       <div className='B_Container' >
         <div className='B_Nav'>
-        {user ?
-        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user}  />
+        {user.username ?
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
         :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='B_Content' >

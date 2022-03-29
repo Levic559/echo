@@ -29,7 +29,7 @@ export default function Home({
       const res = await ax.post('/api/login', loginData)
 
       if(res.data.accessTk){
-        setUser(res.data.accessTk)
+        setUser(res.data)
         router.push("/bookShelf")
       }
   }
