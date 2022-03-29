@@ -1,5 +1,5 @@
 
-import {Save,Read} from "../../searchfunc/utils/helpers"
+import {Save,Read} from "../../utils/helpers"
 export default  async function handler(req, res) {
     if(req.method==='POST'){
     const {uuid,readlist}=req.body;
