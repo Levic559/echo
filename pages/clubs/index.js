@@ -7,6 +7,7 @@ import Nav from '@/comps/Nav'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme, useUser, useClublist } from '../../utils/provider'
 import ClubCard from '@/comps/ClubCard';
+import getAuth from '@/utils/getAuth'
 
 export default function Bookshelf({
 
@@ -22,7 +23,8 @@ export default function Bookshelf({
 
   console.log(user)
   useEffect(() => {
-
+      getAuth(user, router)
+      
       const getClubs = async (p) => {
           const res = await ax.get("/api/getClubs", {
             headers: {

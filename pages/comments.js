@@ -6,7 +6,7 @@ import Nav from '@/comps/Nav'
 import CommentCard from '@/comps/CommentCard'
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme,useUser } from '../utils/provider'
-
+import getAuth from '@/utils/getAuth'
 
 const user_comments = [
   {
@@ -49,13 +49,19 @@ export default function Home({
   const [comment, setComment] = useState(user_comments)
   const { theme } = useTheme();
   const {user,setUser}=useUser()
+
+
   useEffect(()=>{
+    getAuth(user, router)
+
     var currentUser=  sessionStorage.getItem("user");
     var currentUser=JSON.parse(currentUser)
     console.log(currentUser)
     setUser(currentUser)
       console.log(user)
   },[])
+
+
   return <div>
     <Head>
       <title>bookShelf</title>

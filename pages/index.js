@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme,useUser } from '../utils/provider'
 import ax from 'axios'
+import getAuth from '@/utils/getAuth'
 
 export default function Home({
   title = "Log in"
@@ -18,6 +19,10 @@ export default function Home({
   const [warn, setWarn] = useState(false)
   const [loginData, setLoginData] = useState({email: '', password:''})
   const router = useRouter();
+
+  useEffect(()=>{
+
+  }, [])
 
   const logIn = async () => {
 

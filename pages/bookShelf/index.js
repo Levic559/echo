@@ -7,6 +7,8 @@ import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme,useUser } from '../../utils/provider'
+import getAuth from '@/utils/getAuth';
+
 export default function Bookshelf({
 
 }) {
@@ -20,8 +22,10 @@ export default function Bookshelf({
   const [curpage, setCurPage] = useState(1);
   
   
-  console.log(user)
-  
+  console.log(user, router)
+  useEffect(()=>{
+    getAuth(user, router)
+  },[])
   
   // useEffect(()=>{
   //   var currentUser=  sessionStorage.getItem("user");

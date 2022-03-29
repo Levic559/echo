@@ -14,6 +14,8 @@ import Button from '@mui/material/Button';
 import { Icon } from 'semantic-ui-react'
 import Message from '@/comps/Message';
 import Message_own from '@/comps/Message_own';
+
+
 const memberList = [{
   "_id": "member1",
   "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"

@@ -9,7 +9,7 @@ const initialStates = {
     setOrder:()=>{},
     readlist:[],
     setReadlist:()=>{},
-    user:{},
+    user: null,
     setUser:()=>{},
     show:"default",
     setShow:()=>{},

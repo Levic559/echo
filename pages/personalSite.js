@@ -13,6 +13,8 @@ import { useRead, useUser,useFavlist,useClublist, useClubreadlist} from '@/utils
 import ReadListCom from '@/comps/ReadListCom';
 import { useDrop } from "react-dnd";
 import axios from 'axios';
+import getAuth from '@/utils/getAuth'
+
 const friends_list = [
   {
     "imgsrc": 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
@@ -56,6 +58,10 @@ export default function Home({
 
 
   const [friends, setFriends] = useState(friends_list)
+
+  useEffect(()=>{
+      getAuth(user, router)
+  }, [])
 
   const handleRemove = (i) => {
     console.log(i)
