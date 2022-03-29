@@ -32,10 +32,9 @@ export default function Home({
   const [userDetail, setUserDetail] = useState()
   const [newUser,setNewUser]=useState()
 
-  console.log(user)
-
+  
   useEffect(()=>{
-    
+      // console.log(user)
       getAuth(user.accessTk, router)
       const getUserDetial = async () => {
           const res = await ax.get("/api/getUserDetail", {

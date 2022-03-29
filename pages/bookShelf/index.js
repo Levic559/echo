@@ -21,8 +21,6 @@ export default function Bookshelf({
   const [books3, setbooks3] = useState([]);
   const [curpage, setCurPage] = useState(1);
   
-  
-  console.log(user.accessTk, router)
 
   useEffect(()=>{
     getAuth(user.accessTk, router)
@@ -41,7 +39,7 @@ export default function Bookshelf({
         setbooks3((res.data.books).slice(200, 300))
       }
       getBooks(1)
-      console.log(books, books2, books3)
+      // console.log(books, books2, books3)
 
   },[])
   
@@ -82,7 +80,7 @@ export default function Bookshelf({
     <div className='B_Wrapper'>
       <div className='B_Container' >
         <div className='B_Nav'>
-        {user.username ?
+        {user ?
         <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
         :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>

@@ -43,7 +43,7 @@ export default function ClubsID() {
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
 
   useEffect(()=>{
-      console.log(user)
+      // console.log(user)
       const getClub = async (p) => {
         const res = await ax.get("/api/getOneClub", {
           headers: {
@@ -56,7 +56,7 @@ export default function ClubsID() {
         setData(res.data.club)
         setMember(res.data.club.members)
         setReadlist(res.data.club.bookList)
-        console.log(res.data.club, res.data.club.bookList)
+        // console.log(res.data.club, res.data.club.bookList)
 
       }
     if (id) {
@@ -120,7 +120,7 @@ export default function ClubsID() {
     var posts=post.concat([newcomment])
     setPost(posts)
   }
-  console.log(newcomment)
+  // console.log(newcomment)
   return <div>
     <Head>
       <title>Echo</title>

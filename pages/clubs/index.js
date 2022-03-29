@@ -21,7 +21,7 @@ export default function Bookshelf({
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
 
-  console.log(user)
+  // console.log(user)
   useEffect(() => {
       getAuth(user.accessTk, router)
       

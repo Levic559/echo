@@ -20,9 +20,6 @@ export default function Home({
   const [loginData, setLoginData] = useState({email: '', password:''})
   const router = useRouter();
 
-  useEffect(()=>{
-
-  }, [])
 
   const logIn = async () => {
 

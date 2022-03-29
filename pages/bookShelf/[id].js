@@ -60,7 +60,7 @@ export default function BooksID() {
   username: "Alex"
   })
 
-  console.log(id)
+  // console.log(id)
 
   useEffect(()=>{
     // var currentUser=  sessionStorage.getItem("user");
@@ -77,7 +77,7 @@ export default function BooksID() {
             id: id
           }
         })
-        console.log(res.data)
+        // console.log(res.data)
         setData(res.data.book)
       }
       getBook()
@@ -166,7 +166,7 @@ const postcomment=()=>{
 
   setShowNewComment(false)
 }
-console.log(post)
+// console.log(post)
 
   return <div>
     <Head>
