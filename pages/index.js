@@ -9,6 +9,7 @@ import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme,useUser } from '../utils/provider'
 import ax from 'axios'
 import getAuth from '@/utils/getAuth'
+import env from '@/utils/env'
 
 export default function Home({
   title = "Log in"
@@ -22,13 +23,15 @@ export default function Home({
 
 
   const logIn = async () => {
+      const URL = env.REMOTE + "/auth"
 
-      const res = await ax.post('/api/login', loginData)
-
-      // if(res.data.accessTk){
+      try{
+        const res = await ax.post(URL, loginData)
         setUser(res.data)
         router.push("/bookShelf")
-      // }
+      }catch(err){
+        console.err(err.message)
+      }
   }
 
   return <div>

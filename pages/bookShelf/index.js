@@ -8,6 +8,7 @@ import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme,useUser } from '../../utils/provider'
 import getAuth from '@/utils/getAuth'
+import env from '@/utils/env';
 
 export default function Bookshelf({
 
@@ -23,23 +24,31 @@ export default function Bookshelf({
   
 
   useEffect(()=>{
-    getAuth(user.accessTk, router)
+
+    if(user == null) return router.push('/')
 
     const getBooks = async (pg) => {
-        const res = await ax.get("/api/getBooks", {
-          headers: {
-              "Authorization": `Bearer ${user.accessTk}`
-          },
-          params: {
-              p: pg
-          }
-        })
-        setbooks((res.data.books).slice(0, 100))
-        setbooks2((res.data.books).slice(100, 200))
-        setbooks3((res.data.books).slice(200, 300))
+        const URL = env.REMOTE + "/books/all"
+
+        try{
+          const res = await ax.get(URL, {
+            headers: {
+                "Authorization": `Bearer ${user.accessTk}`
+            },
+            params: {
+                p: pg
+            }
+          })
+          setbooks((res.data.books).slice(0, 100))
+          setbooks2((res.data.books).slice(100, 200))
+          setbooks3((res.data.books).slice(200, 300))
+
+        } catch (err){
+          console.error(err.message)
+        }
       }
+      
       getBooks(1)
-      // console.log(books, books2, books3)
 
   },[])
   

@@ -12,6 +12,7 @@ import { comp_theme, text_theme, color_method,global_theme, } from '@/utils/vari
 import SwitchBasic from '@/comps/SwitchBasic'
 import ax from 'axios'
 import getAuth from '@/utils/getAuth'
+import env from '@/utils/env';
 
 export default function Home({
 
@@ -34,17 +35,26 @@ export default function Home({
 
   
   useEffect(()=>{
-      // console.log(user)
-      getAuth(user.accessTk, router)
+
+      if(user == null) return router.push('/')
+
       const getUserDetial = async () => {
-          const res = await ax.get("/api/getUserDetail", {
-            headers: {
-              "Authorization": `Bearer ${user.accessTk}`
-            },
-          })
-          setUserDetail(res.data.user)
-        }
-        getUserDetial()
+          const URL = env.REMOTE + "/user/detail"
+          try {
+            const res = await ax.get(URL, {
+              headers: {
+                "Authorization": `Bearer ${user.accessTk}`
+              },
+            })
+            setUserDetail(res.data.user)
+
+          } catch(err){
+            console.error(err.message)
+          }
+      }
+
+      getUserDetial()
+
   }, [])
 
   const logout = () => {

@@ -60,7 +60,7 @@ export default function Home({
   const [friends, setFriends] = useState(friends_list)
 
   useEffect(()=>{
-      getAuth(user.accessTk, router)
+    if(user == null) return router.push('/')
   }, [])
 
   const handleRemove = (i) => {

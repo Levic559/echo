@@ -13,6 +13,7 @@ import { useTheme,useUser } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
 import { useRead} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
+import env from '@/utils/env';
 
 
 const book_comments = [
@@ -63,13 +64,13 @@ export default function BooksID() {
   // console.log(id)
 
   useEffect(()=>{
-    // var currentUser=  sessionStorage.getItem("user");
-    // var currentUser=JSON.parse(currentUser)
-    // console.log(currentUser)
-    // setUser(currentUser)
-    //   console.log(user)
-      const getBook = async () => {
-        const res = await ax.get("/api/getOneBook", {
+
+    if(user == null) return router.push('/')
+
+    const getBook = async () => {
+      const URL = env.REMOTE + "/books/id"
+      try {
+        const res = await ax.get(URL, {
           headers: {
             "Authorization": `Bearer ${user.accessTk}`
           },
@@ -77,10 +78,15 @@ export default function BooksID() {
             id: id
           }
         })
-        // console.log(res.data)
         setData(res.data.book)
+
+      } catch(err){
+        console.error(err.message)
       }
-      getBook()
+    }
+
+    getBook()
+
   },[])
 
   const editClick = () => {
