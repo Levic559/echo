@@ -23,7 +23,7 @@ export default function Home({
 
 
   const logIn = async () => {
-      const URL = env.REMOTE + "/auth"
+      const URL ="http://echoserver-env.eba-bccqr6dt.us-east-1.elasticbeanstalk.com/auth/auth"
 
       try{
         const res = await ax.post(URL, loginData)
