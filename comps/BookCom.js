@@ -79,7 +79,7 @@ return <div className='bookCom' style={{
         <p> Publisher: {Publisher}</p>
     </div>
     <div className='rating'>
-        <IconBut className="heart" iconName={iconName} onClick={heartClick} />
+        <IconBut className="bookmark" iconName={iconName} onClick={heartClick} />
         {/* <input name='heart' size='large' type="checkbox"  onChange={heart} /> */}
         {/* <Icon name='sticky note' size='large' /> */}
         <IconBut className="edit" iconName={iconName2} onClick={editClick} />
