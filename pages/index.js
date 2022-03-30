@@ -28,6 +28,7 @@ export default function Home({
       try{
         const res = await ax.post(URL, loginData)
         setUser(res.data)
+        console.log(res.data)
         router.push("/bookShelf")
       }catch(err){
         console.err(err.message)
