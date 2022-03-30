@@ -15,7 +15,8 @@ import { Icon } from 'semantic-ui-react'
 import Message from '@/comps/Message';
 import Message_own from '@/comps/Message_own';
 import { ConstructionOutlined } from '@mui/icons-material';
-import env from '@/utils/env';
+import { getOneClub } from '@/utils/getData/clubHandler';
+
 
 
 const memberList = [{
@@ -48,24 +49,12 @@ export default function ClubsID() {
       if(user == null) return router.push('/')
 
       const getClub = async (p) => {
-        const URL = env.REMOTE + "/club/id"
-
-        try {
-          const res = await ax.get(URL, {
-            headers: {
-              "Authorization": `Bearer ${user.accessTk}`
-            },
-            params: {
-              id: id
-            }
-          })
-          setData(res.data.club)
-          setMember(res.data.club.members)
-          setReadlist(res.data.club.bookList)
-
-        } catch(err){
-          console.log(err.message)
-        }
+        const TK = user. accessTk
+        const clubID = id
+        const res = await getOneClub(TK, clubID)
+        setData(res.club)
+        setMember(res.club.members)
+        setReadlist(res.club.bookList)
       }
 
       if (id) {

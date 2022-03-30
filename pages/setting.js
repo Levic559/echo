@@ -11,8 +11,9 @@ import { useShow2, useShow3,useShow4,useShow5,useShow6} from '@/utils/provider'
 import { comp_theme, text_theme, color_method,global_theme, } from '@/utils/variables';
 import SwitchBasic from '@/comps/SwitchBasic'
 import ax from 'axios'
-import getAuth from '@/utils/getAuth'
-import env from '@/utils/env';
+import { getOneUser } from '@/utils/getData/userHandler';
+
+
 
 export default function Home({
 
@@ -39,18 +40,9 @@ export default function Home({
       if(user == null) return router.push('/')
 
       const getUserDetial = async () => {
-          const URL = env.REMOTE + "/user/detail"
-          try {
-            const res = await ax.get(URL, {
-              headers: {
-                "Authorization": `Bearer ${user.accessTk}`
-              },
-            })
-            setUserDetail(res.data.user)
-
-          } catch(err){
-            console.log(err.message)
-          }
+          const TK = user.accessTk
+          const res = await getOneUser(TK)
+          setUserDetail(res.user)
       }
 
       getUserDetial()

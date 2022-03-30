@@ -7,8 +7,7 @@ import Nav from '@/comps/Nav'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme, useUser, useClublist } from '../../utils/provider'
 import ClubCard from '@/comps/ClubCard';
-import getAuth from '@/utils/getAuth'
-import env from '@/utils/env';
+import { getAllClubs } from '@/utils/getData/clubHandler';
 
 export default function Bookshelf({
 
@@ -22,24 +21,13 @@ export default function Bookshelf({
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
 
-  // console.log(user)
   useEffect(() => {
       if(user == null) return router.push('/')
       
-      const getClubs = async (p) => {
-          const URL = env.REMOTE + "/club"
-
-          try{
-            const res = await ax.get(URL, {
-              headers: {
-                "Authorization": `Bearer ${user.accessTk}`
-              }
-            })
-            setClublist(res.data.clubs)
-
-          } catch(err){
-            console.log(err.message)
-          }
+      const getClubs = async () => {
+          const TK = user.accessTk
+          const res = await getAllClubs(TK)
+          setClublist(res.clubs)
       }
 
       getClubs()

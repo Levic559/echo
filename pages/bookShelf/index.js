@@ -7,8 +7,7 @@ import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme,useUser } from '../../utils/provider'
-import getAuth from '@/utils/getAuth'
-import env from '@/utils/env';
+import { getAllBooksHandler } from '@/utils/getData/bookHandler';
 
 export default function Bookshelf({
 
@@ -25,27 +24,15 @@ export default function Bookshelf({
 
   useEffect(()=>{
 
-    if(user == null) return router.push('/')
+      if(user == null) return router.push('/')
 
-    const getBooks = async (pg) => {
-        const URL = env.REMOTE + "/books/all"
+      const getBooks = async () => {
+          const TK = user.accessTk
+          const res = await getAllBooksHandler(TK, 1)
+          setbooks((res.books).slice(0, 100))
+          setbooks2((res.books).slice(100, 200))
+          setbooks3((res.books).slice(200, 300))
 
-        try{
-          const res = await ax.get(URL, {
-            headers: {
-                "Authorization": `Bearer ${user.accessTk}`
-            },
-            params: {
-                p: pg
-            }
-          })
-          setbooks((res.data.books).slice(0, 100))
-          setbooks2((res.data.books).slice(100, 200))
-          setbooks3((res.data.books).slice(200, 300))
-
-        } catch (err){
-          console.log(err.message)
-        }
       }
 
       getBooks(1)

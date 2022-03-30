@@ -13,7 +13,7 @@ import { useTheme,useUser } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
 import { useRead} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
-import env from '@/utils/env';
+import { getOneBookHandler } from '@/utils/getData/bookHandler';
 
 
 const book_comments = [
@@ -68,21 +68,10 @@ export default function BooksID() {
     if(user == null) return router.push('/')
 
     const getBook = async () => {
-      const URL = env.REMOTE + "/books/id"
-      try {
-        const res = await ax.get(URL, {
-          headers: {
-            "Authorization": `Bearer ${user.accessTk}`
-          },
-          params: {
-            id: id
-          }
-        })
-        setData(res.data.book)
-
-      } catch(err){
-        console.log(err.message)
-      }
+        const TK = user.accessTk
+        const bookID = id
+        const res = await getOneBookHandler(TK, bookID)
+        setData(res.book)
     }
 
     getBook()
