@@ -44,10 +44,10 @@ export default function Bookshelf({
           setbooks3((res.data.books).slice(200, 300))
 
         } catch (err){
-          console.error(err.message)
+          console.log(err.message)
         }
       }
-      
+
       getBooks(1)
 
   },[])

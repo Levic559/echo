@@ -64,7 +64,7 @@ export default function ClubsID() {
           setReadlist(res.data.club.bookList)
 
         } catch(err){
-          console.error(err.message)
+          console.log(err.message)
         }
       }
 
@@ -76,7 +76,7 @@ export default function ClubsID() {
         // }
         getClub()
       }
-      
+
   },[])
 
 

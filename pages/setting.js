@@ -49,7 +49,7 @@ export default function Home({
             setUserDetail(res.data.user)
 
           } catch(err){
-            console.error(err.message)
+            console.log(err.message)
           }
       }
 

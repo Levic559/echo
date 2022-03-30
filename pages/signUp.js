@@ -94,7 +94,7 @@ const [age, setAge]= useState("Age Level")
       console.log(res.data)
 
     } catch(err){
-      console.error(err.message)
+      console.log(err.message)
     }
   }
 

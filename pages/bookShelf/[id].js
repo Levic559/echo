@@ -81,7 +81,7 @@ export default function BooksID() {
         setData(res.data.book)
 
       } catch(err){
-        console.error(err.message)
+        console.log(err.message)
       }
     }
 

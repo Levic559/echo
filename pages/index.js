@@ -23,7 +23,7 @@ export default function Home({
 
 
   const logIn = async () => {
-      const URL = env.REMOTE + "/auth"
+      const URL = "http://echoserver-env.eba-bccqr6dt.us-east-1.elasticbeanstalk.com/auth"
 
       try{
         const res = await ax.post(URL, loginData)
@@ -31,7 +31,7 @@ export default function Home({
         console.log(res.data)
         router.push("/bookShelf")
       }catch(err){
-        console.err(err.message)
+        console.log(err.message)
       }
   }
 

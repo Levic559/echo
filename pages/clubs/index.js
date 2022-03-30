@@ -38,7 +38,7 @@ export default function Bookshelf({
             setClublist(res.data.clubs)
 
           } catch(err){
-            console.error(err.message)
+            console.log(err.message)
           }
       }
 
