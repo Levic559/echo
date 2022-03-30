@@ -13,6 +13,7 @@ import { useTheme,useUser } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
 import { useRead} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
+import { getOneBookHandler } from '@/utils/getData/bookHandler';
 
 
 const book_comments = [
@@ -60,27 +61,21 @@ export default function BooksID() {
   username: "Alex"
   })
 
-  console.log(id)
+  // console.log(id)
 
   useEffect(()=>{
-    // var currentUser=  sessionStorage.getItem("user");
-    // var currentUser=JSON.parse(currentUser)
-    // console.log(currentUser)
-    // setUser(currentUser)
-    //   console.log(user)
-      const getBook = async () => {
-        const res = await ax.get("/api/getOneBook", {
-          headers: {
-            "Authorization": `Bearer ${user}`
-          },
-          params: {
-            id: id
-          }
-        })
-        console.log(res.data)
-        setData(res.data.book)
-      }
-      getBook()
+
+    if(user == null) return router.push('/')
+
+    const getBook = async () => {
+        const TK = user.accessTk
+        const bookID = id
+        const res = await getOneBookHandler(TK, bookID)
+        setData(res.book)
+    }
+
+    getBook()
+
   },[])
 
   const editClick = () => {
@@ -166,7 +161,7 @@ const postcomment=()=>{
 
   setShowNewComment(false)
 }
-console.log(post)
+// console.log(post)
 
   return <div>
     <Head>

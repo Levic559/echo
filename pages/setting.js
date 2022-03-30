@@ -11,7 +11,9 @@ import { useShow2, useShow3,useShow4,useShow5,useShow6} from '@/utils/provider'
 import { comp_theme, text_theme, color_method,global_theme, } from '@/utils/variables';
 import SwitchBasic from '@/comps/SwitchBasic'
 import ax from 'axios'
-import getAuth from '@/utils/getAuth'
+import { getOneUser } from '@/utils/getData/userHandler';
+
+
 
 export default function Home({
 
@@ -32,20 +34,19 @@ export default function Home({
   const [userDetail, setUserDetail] = useState()
   const [newUser,setNewUser]=useState()
 
-  console.log(user)
-
+  
   useEffect(()=>{
-    
-      getAuth(user, router)
+
+      if(user == null) return router.push('/')
+
       const getUserDetial = async () => {
-          const res = await ax.get("/api/getUserDetail", {
-            headers: {
-              "Authorization": `Bearer ${user}`
-            },
-          })
-          setUserDetail(res.data.user)
-        }
-        getUserDetial()
+          const TK = user.accessTk
+          const res = await getOneUser(TK)
+          setUserDetail(res.user)
+      }
+
+      getUserDetial()
+
   }, [])
 
   const logout = () => {

@@ -52,12 +52,12 @@ export default function AppProvider({children}){
     const [clublist,setClublist]=useState(initialStates.clublist)
     const [clubreadlist,setClubreadlist]=useState(initialStates.clubreadlist)
 
-    console.log("readlist",readlist)
-    console.log("user",user)
-    console.log("useOrder",order)
-    console.log("useFav",favlist)
-    console.log("clublist",clublist)
-    console.log("clubreadlist",clubreadlist)
+    // console.log("readlist",readlist)
+    // console.log("user",user)
+    // console.log("useOrder",order)
+    // console.log("useFav",favlist)
+    // console.log("clublist",clublist)
+    // console.log("clubreadlist",clubreadlist)
 
 
     //put in the variables you want to share

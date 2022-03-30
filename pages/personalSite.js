@@ -60,7 +60,7 @@ export default function Home({
   const [friends, setFriends] = useState(friends_list)
 
   useEffect(()=>{
-      getAuth(user, router)
+    if(user == null) return router.push('/')
   }, [])
 
   const handleRemove = (i) => {

@@ -24,7 +24,7 @@ export default function Bookshelf({
   const router = useRouter();
   const [data, setData] = useState([]);
   const [publish,setPublish]=useState(false)
-  console.log("user",user.username)
+
   const searchTitle = async (txt) => {
     console.log(txt)
     if (timer) {
@@ -137,7 +137,7 @@ export default function Bookshelf({
         <div className='B_Nav'>
           {value.label=="Author"?
           <Nav 
-          users={user.username}
+          users={user}
           onChange={(e) => searchAuthor(e.target.value)}
           options={filter} 
           placeholder="Search for a author"
@@ -148,7 +148,7 @@ export default function Bookshelf({
           /> : null}
           {value.label=="ISBN"?
           <Nav 
-          users={user.username}
+          users={user}
           onChange={(e) => searchISBN(e.target.value)}
           options={filter} 
           placeholder="Search for an ISBN"
@@ -160,7 +160,7 @@ export default function Bookshelf({
           {value.label=="BookTitle"?
           
           <Nav 
-          users={user.username}
+          users={user}
           onChange={(e) => searchTitle(e.target.value)}
           options={filter} 
           placeholder="Search for a  booktitle"
@@ -171,7 +171,7 @@ export default function Bookshelf({
           /> :null}
           {value.label=="Year_Publish"?
           <Nav 
-          users={user.username}
+          users={user}
           onChange={(e) => searchPublishYear(e.target.value)}
           options={filter} 
           placeholder="Search for YearPublish"

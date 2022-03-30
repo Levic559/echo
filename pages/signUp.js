@@ -11,6 +11,7 @@ import { useUser } from '../utils/provider'
 import DropMenu from '@/comps/DropMenu'
 import DropMenuAge from '@/comps/DropMenuAge'
 import ax from 'axios'
+import { registerHandler } from '@/utils/getData/registerHandler'
 
 var page = 1
 export default function Home({
@@ -76,19 +77,21 @@ const [age, setAge]= useState("Age Level")
       setPage3(true)
     }
     else{
-      setUser(register)
-      sessionStorage.setItem("user", JSON.stringify(register))
-      //Submit user register to /api/user
+      // setUser(register)
+      // sessionStorage.setItem("user", JSON.stringify(register))
+      // //Submit user register to /api/user
+
       submitUser(register)
+
       router.push("/")
     }
-    console.log("page " + page)
+    // console.log("page " + page)
   }
 
   // Submit user register
   const submitUser = async (user) => {
-     const res = await ax.post('/api/userRegister', user)
-     console.log(res)
+    const res = await registerHandler(user)
+    console.log(res)
   }
 
   const backPage = () => {

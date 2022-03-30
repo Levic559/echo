@@ -7,7 +7,7 @@ import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme } from '../../utils/variables'
 import { useTheme,useUser } from '../../utils/provider'
-import getAuth from '@/utils/getAuth'
+import { getAllBooksHandler } from '@/utils/getData/bookHandler';
 
 export default function Bookshelf({
 
@@ -21,27 +21,21 @@ export default function Bookshelf({
   const [books3, setbooks3] = useState([]);
   const [curpage, setCurPage] = useState(1);
   
-  
-  console.log(user, router)
 
   useEffect(()=>{
-    getAuth(user, router)
 
-    const getBooks = async (pg) => {
-        const res = await ax.get("/api/getBooks", {
-          headers: {
-              "Authorization": `Bearer ${user}`
-          },
-          params: {
-              p: pg
-          }
-        })
-        setbooks((res.data.books).slice(0, 100))
-        setbooks2((res.data.books).slice(100, 200))
-        setbooks3((res.data.books).slice(200, 300))
+      if(user == null) return router.push('/')
+
+      const getBooks = async () => {
+          const TK = user.accessTk
+          const res = await getAllBooksHandler(TK, 1)
+          setbooks((res.books).slice(0, 100))
+          setbooks2((res.books).slice(100, 200))
+          setbooks3((res.books).slice(200, 300))
+
       }
+
       getBooks(1)
-      console.log(books, books2, books3)
 
   },[])
   
@@ -83,7 +77,7 @@ export default function Bookshelf({
       <div className='B_Container' >
         <div className='B_Nav'>
         {user ?
-        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user}  />
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
         :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='B_Content' >

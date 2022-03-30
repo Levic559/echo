@@ -52,7 +52,7 @@ export default function Home({
 
 
   useEffect(()=>{
-    getAuth(user, router)
+    if(user == null) return router.push('/')
 
     var currentUser=  sessionStorage.getItem("user");
     var currentUser=JSON.parse(currentUser)

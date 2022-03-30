@@ -14,6 +14,9 @@ import Button from '@mui/material/Button';
 import { Icon } from 'semantic-ui-react'
 import Message from '@/comps/Message';
 import Message_own from '@/comps/Message_own';
+import { ConstructionOutlined } from '@mui/icons-material';
+import { getOneClub } from '@/utils/getData/clubHandler';
+
 
 
 const memberList = [{
@@ -42,30 +45,27 @@ export default function ClubsID() {
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
 
   useEffect(()=>{
-    
-      const getClub = async (p) => {
-        const res = await ax.get("/api/getOneClub", {
-          headers: {
-            "Authorization": `Bearer ${user}`
-          },
-          params: {
-            id: id
-          }
-        })
-        setData(res.data.club)
-        setMember(res.data.club.members)
-        setReadlist(res.data.club.bookList)
-        console.log(res.data.club, res.data.club.bookList)
 
+      if(user == null) return router.push('/')
+
+      const getClub = async (p) => {
+        const TK = user. accessTk
+        const clubID = id
+        const res = await getOneClub(TK, clubID)
+        setData(res.club)
+        setMember(res.club.members)
+        setReadlist(res.club.bookList)
       }
-    if (id) {
-      // if(Object.keys(clublist).includes(id)){
-      //   setHeartIcon('heart')
-      // }else{
-      //   setHeartIcon('heart outline')
-      // }
-      getClub()
-     }
+
+      if (id) {
+        // if(Object.keys(clublist).includes(id)){
+        //   setHeartIcon('heart')
+        // }else{
+        //   setHeartIcon('heart outline')
+        // }
+        getClub()
+      }
+
   },[])
 
 
@@ -119,7 +119,7 @@ export default function ClubsID() {
     var posts=post.concat([newcomment])
     setPost(posts)
   }
-  console.log(newcomment)
+  // console.log(newcomment)
   return <div>
     <Head>
       <title>Echo</title>
