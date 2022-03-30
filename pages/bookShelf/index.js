@@ -104,7 +104,7 @@ export default function Bookshelf({
                     onClick={() => router.push(`/bookShelf/${o._id}`)}
                     src={o.image_s}
                     YearOfPublication={o.pub_year}
-                    title={o.title}
+                    title={o.title.substr(0, 20) + "..."}
                     BookAuthor={o.authors}
                   />
                 )}

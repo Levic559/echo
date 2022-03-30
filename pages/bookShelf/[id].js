@@ -82,15 +82,15 @@ export default function BooksID() {
     setShowNewComment(true)
   }
 
-  // useEffect(()=>{
-  //   if (id) {
-  //     if(Object.keys(readlist).includes(id)){
-  //       setBookIcon('bookmark')
-  //     }else{
-  //       setBookIcon('bookmark outline')
-  //     }
-  //    }
-  // },[id])
+  useEffect(()=>{
+    if (id) {
+      if(Object.keys(readlist).includes(id)){
+        setBookIcon('bookmark')
+      }else{
+        setBookIcon('bookmark outline')
+      }
+     }
+  },[id])
 
   // useEffect(() => {
   //   if (id) {
@@ -121,28 +121,28 @@ export default function BooksID() {
 //   const editClick = () => {
 //     setShowNewComment(true)
 //   }
-//   const heartClick = (value,obj) => {
-//     if (bookIcon =='bookmark outline') {
-//       setBookIcon('bookmark')
+  const heartClick = (value,obj) => {
+    if (bookIcon =='bookmark outline') {
+      setBookIcon('bookmark')
      
-//       const n_readlist = { ...readlist}
-//       n_readlist[obj._id] = obj;
-//       // var key="aaa"
-//       // n_fav[key]=obj;
-//       setReadlist(n_readlist)
-//       // setIStatus(bookIcon)
-//       // console.log(istatus)
-//     }
-//     else  {
-//       setBookIcon('bookmark outline')
-//       const n_readlist = {
-//         ...readlist  }
-//     delete n_readlist[obj._id];
-//     setReadlist(n_readlist)
+      const n_readlist = { ...readlist}
+      n_readlist[obj._id] = obj;
+      // var key="aaa"
+      // n_fav[key]=obj;
+      setReadlist(n_readlist)
+      // setIStatus(bookIcon)
+      // console.log(istatus)
+    }
+    else  {
+      setBookIcon('bookmark outline')
+      const n_readlist = {
+        ...readlist  }
+    delete n_readlist[obj._id];
+    setReadlist(n_readlist)
 
-//   }
+  }
   
-// }
+}
 // var sortnewcomment =[];
 // var sortnewcomment =newcomment.sort(function(x, y) {
 //   return x[0] < y[0] ? -1 : 1;
