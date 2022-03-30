@@ -14,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRead} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
 import { getOneBookHandler } from '@/utils/getData/bookHandler';
+import { addReadBookHandler } from '@/utils/getData/readBookHandler';
 
 
 const book_comments = [
@@ -80,6 +81,13 @@ export default function BooksID() {
 
   const editClick = () => {
     setShowNewComment(true)
+  }
+
+  const readlistHandler = async () => {
+      const TK = user.accessTk
+      const bookArray = [data._id]
+      const res = await addReadBookHandler(TK, bookArray)
+      console.log(res)
   }
 
   // useEffect(()=>{
@@ -187,7 +195,7 @@ const postcomment=()=>{
             ISBN={data.isbn}
             YearOfPublication={data.pub_year}
             Publisher={data.publisher}
-            heartClick={(e)=> heartClick(e.target.value, data)}
+            heartClick={readlistHandler}
             iconName={bookIcon}
             editClick={editClick}
           />
