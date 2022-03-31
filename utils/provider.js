@@ -25,7 +25,7 @@ const initialStates = {
     setShow6:()=>{},
     status:{},
     setStatus:()=>{},
-    favlist:{},
+    favlist:[],
     setFavlist:()=>{},
     clublist:[],
     setClublist:()=>{},
