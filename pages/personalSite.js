@@ -13,8 +13,8 @@ import { useRead, useUser,useFavlist,useClublist, useClubreadlist, useMyClublist
 import ReadListCom from '@/comps/ReadListCom';
 import { useDrop } from "react-dnd";
 import axios from 'axios';
-import { getReadBookHandler } from '@/utils/getData/readBookHandler';
-import { getFavoBookHandler } from '@/utils/getData/favoBookHandler';
+import { getReadBookHandler, addReadBookHandler } from '@/utils/getData/readBookHandler';
+import { getFavoBookHandler, addFavoBookHandler } from '@/utils/getData/favoBookHandler';
 
 const friends_list = [
   {
@@ -54,6 +54,8 @@ export default function Home({
   const { myclublist, setMyClublist } = useMyClublist([])
   const { clubreadlist, setClubreadlist } = useClubreadlist()
   const { favlist, setFavlist } = useFavlist()
+  const [rListID, setRListID] = useState([])
+  const [fListID, setFListID] = useState([])
   const router = useRouter();
   // console.log(Object.values(readlist))
   const [fav, setFav] = useState([])
@@ -67,11 +69,26 @@ export default function Home({
     const TK = user.accessTk
     const getReadList = async () => {
         const res = await getReadBookHandler(TK)
-        setReadlist(res.readbooks.readbooks)
+        const result = res.readbooks.readbooks
+        let arr = []
+        
+        for(let i=0; i<result.length; i++){
+          arr.push(result[i].bookID)
+        }
+
+        setReadlist(arr)
+        
     }
     const getFavList = async () => {
         const res = await getFavoBookHandler(TK)
-        setFavlist(res.favobooks.favobooks)
+        const result = res.favobooks.favobooks
+        let arr = []
+        
+        for(let i=0; i<result.length; i++){
+          arr.push(result[i].bookID)
+        }
+
+        setFavlist(arr)
     }
 
     getReadList()
@@ -89,21 +106,19 @@ export default function Home({
     setFavlist(newFavoList)
     
   }
-
  
   // const [board, setBoard] = useState([]);
 
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "book",
-    drop: (item) => addBookToFav(item._id),
+    drop: (item) =>{
+      setFavlist((pre)=>[...pre, item.obj])
+    },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),}))
 
-    const addBookToFav = (id) => {
-       console.log(id)
-    }
-   
     // const addBookToFav = (_id) => {
     //   console.log("_id",_id)
     //   const flist = Object.values(readlist).filter((o)=> _id === o._id);
@@ -111,20 +126,34 @@ export default function Home({
     //   setFav((fav)=>[...fav, flist[0]]);
     // };
 
-    const [{ isOver2 }, drop2] = useDrop(() => ({
-      accept: "book",
-      drop2: (item) => addBookToClub(item.id),
-      collect: (monitor) => ({
-        isOver2: !!monitor.isOver(),
-      }),}))
+  const [{ isOver2 }, drop2] = useDrop(() => ({
+    accept: "book",
+    drop2: (item) => addBookToClub(item),
+    collect: (monitor) => ({
+      isOver2: !!monitor.isOver(),
+    }),}))
 
-      const addBookToClub = (_id) => {
-        console.log("_id",_id)
-        const flist = Object.values(readlist).filter((o)=> _id === o._id);
-        console.log("flist",flist)
-        setClubreadlist((clubreadlist)=>[...clubreadlist, flist[0]]);
-        console.log("clubreadlist",clubreadlist)
-      };
+  const addBookToClub = (_id) => {
+    console.log("_id",_id)
+    const flist = Object.values(readlist).filter((o)=> _id === o._id);
+    console.log("flist",flist)
+    setClubreadlist((clubreadlist)=>[...clubreadlist, flist[0]]);
+    console.log("clubreadlist",clubreadlist)
+  };
+
+  const saveChanges =async () => {
+    const TK = user.accessTk
+    let favoArr = []
+    let readArr = []
+    for(let i=0; i<favlist.length; i++){
+      favoArr.push(favlist[i]._id)
+    }
+    for(let i=0; i<readlist.length; i++){
+      readArr.push(readlist[i]._id)
+    }
+    const resReadlist = await addReadBookHandler(TK, readArr)
+    const resFavolist = await addFavoBookHandler(TK, favoArr)
+  }
   
   return <>
     <Head>
@@ -166,7 +195,8 @@ export default function Home({
                         key={o._id} 
                         OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
                         ReadlistClick={() => handleRemove_fav(o._id)}
-                        text={o.bookID.title} 
+                        text={o.title} 
+                        book={o}
                   />})  
               }
 
@@ -197,12 +227,16 @@ export default function Home({
                         key={o._id} 
                         OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
                         ReadlistClick={() => handleRemove(o._id)}
-                        text={o.bookID.title}
+                        text={o.title}
+                        book={o}
                     />}
                 )}
 
               </div>
             </div>
+
+            <button onClick={saveChanges}>Save</button>
+
             <div className='friends'
               style={{
                 background: comp_theme[theme].label2

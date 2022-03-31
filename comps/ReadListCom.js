@@ -1,14 +1,14 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 
-const ReadListCom=({ _id,
+const ReadListCom=({ book,
 ReadlistClick=()=>{},
 OnDoubleClick=()=>{},
 text="A book"
 })=>{
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "book",
-        item: { id: _id },
+        item: { obj: book },
         collect: (monitor) => ({
           isDragging: !!monitor.isDragging(),
         }),
