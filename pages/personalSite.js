@@ -13,8 +13,8 @@ import { useRead, useUser,useFavlist,useClublist, useClubreadlist, useMyClublist
 import ReadListCom from '@/comps/ReadListCom';
 import { useDrop } from "react-dnd";
 import axios from 'axios';
-import { getReadBookHandler, addReadBookHandler } from '@/utils/getData/readBookHandler';
-import { getFavoBookHandler, addFavoBookHandler } from '@/utils/getData/favoBookHandler';
+import { getReadBookHandler, updateReadBookHandler } from '@/utils/getData/readBookHandler';
+import { getFavoBookHandler, updateFavoBookHandler } from '@/utils/getData/favoBookHandler';
 
 const friends_list = [
   {
@@ -54,8 +54,6 @@ export default function Home({
   const { myclublist, setMyClublist } = useMyClublist([])
   const { clubreadlist, setClubreadlist } = useClubreadlist()
   const { favlist, setFavlist } = useFavlist()
-  const [rListID, setRListID] = useState([])
-  const [fListID, setFListID] = useState([])
   const router = useRouter();
   // console.log(Object.values(readlist))
   const [fav, setFav] = useState([])
@@ -151,8 +149,10 @@ export default function Home({
     for(let i=0; i<readlist.length; i++){
       readArr.push(readlist[i]._id)
     }
-    const resReadlist = await addReadBookHandler(TK, readArr)
-    const resFavolist = await addFavoBookHandler(TK, favoArr)
+    const resReadlist = await updateReadBookHandler(TK, readArr)
+    const resFavolist = await updateFavoBookHandler(TK, readArr)
+
+    console.log(resReadlist.message, resFavolist.message)
   }
   
   return <>

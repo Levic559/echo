@@ -15,6 +15,21 @@ export const addFavoBookHandler = async (tk, formData) => {
     }
 }
 
+export const updateFavoBookHandler = async (tk, formData) => {
+    const URL = process.env.BASE_URL + "/favobook/update"
+
+    try{
+        const res = await ax.put(URL, {bookID: formData}, {
+            headers: {
+                "Authorization": `Bearer ${tk}`
+            }
+        })
+        return res.data
+    }catch(err){
+        console.log(err.message)
+    }
+}
+
 
 export const getFavoBookHandler = async (tk) => {
     const URL = process.env.BASE_URL + "/favobook"
