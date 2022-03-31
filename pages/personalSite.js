@@ -150,7 +150,7 @@ export default function Home({
       readArr.push(readlist[i]._id)
     }
     const resReadlist = await updateReadBookHandler(TK, readArr)
-    const resFavolist = await updateFavoBookHandler(TK, readArr)
+    const resFavolist = await updateFavoBookHandler(TK, favoArr)
 
     console.log(resReadlist.message, resFavolist.message)
   }
