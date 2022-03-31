@@ -54,11 +54,11 @@ export default function Home({
   useEffect(()=>{
     if(user == null) return router.push('/')
 
-    var currentUser=  sessionStorage.getItem("user");
-    var currentUser=JSON.parse(currentUser)
-    console.log(currentUser)
-    setUser(currentUser)
-      console.log(user)
+    // var currentUser=  sessionStorage.getItem("user");
+    // var currentUser=JSON.parse(currentUser)
+    // console.log(currentUser)
+    // setUser(currentUser)
+    //   console.log(user)
   },[])
 
 
