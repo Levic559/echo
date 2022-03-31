@@ -13,7 +13,7 @@ const default_date = {
   
 }
 const ClubCard=({
-    title=default_date.BookTitle,
+    title=default_date.title,
     src=default_date.image,
     host=default_date.host,
     create_date=default_date.create_date,
@@ -26,7 +26,7 @@ const ClubCard=({
     <div className='bookCard' onClick={onClick} >
 
         <Image src={src} width={150}
-      height={150} objectFit="cover" />
+      height={150} objectFit="cover"  alt="club's photo"/>
       <div className='discription'>
         <p style={{color:text_theme[theme].title}}> {title} </p>
         <p style={{color:text_theme[theme].title}}> {host} </p>

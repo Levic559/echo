@@ -29,6 +29,8 @@ const initialStates = {
     setFavlist:()=>{},
     clublist:[],
     setClublist:()=>{},
+    myclublist:[],
+    setMyClublist:()=>{},
     clubreadlist:{},
     setClubreadlist:()=>{}
 }
@@ -50,6 +52,7 @@ export default function AppProvider({children}){
     const [show6,setShow6]=useState(initialStates.show6)
     const [status,setStatus]=useState(initialStates.status)
     const [clublist,setClublist]=useState(initialStates.clublist)
+    const [myclublist,setMyClublist]=useState(initialStates.myclublist)
     const [clubreadlist,setClubreadlist]=useState(initialStates.clubreadlist)
 
     // console.log("readlist",readlist)
@@ -63,7 +66,9 @@ export default function AppProvider({children}){
     //put in the variables you want to share
     return <MyContext.Provider value={{theme,setTheme, order,setOrder,readlist,setReadlist,
     user,setUser,show,setShow,status,setStatus,show2,setShow2,show3,setShow3,show4,setShow4
-    ,show5,setShow5,show6,setShow6,favlist,setFavlist,clublist,setClublist,clubreadlist,setClubreadlist}}>
+    ,show5,setShow5,show6,setShow6,favlist,setFavlist,clublist,setClublist,clubreadlist,setClubreadlist,
+    myclublist,setMyClublist,
+    }}>
     <style jsx global>{`
     body{
         background-color:${global_theme[theme].body}
@@ -137,6 +142,11 @@ export function useClublist(){
     const {clublist,setClublist} = useContext(MyContext)
 
     return {clublist,setClublist}
+}
+export function useMyClublist(){
+    const {myclublist,setMyClublist} = useContext(MyContext)
+
+    return {myclublist,setMyClublist}
 }
 
 export function useClubreadlist(){

@@ -17,6 +17,8 @@ export default function Home({
   const { user, setUser } = useUser();
   const [e_warn, setE_Warn] = useState(false)
   const [warn, setWarn] = useState(false)
+  const [iconstate, setIconstate] = useState("eye slash")
+  const [inputtype, setInputtype] = useState("password")
   const [loginData, setLoginData] = useState({email: '', password:''})
   const router = useRouter();
 
@@ -27,7 +29,15 @@ export default function Home({
       setUser(res)
       router.push("/bookShelf")
   }
-
+const onClick =()=>{
+  if(iconstate==="eye slash"){
+setIconstate("eye")
+setInputtype("text")}
+else{
+setIconstate("eye slash")
+setInputtype("password")
+}
+}
   return(<div>
     <Head>
       <title>Echo</title>
@@ -51,9 +61,10 @@ export default function Home({
           <div className='title'>{title}</div>
           <div className='InputCon'>
 
-            <InputBox text="Email" value={loginData.email} onChange={e => setLoginData({ ...loginData, email: e.target.value })}/>
+            <InputBox iconName="mail" text="Email" value={loginData.email} onChange={e => setLoginData({ ...loginData, email: e.target.value })}/>
           {e_warn ? <p style={{ color: "#ba1141" }}><b>The eamil is invalid</b></p> : null}
-            <InputBox text="Password" type="password" value={loginData.password} onChange={e => setLoginData({ ...loginData, password: e.target.value })}/>
+            <InputBox onClick={onClick}
+            iconName={iconstate} text="Password" type={inputtype} value={loginData.password} onChange={e => setLoginData({ ...loginData, password: e.target.value })}/>
             {warn ? <p style={{ color: "#ba1141" }}><b>The password is invalid</b></p> : null}
           </div>
           <div className='ButtonCon'>
