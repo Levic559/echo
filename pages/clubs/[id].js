@@ -67,7 +67,7 @@ export default function ClubsID() {
         getClub()
       }
 
-  },[])
+  },[id])
 
 
   // useEffect(() => {
