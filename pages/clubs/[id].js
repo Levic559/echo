@@ -33,7 +33,7 @@ export default function ClubsID() {
   const { user } = useUser()
   const { clublist, setClublist } = useClublist();
   const { myclublist, setMyClublist } = useMyClublist();
-  const { readlist, setReadlist } = useRead([])
+  const { readlist, setReadlist } = useRead()
   const [heartIcon, setHeartIcon] = useState()
   const [member, setMember] = useState()
   const [post, setPost] = useState([])
@@ -130,7 +130,9 @@ export default function ClubsID() {
     <div className='sB_Wrapper'>
       <div className='Container' >
         <div className='Nav'>
-          <Nav onClick={() => router.push('/bookShelf/search')} />
+        {user ?
+        <Nav onClick={()=>router.push('/bookShelf/search')} users= {user.username}  />
+        :   <Nav onClick={()=>router.push('/bookShelf/search')}  />  }
         </div>
         <div className='Content' >
           <div className='Side_Bar'>
@@ -205,11 +207,7 @@ export default function ClubsID() {
                       text={li.bookID.title}
                       
                       />
-                        // <div key={li.bookID._id}>
-                        //   <div>Book: {li.bookID.title}</div>
-                        //   <div>Authors: {li.bookID.authors}</div>
-                        //   <div>Likes: {li.like_count}</div>
-                        // </div>
+                       
                     ))
                     :
                     null

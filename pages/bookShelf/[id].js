@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRead} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
 import { getOneBookHandler } from '@/utils/getData/bookHandler';
-import { addReadBookHandler } from '@/utils/getData/readBookHandler';
+import { addReadBookHandler, getReadBookHandler } from '@/utils/getData/readBookHandler';
 
 
 const book_comments = [
@@ -62,8 +62,8 @@ export default function BooksID() {
   username: "Alex"
   })
 
-  // console.log(id)
-
+  console.log(id)
+  
   useEffect(()=>{
 
     if(user == null) return router.push('/')
@@ -78,10 +78,41 @@ export default function BooksID() {
     getBook()
 
   },[])
+  useEffect(()=>{
+    if(user == null) return router.push('/')
 
+    const TK = user.accessTk
+    const getReadList = async () => {
+        const res = await getReadBookHandler(TK)
+        const result = res.readbooks.readbooks
+        let arr = []
+        
+        for(let i=0; i<result.length; i++){
+          arr.push(result[i].bookID)
+        }
+
+        setReadlist(arr)
+        
+    }
+
+    getReadList()
+    var book_Id= "6225717ceba4fd783cd5b9cf"
+    if(readlist.some(list=>list._id===id)){
+      setBookIcon('bookmark')
+    }else{
+      setBookIcon('bookmark outline')
+    }
+  }, [])
+
+  console.log(Object.values(readlist))
+  console.log(Object.values(readlist).includes('The'))
   const editClick = () => {
     setShowNewComment(true)
   }
+  const pets = [{"name":'cat'}, {"name":'dog'}, {"name":'bat'}];
+  console.log(pets)
+  console.log(pets.some(pet => pet.name === "cat"))
+
 
   const readlistHandler = async () => {
       const TK = user.accessTk
@@ -94,15 +125,8 @@ export default function BooksID() {
           setBookIcon('bookmark outline')}
   }
 
-  useEffect(()=>{
-    if (id) {
-      if(Object.keys(readlist).includes(id)){
-        setBookIcon('bookmark')
-      }else{
-        setBookIcon('bookmark outline')
-      }
-     }
-  },[id])
+
+
 
   // useEffect(() => {
   //   if (id) {
