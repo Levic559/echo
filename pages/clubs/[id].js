@@ -6,7 +6,7 @@ import { useEffect, useState, useContext } from 'react'
 import ClubsCom from '@/comps/ClubsCom';
 import Nav from '@/comps/Nav'
 import { comp_theme, order_method, text_theme } from '../../utils/variables'
-import { useTheme,useClublist, useUser } from '../../utils/provider'
+import { useTheme,useClublist, useUser,useMyClublist } from '../../utils/provider'
 import { v4 as uuidv4 } from 'uuid';
 import { useRead, useIstatus } from '@/utils/provider'
 import FriendPic from '@/comps/FriendPic';
@@ -16,7 +16,7 @@ import Message from '@/comps/Message';
 import Message_own from '@/comps/Message_own';
 import { ConstructionOutlined } from '@mui/icons-material';
 import { getOneClub } from '@/utils/getData/clubHandler';
-
+import ReadListCom from '@/comps/ReadListCom';
 
 
 const memberList = [{
@@ -32,10 +32,11 @@ export default function ClubsID() {
   const { theme } = useTheme();
   const { user } = useUser()
   const { clublist, setClublist } = useClublist();
-  const { readlist, setReadlist } = useRead()
+  const { myclublist, setMyClublist } = useMyClublist();
+  const { readlist, setReadlist } = useRead([])
   const [heartIcon, setHeartIcon] = useState()
   const [member, setMember] = useState()
-  const [post, setPost] = useState()
+  const [post, setPost] = useState([])
   const [newcomment, setNewComment] = useState({
     comment: ""
     // usersrc: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
@@ -58,11 +59,11 @@ export default function ClubsID() {
       }
 
       if (id) {
-        // if(Object.keys(clublist).includes(id)){
-        //   setHeartIcon('heart')
-        // }else{
-        //   setHeartIcon('heart outline')
-        // }
+        if(Object.keys(myclublist).includes(id)){
+          setHeartIcon('heart')
+        }else{
+          setHeartIcon('heart outline')
+        }
         getClub()
       }
 
@@ -96,21 +97,21 @@ export default function ClubsID() {
     if (heartIcon == 'heart outline') {
       setHeartIcon('heart')
 
-      const n_clublist = { ...clublist }
-      n_clublist[obj._id] = obj;
+      const n_myclublist = { ...myclublist }
+      n_myclublist[obj._id] = obj;
       // var key="aaa"
       // n_fav[key]=obj;
-      setClublist(n_clublist)
+      setMyClublist(n_myclublist)
       // setIStatus(heartIcon)
       // console.log(istatus)
     }
     else {
       setHeartIcon('heart outline')
-      const n_clublist = {
-        ...clublist
+      const n_myclublist = {
+        ...myclublist
       }
-      delete n_clublist[obj._id];
-      setClublist(n_clublist)
+      delete n_myclublist[obj._id];
+      setMyClublist(n_myclublist)
 
     }
 
@@ -142,8 +143,8 @@ export default function ClubsID() {
                 members={data.member_count}
                 create_date={data.create_date}
                 // Publisher={data.publisher}
-                // heartClick={(e) => heartClick(e.target.value, data)}
-                // iconName={heartIcon}
+                heartClick={(e) => heartClick(e.target.value, data)}
+                iconName={heartIcon}
               />
               :
               null
@@ -163,7 +164,6 @@ export default function ClubsID() {
                   :
                   null
                 }
-
               </div>
 
             </div>
@@ -176,13 +176,15 @@ export default function ClubsID() {
               }}>
                 <div className='title'>Top Ten</div>
                 <div className='content'>
-                  { readlist != undefined? 
+                  { readlist !== undefined || readlist.length!==[]? 
                     readlist.slice(0,10).map((li)=>(
-                        <div key={li.bookID._id}>
-                          <div>Book: {li.bookID.title}</div>
-                          <div>Authors: {li.bookID.authors}</div>
-                          <div>Likes: {li.like_count}</div>
-                        </div>
+                        <ReadListCom 
+                        key={li.bookID._id}
+                        text={li.bookID.title}
+                        
+                        />
+                        
+                       
                     ))
                     :
                     null
@@ -198,11 +200,16 @@ export default function ClubsID() {
                 <div className='content'>
                   { readlist != undefined? 
                     readlist.map((li)=>(
-                        <div key={li.bookID._id}>
-                          <div>Book: {li.bookID.title}</div>
-                          <div>Authors: {li.bookID.authors}</div>
-                          <div>Likes: {li.like_count}</div>
-                        </div>
+                      <ReadListCom 
+                      key={li.bookID._id}
+                      text={li.bookID.title}
+                      
+                      />
+                        // <div key={li.bookID._id}>
+                        //   <div>Book: {li.bookID.title}</div>
+                        //   <div>Authors: {li.bookID.authors}</div>
+                        //   <div>Likes: {li.like_count}</div>
+                        // </div>
                     ))
                     :
                     null

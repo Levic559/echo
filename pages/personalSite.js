@@ -5,11 +5,11 @@ import { useState,useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import UserCom from '@/comps/UserCom'
 import FriendCard from '@/comps/FriendCard'
-import ClubsCard from '@/comps/ClubsCard'
+import ClubCard from '@/comps/ClubCard'
 import { comp_theme, text_theme,private_method,info_method,fav_method,read_method,
   friends_method,clubs_method } from '../utils/variables'
 import { useShow, useTheme,useShow2,useShow3,useShow4,useShow5,useShow6 } from '../utils/provider'
-import { useRead, useUser,useFavlist,useClublist, useClubreadlist} from '@/utils/provider'
+import { useRead, useUser,useFavlist,useClublist, useClubreadlist, useMyClublist} from '@/utils/provider'
 import ReadListCom from '@/comps/ReadListCom';
 import { useDrop } from "react-dnd";
 import axios from 'axios';
@@ -50,6 +50,7 @@ export default function Home({
   const { user } = useUser();
   const { readlist, setReadlist } = useRead()
   const { clublist, setClublist } = useClublist()
+  const { myclublist, setMyClublist } = useMyClublist([])
   const { clubreadlist, setClubreadlist } = useClubreadlist()
   const { favlist, setFavlist } = useFavlist([])
   const router = useRouter();
@@ -205,8 +206,8 @@ export default function Home({
               style={{ background: comp_theme[theme].label2 }} >
               <div className='title'>Clubs </div>
               <div className={clubs_method[show6].label} >
-              {Object.values(clublist).map((o,i)=>{
-              return  <ClubsCard 
+              {Object.values(myclublist).map((o,i)=>{
+              return  <ClubCard 
                  onClick={() => router.push(`/clubs/${o._id}`)}
                  key={i}
                  src={o.image}
