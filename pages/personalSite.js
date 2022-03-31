@@ -95,17 +95,22 @@ export default function Home({
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "book",
-    drop: (item) => addBookToFav(item.id),
+    drop: (item) => addBookToFav(item._id),
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),}))
+
+    const addBookToFav = (id) => {
+       console.log(id)
+    }
    
-    const addBookToFav = (_id) => {
-      console.log("_id",_id)
-      const flist = Object.values(readlist).filter((o)=> _id === o._id);
-      console.log("flist",flist)
-      setFav((fav)=>[...fav, flist[0]]);
-    };
+    // const addBookToFav = (_id) => {
+    //   console.log("_id",_id)
+    //   const flist = Object.values(readlist).filter((o)=> _id === o._id);
+    //   console.log("flist",flist)
+    //   setFav((fav)=>[...fav, flist[0]]);
+    // };
+
     const [{ isOver2 }, drop2] = useDrop(() => ({
       accept: "book",
       drop2: (item) => addBookToClub(item.id),
