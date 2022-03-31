@@ -13,7 +13,8 @@ import { useRead, useUser,useFavlist,useClublist, useClubreadlist} from '@/utils
 import ReadListCom from '@/comps/ReadListCom';
 import { useDrop } from "react-dnd";
 import axios from 'axios';
-import getAuth from '@/utils/getAuth'
+import { getReadBookHandler } from '@/utils/getData/readBookHandler';
+import { getFavoBookHandler } from '@/utils/getData/favoBookHandler';
 
 const friends_list = [
   {
@@ -51,7 +52,7 @@ export default function Home({
   const { readlist, setReadlist } = useRead()
   const { clublist, setClublist } = useClublist()
   const { clubreadlist, setClubreadlist } = useClubreadlist()
-  const { favlist, setFavlist } = useFavlist([])
+  const { favlist, setFavlist } = useFavlist()
   const router = useRouter();
   // console.log(Object.values(readlist))
   const [fav, setFav] = useState([])
@@ -61,23 +62,30 @@ export default function Home({
 
   useEffect(()=>{
     if(user == null) return router.push('/')
+
+    const TK = user.accessTk
+    const getReadList = async () => {
+        const res = await getReadBookHandler(TK)
+        setReadlist(res.readbooks.readbooks)
+    }
+    const getFavList = async () => {
+        const res = await getFavoBookHandler(TK)
+        setFavlist(res.favobooks.favobooks)
+    }
+
+    getReadList()
+    getFavList()
+
   }, [])
 
   const handleRemove = (i) => {
-    console.log(i)
-    let list = Object.values(readlist)
-    setReadlist([
-      ...list.slice(0, i),
-      ...list.slice(i + 1)
-    ]);
+    const newReadList = readlist.filter((l)=>l._id!=i)
+    setReadlist(newReadList)
   }
+
   const handleRemove_fav = (i) => {
-    
-      let list = Object.values(fav)
-    setFav([
-      ...list.slice(0, i),
-      ...list.slice(i + 1)
-    ]);
+    const newFavoList = favlist.filter((l)=>l._id!=i)
+    setFavlist(newFavoList)
     
   }
 
@@ -147,19 +155,28 @@ export default function Home({
               <div className='title'>Favorite books </div>
               <div className={fav_method[show3].label} >
             
-         
-             {  Object.values(fav).map((o, i) =>{
+             { favlist.map((o) =>{
+                  return <ReadListCom 
+                        key={o._id} 
+                        OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
+                        ReadlistClick={() => handleRemove_fav(o._id)}
+                        text={o.bookID.title} 
+                  />})  
+              }
+
+             {/* { fav!=undefined?
+                fav.map((o) =>{
                 return <ReadListCom 
-               key={i._id}
-                _id={o._id}  
-                 OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
-                 ReadlistClick={() => handleRemove_fav(i)}
-                 text={o.title} 
+                  key={o._id} 
+                  OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
+                  ReadlistClick={() => handleRemove_fav(i)}
+                  text={o.title} 
                  />}
                  ) 
-              
-              
-              }
+                : 
+                null
+              } */}
+
           </div>
               
             </div>
@@ -167,21 +184,17 @@ export default function Home({
               style={{ background: comp_theme[theme].label2 }}>
               <div className='title'>Read list </div>
               <div className={read_method[show4].label}>
-                {/* {read.map((o,i)=>
-                 <div className='book' key={i}> {o.title} </div> 
-                )}  */}
 
-                {Object.values(readlist).map((o,i) =>{
-               return <ReadListCom 
-          key={i._id}
-              // key={i}
-               _id={o._id}   
-                OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
-                ReadlistClick={() => handleRemove(i)}
-                text={o.title}
-                />}
 
+                {readlist.map((o) =>{
+                  return <ReadListCom 
+                        key={o._id} 
+                        OnDoubleClick={() => router.push(`/bookShelf/${o._id}`)}
+                        ReadlistClick={() => handleRemove(o._id)}
+                        text={o.bookID.title}
+                    />}
                 )}
+
               </div>
             </div>
             <div className='friends'

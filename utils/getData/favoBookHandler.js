@@ -1,7 +1,7 @@
 import ax from 'axios'
 
-export const addReadBookHandler = async (tk, formData) => {
-    const URL = process.env.BASE_URL + "/readbook/add"
+export const addFavoBookHandler = async (tk, formData) => {
+    const URL = process.env.BASE_URL + "/favobook/add"
 
     try {
       const res = await ax.post(URL,{ bookID: formData}, {        
@@ -15,8 +15,9 @@ export const addReadBookHandler = async (tk, formData) => {
     }
 }
 
-export const getReadBookHandler = async (tk) => {
-    const URL = process.env.BASE_URL + "/readbook"
+
+export const getFavoBookHandler = async (tk) => {
+    const URL = process.env.BASE_URL + "/favobook"
 
     try {
         const res = await ax.post(URL, {user:''}, {
