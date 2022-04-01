@@ -8,6 +8,7 @@ import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme ,order_method} from '../../utils/variables'
 import { useTheme,useUser,useOrder, useSearchKey, useSearchValue } from '../../utils/provider'
 import { searchBookHandler } from '@/utils/getData/bookHandler';
+import { getOneUser } from '@/utils/getData/userHandler';
 
 
 export default function Bookshelf({
@@ -22,13 +23,21 @@ export default function Bookshelf({
   const [data, setData] = useState([]);
   const [publish,setPublish]=useState(false)
   const [page, setPage] = useState(1)
-
+  const [userDetail, setUserDetail] = useState()
   useEffect(()=>{
 
     if(user == null) return router.push('/')
 
     searchBooks(searchKey, searchValue, page)
 
+
+    const getUserDetial = async () => {
+        const TK = user.accessTk
+        const res = await getOneUser(TK)
+        setUserDetail(res.user)
+    }
+
+    getUserDetial()
   },[])
 
   const searchBooks = async (k,v,p) => {
@@ -53,7 +62,10 @@ export default function Bookshelf({
       <div className='B_Container' >
 
         <div className='B_Nav'>
-          <Nav onSubmitSearch={searchBooksInSearchPage}/>
+        {userDetail != undefined?
+              <Nav onClick={() => router.push('/bookShelf/search')} users={userDetail.username} />
+              : <Nav onClick={() => router.push('/bookShelf/search')} />}
+          {/* <Nav onSubmitSearch={searchBooksInSearchPage}/> */}
         </div>
 
         <div className='B_Content' >
@@ -72,8 +84,11 @@ export default function Bookshelf({
           <div className='Feed_Area' style={{ color: text_theme[theme].title }}>
             <div className='Drawers' >
               <div className='label' >
-                <h3 > Search result</h3>
+                <h3 > Search result <h4 > (Search for {searchValue})</h4></h3>
+                
               </div>
+             
+
               <div className='Drawer_search'>
                 
                 {(data==undefined || data.length==0) ? <h4> There is no result.</h4>
