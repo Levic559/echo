@@ -6,45 +6,56 @@
     align-items: center;
     background-color: #2F3E46;
     
-    .TextCon {
-        width: 15%;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        text-align: center;
-        margin: 20%;
-        color: $textColorL;
-    }
+   
 
     .navLogoCon {
-        width: 10%;
+        width: 20%;
+
         &:hover{
             opacity: .5;
         }
         @media screen and (max-width: 450px) {
             display: none;
         }
+
+
+        .navTextCon {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            text-align: center;
+           
+            color: $textColorL;
+        }
     }
     .navInputCon {
         display: flex;
         flex-direction: row;
-        width: 50%;
-        justify-content: space-evenly;
+        width: 60%;
+        justify-content: center;
         @media screen and (max-width: 450px) {
-            width: 70%;
+            width: 100%;
+            justify-content: flex-end;
         }
+        
         .input{
-            width: 60%;
+            width: 85%;
             background-color: $textColorL;
-            border-radius: .5rem;
+            border-radius: .25rem;
            border-style: none;
            margin-right:1%;
            @media screen and (max-width: 450px) {
-            width: 80%;
-            margin-right:5%
+            width: 90%;
+            margin-right:2.5%
         }
         }
-
+        button{
+            width:2rem
+        }
+        .select{
+            width:6.5rem
+        }
     }
     .navUsers{
         width: 15%;

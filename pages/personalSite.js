@@ -15,6 +15,8 @@ import { useDrop } from "react-dnd";
 import axios from 'axios';
 import { getReadBookHandler, updateReadBookHandler } from '@/utils/getData/readBookHandler';
 import { getFavoBookHandler, updateFavoBookHandler } from '@/utils/getData/favoBookHandler';
+import { Button,Card } from 'semantic-ui-react'
+
 
 const friends_list = [
   {
@@ -106,7 +108,14 @@ export default function Home({
   }
  
   // const [board, setBoard] = useState([]);
-
+  const items = [
+    {
+      header: 'Save the favo and read list.',
+      // description:
+      //   'You need to click the save button when you change the list.',
+      meta:  'You need to click the save button everytime when you change the list.',
+    }
+  ]
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "book",
@@ -234,8 +243,14 @@ export default function Home({
 
               </div>
             </div>
-
-            <button onClick={saveChanges}>Save</button>
+                  <div className='save'>
+                   <div className='card' style={{background: comp_theme[theme].label2}}>
+                   <h4>Save the favo and read list.</h4>
+                   <p>You need to click the save button everytime when you change the list.</p>
+                   </div>
+                   
+            <Button onClick={saveChanges}>Save</Button>
+                  </div>
 
             <div className='friends'
               style={{
