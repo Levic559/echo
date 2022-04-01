@@ -63,9 +63,9 @@ export default function Bookshelf({
 
         <div className='B_Nav'>
         {userDetail != undefined?
-              <Nav onClick={() => router.push('/bookShelf/search')} users={userDetail.username} />
+              <Nav onSubmitSearch={searchBooksInSearchPage} users={userDetail.username} />
               : <Nav onClick={() => router.push('/bookShelf/search')} />}
-          {/* <Nav onSubmitSearch={searchBooksInSearchPage}/> */}
+          {/* <Nav onSubmitSearch={searchBooksInSearchPage}/>  */}
         </div>
 
         <div className='B_Content' >
