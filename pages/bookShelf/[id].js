@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRead} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
 import { getOneBookHandler } from '@/utils/getData/bookHandler';
-import { addReadBookHandler, getReadBookHandler } from '@/utils/getData/readBookHandler';
+import { addReadBookHandler, getReadBookHandler,deleteReadBookHandler } from '@/utils/getData/readBookHandler';
 
 
 const book_comments = [
@@ -62,7 +62,7 @@ export default function BooksID() {
   username: "Alex"
   })
 
-  console.log(id)
+  // console.log(id)
   
   useEffect(()=>{
 
@@ -96,7 +96,6 @@ export default function BooksID() {
     }
 
     getReadList()
-    var book_Id= "6225717ceba4fd783cd5b9cf"
     if(readlist.some(list=>list._id===id)){
       setBookIcon('bookmark')
     }else{
@@ -104,25 +103,31 @@ export default function BooksID() {
     }
   }, [])
 
-  console.log(Object.values(readlist))
-  console.log(Object.values(readlist).includes('The'))
+
   const editClick = () => {
     setShowNewComment(true)
   }
-  const pets = [{"name":'cat'}, {"name":'dog'}, {"name":'bat'}];
-  console.log(pets)
-  console.log(pets.some(pet => pet.name === "cat"))
+
 
 
   const readlistHandler = async () => {
-      const TK = user.accessTk
-      const bookArray = [data._id]
-      const res = await addReadBookHandler(TK, bookArray)
-      console.log(res)
+     
       if (bookIcon =='bookmark outline') {
-        setBookIcon('bookmark')}
+        setBookIcon('bookmark')
+        const TK = user.accessTk
+        const bookArray = [data._id]
+        const res = await addReadBookHandler(TK, bookArray)
+        console.log(res)
+      }
         else  {
-          setBookIcon('bookmark outline')}
+          setBookIcon('bookmark outline')
+          const TK = user.accessTk
+          const bookArray = [data._id]
+          const res = await deleteReadBookHandler(TK, bookArray)
+          console.log(res)
+          console.log(bookArray)
+        
+        }
   }
 
 

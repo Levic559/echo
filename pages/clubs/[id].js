@@ -33,7 +33,7 @@ export default function ClubsID() {
   const { user } = useUser()
   const { clublist, setClublist } = useClublist();
   const { myclublist, setMyClublist } = useMyClublist();
-  const { readlist, setReadlist } = useRead()
+  const { readlist, setReadlist } = useRead([])
   const [heartIcon, setHeartIcon] = useState()
   const [member, setMember] = useState()
   const [post, setPost] = useState([])
