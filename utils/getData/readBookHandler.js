@@ -19,9 +19,12 @@ export const deleteReadBookHandler = async (tk, formData) => {
     const URL = process.env.BASE_URL + "/readbook/delete"
 
     try{
-        const res = await ax.delete(URL, {bookID: formData}, {
+        const res = await ax.delete(URL, {
             headers: {
                 "Authorization": `Bearer ${tk}`
+            },
+            data: {
+                bookID: formData
             }
         })
         return res.data

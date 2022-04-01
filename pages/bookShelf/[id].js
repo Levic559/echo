@@ -67,66 +67,55 @@ export default function BooksID() {
   useEffect(()=>{
 
     if(user == null) return router.push('/')
+    const TK = user.accessTk
 
     const getBook = async () => {
-        const TK = user.accessTk
         const bookID = id
         const res = await getOneBookHandler(TK, bookID)
         setData(res.book)
     }
 
-    getBook()
-
-  },[])
-  useEffect(()=>{
-    if(user == null) return router.push('/')
-
-    const TK = user.accessTk
     const getReadList = async () => {
-        const res = await getReadBookHandler(TK)
-        const result = res.readbooks.readbooks
-        let arr = []
-        
-        for(let i=0; i<result.length; i++){
-          arr.push(result[i].bookID)
-        }
-
-        setReadlist(arr)
-        
+      const res = await getReadBookHandler(TK)
+      const result = res.readbooks.readbooks
+      let arr = []
+      
+      for(let i=0; i<result.length; i++){
+        arr.push(result[i].bookID)
+      }
+      setReadlist(arr)
     }
 
+    getBook()
     getReadList()
+  
     if(readlist.some(list=>list._id===id)){
       setBookIcon('bookmark')
     }else{
       setBookIcon('bookmark outline')
     }
-  }, [])
 
+  },[])
 
   const editClick = () => {
     setShowNewComment(true)
   }
 
-
-
   const readlistHandler = async () => {
+      
+      const TK = user.accessTk
      
       if (bookIcon =='bookmark outline') {
         setBookIcon('bookmark')
-        const TK = user.accessTk
         const bookArray = [data._id]
         const res = await addReadBookHandler(TK, bookArray)
         console.log(res)
       }
         else  {
           setBookIcon('bookmark outline')
-          const TK = user.accessTk
           const bookArray = [data._id]
           const res = await deleteReadBookHandler(TK, bookArray)
           console.log(res)
-          console.log(bookArray)
-        
         }
   }
 
