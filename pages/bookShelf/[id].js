@@ -192,7 +192,7 @@ const postcomment=()=>{
   setShowNewComment(false)
 }
 // console.log(post)
-
+// console.log(user.username)
   return <div>
     <Head>
       <title>Echo</title>
@@ -231,7 +231,7 @@ const postcomment=()=>{
            onCancleClick={()=>setShowNewComment(false)}
             placeholder={newcomment.comment}
            onChange={ e => setNewComment({...newcomment, comment: e.target.value })}
-           onPost={postcomment}
+           onPost={postcomment} username={user.username}
            /> : null}
            
             {post? post.map((o, i) =>
@@ -239,7 +239,7 @@ const postcomment=()=>{
                 key={i}
                 comment={o.comment}
                 usersrc={o.usersrc}
-                // username={user}
+                username={user.username}
               />
             ):null}
           
@@ -248,7 +248,7 @@ const postcomment=()=>{
                 key={i}
                 comment={o.comment}
                 usersrc={o.usersrc}
-                // username={user}
+                username={o.username}
               />
             )}
           </div>

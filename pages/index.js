@@ -9,6 +9,7 @@ import { comp_theme, text_theme } from '../utils/variables'
 import { useTheme,useUser } from '../utils/provider'
 import ax from 'axios'
 import loginHandler from '@/utils/getData/loginHandler'
+import Lottie from "lottie-react";
 
 export default function Home({
   title = "Log in"

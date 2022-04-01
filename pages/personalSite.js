@@ -17,6 +17,7 @@ import { getReadBookHandler, updateReadBookHandler } from '@/utils/getData/readB
 import { getFavoBookHandler, updateFavoBookHandler } from '@/utils/getData/favoBookHandler';
 import { Button,Card } from 'semantic-ui-react'
 
+import { getOneUser } from '@/utils/getData/userHandler';
 
 const friends_list = [
   {
@@ -59,10 +60,26 @@ export default function Home({
   const router = useRouter();
   // console.log(Object.values(readlist))
   const [fav, setFav] = useState([])
+  const [userDetail, setUserDetail] = useState()
 
 
   const [friends, setFriends] = useState(friends_list)
 
+
+    
+  useEffect(()=>{
+
+    if(user == null) return router.push('/')
+
+    const getUserDetial = async () => {
+        const TK = user.accessTk
+        const res = await getOneUser(TK)
+        setUserDetail(res.user)
+    }
+
+    getUserDetial()
+
+}, [])
   useEffect(()=>{
     if(user == null) return router.push('/')
 
@@ -179,11 +196,11 @@ export default function Home({
         </div>
         <div className='Content' >
           <div className='Side_Bar'>
-            {user ? <UserCom username={user.username}
-              account={user.email}
-              gender={user.gender}
-              age={user.age}
-              location={user.location}
+            {userDetail ? <UserCom username={userDetail.username}
+              account={userDetail.email}
+              gender={userDetail.gender}
+              age={userDetail.age}
+              location={userDetail.location}
               
               private_m={private_method[show].label}
             info_m={info_method[show2].label}
