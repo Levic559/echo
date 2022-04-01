@@ -37,8 +37,6 @@ export default function Bookshelf({
       if(res!=undefined){
         setData(res.books)
       }
-      console.log(k, v, p, res, router)
-
   }
 
   const searchBooksInSearchPage = () => {
@@ -78,7 +76,7 @@ export default function Bookshelf({
               </div>
               <div className='Drawer_search'>
                 
-                {(data==undefined ) ? <h4> There is no result.</h4>
+                {(data==undefined || data.length==0) ? <h4> There is no result.</h4>
                 :
                 data.map((o) =>
                   <BookCard key={o._id}
