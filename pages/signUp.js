@@ -25,17 +25,17 @@ export default function Home({
   const [e_warn, setE_Warn] = useState(false)
   const [warn, setWarn] = useState(false)
   const {user,setUser}=useUser()
-  const [iconstate, setIconstate] = useState("eye slash")
+  const [iconstate, setIconstate] = useState("eye")
   const [inputtype, setInputtype] = useState("password")
 const [gendervalue, setGendervalue]= useState("Gender")
 const [age, setAge]= useState("Age Level")
 const onClick =()=>{
-  if(iconstate==="eye slash"){
-setIconstate("eye")
-setInputtype("text")}
-else{
+  if(iconstate==="eye"){
 setIconstate("eye slash")
-setInputtype("password")
+setInputtype("password")}
+else{
+setIconstate("eye")
+setInputtype("text")
 }
 }
   const [register, setRegister] = useState({
