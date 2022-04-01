@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRead} from '@/utils/provider'
 import CommentCard_new from '@/comps/CommentCard_new'
 import { getOneBookHandler } from '@/utils/getData/bookHandler';
-import { addReadBookHandler } from '@/utils/getData/readBookHandler';
+import { addReadBookHandler, getReadBookHandler,deleteReadBookHandler } from '@/utils/getData/readBookHandler';
 
 
 const book_comments = [
@@ -63,7 +63,7 @@ export default function BooksID() {
   })
 
   // console.log(id)
-
+  
   useEffect(()=>{
 
     if(user == null) return router.push('/')
@@ -78,31 +78,60 @@ export default function BooksID() {
     getBook()
 
   },[])
+  useEffect(()=>{
+    if(user == null) return router.push('/')
+
+    const TK = user.accessTk
+    const getReadList = async () => {
+        const res = await getReadBookHandler(TK)
+        const result = res.readbooks.readbooks
+        let arr = []
+        
+        for(let i=0; i<result.length; i++){
+          arr.push(result[i].bookID)
+        }
+
+        setReadlist(arr)
+        
+    }
+
+    getReadList()
+    if(readlist.some(list=>list._id===id)){
+      setBookIcon('bookmark')
+    }else{
+      setBookIcon('bookmark outline')
+    }
+  }, [])
+
 
   const editClick = () => {
     setShowNewComment(true)
   }
 
+
+
   const readlistHandler = async () => {
-      const TK = user.accessTk
-      const bookArray = [data._id]
-      const res = await addReadBookHandler(TK, bookArray)
-      console.log(res)
+     
       if (bookIcon =='bookmark outline') {
-        setBookIcon('bookmark')}
+        setBookIcon('bookmark')
+        const TK = user.accessTk
+        const bookArray = [data._id]
+        const res = await addReadBookHandler(TK, bookArray)
+        console.log(res)
+      }
         else  {
-          setBookIcon('bookmark outline')}
+          setBookIcon('bookmark outline')
+          const TK = user.accessTk
+          const bookArray = [data._id]
+          const res = await deleteReadBookHandler(TK, bookArray)
+          console.log(res)
+          console.log(bookArray)
+        
+        }
   }
 
-  useEffect(()=>{
-    if (id) {
-      if(Object.keys(readlist).includes(id)){
-        setBookIcon('bookmark')
-      }else{
-        setBookIcon('bookmark outline')
-      }
-     }
-  },[id])
+
+
 
   // useEffect(() => {
   //   if (id) {

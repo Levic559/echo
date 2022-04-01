@@ -17,7 +17,7 @@ export default function Home({
   const { user, setUser } = useUser();
   const [e_warn, setE_Warn] = useState(false)
   const [warn, setWarn] = useState(false)
-  const [iconstate, setIconstate] = useState("eye slash")
+  const [iconstate, setIconstate] = useState("eye")
   const [inputtype, setInputtype] = useState("password")
   const [loginData, setLoginData] = useState({email: '', password:''})
   const router = useRouter();
@@ -30,12 +30,12 @@ export default function Home({
       router.push("/bookShelf")
   }
 const onClick =()=>{
-  if(iconstate==="eye slash"){
-setIconstate("eye")
-setInputtype("text")}
-else{
+  if(iconstate==="eye"){
 setIconstate("eye slash")
-setInputtype("password")
+setInputtype("password")}
+else{
+setIconstate("eye")
+setInputtype("text")
 }
 }
   return(<div>
