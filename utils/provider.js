@@ -32,7 +32,11 @@ const initialStates = {
     myclublist:[],
     setMyClublist:()=>{},
     clubreadlist:{},
-    setClubreadlist:()=>{}
+    setClubreadlist:()=>{},
+    searchKey:'title',
+    setSearchKey: ()=>{},
+    searchValue: '',
+    setSearchValue: ()=>{},
 }
 
 const MyContext = createContext(initialStates);
@@ -54,6 +58,8 @@ export default function AppProvider({children}){
     const [clublist,setClublist]=useState(initialStates.clublist)
     const [myclublist,setMyClublist]=useState(initialStates.myclublist)
     const [clubreadlist,setClubreadlist]=useState(initialStates.clubreadlist)
+    const [searchKey, setSearchKey] = useState(initialStates.searchKey)
+    const [searchValue, setSearchValue] = useState(initialStates.searchValue)
 
     // console.log("readlist",readlist)
     // console.log("user",user)
@@ -67,7 +73,7 @@ export default function AppProvider({children}){
     return <MyContext.Provider value={{theme,setTheme, order,setOrder,readlist,setReadlist,
     user,setUser,show,setShow,status,setStatus,show2,setShow2,show3,setShow3,show4,setShow4
     ,show5,setShow5,show6,setShow6,favlist,setFavlist,clublist,setClublist,clubreadlist,setClubreadlist,
-    myclublist,setMyClublist,
+    myclublist,setMyClublist, searchKey, setSearchKey, searchValue, setSearchValue,
     }}>
     <style jsx global>{`
     body{
@@ -153,4 +159,14 @@ export function useClubreadlist(){
     const {clubreadlist,setClubreadlist} = useContext(MyContext)
 
     return {clubreadlist,setClubreadlist}
+}
+
+export function useSearchKey(){
+    const { searchKey, setSearchKey} = useContext(MyContext)
+    return { searchKey, setSearchKey}
+}
+
+export function useSearchValue(){
+    const { searchValue, setSearchValue} = useContext(MyContext)
+    return { searchValue, setSearchValue}
 }

@@ -6,125 +6,45 @@ import { useState, useEffect } from 'react'
 import Nav from '@/comps/Nav'
 import BookCard from '@/comps/BookCard'
 import { comp_theme, text_theme ,order_method} from '../../utils/variables'
-import { useTheme,useUser,useOrder } from '../../utils/provider'
-const filter = [
-  { label: 'BookTitle' },
-  { label: 'Author' },
-  { label: 'ISBN' },
-  { label: 'Year_Publish' }
-];
-let timer = null;
+import { useTheme,useUser,useOrder, useSearchKey, useSearchValue } from '../../utils/provider'
+import { searchBookHandler } from '@/utils/getData/bookHandler';
+
+
 export default function Bookshelf({
 
 }) {
   const {order} = useOrder();
-  const [value, setValue] = useState(filter[0]);
   const { theme } = useTheme();
+  const { searchKey, setSearchKey} = useSearchKey()
+  const { searchValue, setSearchValue} = useSearchValue()
   const { user } = useUser();
   const router = useRouter();
   const [data, setData] = useState([]);
   const [publish,setPublish]=useState(false)
+  const [page, setPage] = useState(1)
 
-  const searchTitle = async (txt) => {
-    console.log(txt)
-    if (timer) {
-      clearTimeout(timer);
-      timer = null
-    }
-    if (timer===null){
-      timer= setTimeout(async()=>{
-        console.log(value)
-        console.log("async call!!!")
-        const res = await ax.get("/api/books_search",{
-          params:{
-          txt:txt,
-           sort_type:order_method[order]?.label,
-          pub_year:publish,
-          
-          }
-        })
-        console.log(res.data);
-        setData(res.data);
-        timer=null;
-      },1500)
-    }
-  }
-  const searchAuthor = async (people) => {
-    console.log(people)
-    if (timer) {
-      clearTimeout(timer);
-      timer = null
-    }
-    if (timer===null){
-      timer= setTimeout(async()=>{
-        console.log(value)
-        console.log("async call!!!")
-        const res = await ax.get("/api/books_search",{
-          params:{
-            people:people,
-           sort_type:order_method[order]?.label,
-           pub_year:publish,
-          
-          }
-        })
+  useEffect(()=>{
 
-        console.log(res.data);
-        setData(res.data);
-        timer=null;
-      },1500)
-    }
+    if(user == null) return router.push('/')
+
+    searchBooks(searchKey, searchValue, page)
+
+  },[])
+
+  const searchBooks = async (k,v,p) => {
+      const TK = user.accessTk
+      const res = await searchBookHandler(TK, k, v, p)
+      if(res!=undefined){
+        setData(res.books)
+      }
+      console.log(k, v, p, res, router)
+
   }
-  const searchPublishYear = async (year) => {
-    console.log(year)
-    if (timer) {
-      clearTimeout(timer);
-      timer = null
-    }
-    if (timer===null){
-      timer= setTimeout(async()=>{
-        console.log(value)
-        console.log("async call!!!")
-        const res = await ax.get("/api/books_search",{
-          params:{
-            year:year,
-           sort_type:order_method[order]?.label,
-           pub_year:publish,
-          
-          }
-        })
-        console.log(res.data);
-        setData(res.data);
-        timer=null;
-      },1500)
-    }
+
+  const searchBooksInSearchPage = () => {
+      searchBooks(searchKey, searchValue, page)
   }
-  const searchISBN = async (num) => {
-    console.log(num)
-    if (timer) {
-      clearTimeout(timer);
-      timer = null
-    }
-    if (timer===null){
-      timer= setTimeout(async()=>{
-        console.log(value)
-        console.log("async call!!!")
-        const res = await ax.get("/api/books_search",{
-          params:{
-            num:num,
-           sort_type:order_method[order]?.label,
-           pub_year:publish,
-          
-          }
-        })
-        console.log(res.data);
-        setData(res.data);
-        timer=null;
-      },1500)
-    }
-  }
-  const OffSort=()=>{
-    setPublish(!publish)
-  }
+
   return <div>
     <Head>
       <title>bookShelf</title>
@@ -133,54 +53,11 @@ export default function Bookshelf({
     </Head>
     <div className='B_Wrapper'>
       <div className='B_Container' >
-      
+
         <div className='B_Nav'>
-          {value.label=="Author"?
-          <Nav 
-          users={user}
-          onChange={(e) => searchAuthor(e.target.value)}
-          options={filter} 
-          placeholder="Search for a author"
-          value={value}
-          onValueChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          /> : null}
-          {value.label=="ISBN"?
-          <Nav 
-          users={user}
-          onChange={(e) => searchISBN(e.target.value)}
-          options={filter} 
-          placeholder="Search for an ISBN"
-          value={value}
-          onValueChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          /> : null}
-          {value.label=="BookTitle"?
-          
-          <Nav 
-          users={user}
-          onChange={(e) => searchTitle(e.target.value)}
-          options={filter} 
-          placeholder="Search for a  booktitle"
-          value={value}
-          onValueChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          /> :null}
-          {value.label=="Year_Publish"?
-          <Nav 
-          users={user}
-          onChange={(e) => searchPublishYear(e.target.value)}
-          options={filter} 
-          placeholder="Search for YearPublish"
-          value={value}
-          onValueChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          /> :null}
+          <Nav onSubmitSearch={searchBooksInSearchPage}/>
         </div>
+
         <div className='B_Content' >
           <div className='Side_Bar'>
             <div className='Pannel' style={{
@@ -201,39 +78,32 @@ export default function Bookshelf({
               </div>
               <div className='Drawer_search'>
                 
-                {(data.length == []) ? <h4> There is no result.</h4>:
-               ( data.map((o, i) =>
-                  <BookCard key={i}
+                {(data==undefined ) ? <h4> There is no result.</h4>
+                :
+                data.map((o) =>
+                  <BookCard key={o._id}
                     onClick={() => router.push(`/bookShelf/${o._id}`)}
                     src={o.image_s}
                     title={o.title.substr(0, 20) + "..."}
-                    BookAuthor={o.author}
+                    BookAuthor={o.authors}
                     YearOfPublication={o.pub_year}
                   />
-                )) 
+                ) 
               
               }
 
               </div>
               {/* <MyButton onClick={()=>GetBooks()}>1</MyButton> */}
             </div>
-          
-
-
-            
 
           </div>
 
         </div>
-
-
-
 
         <Footer />
 
       </div>
     </div>
   </div>
-
 
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { header_theme, text_theme } from '../utils/variables'
-import { useTheme } from '../utils/provider'
+import { useTheme, useSearchKey, useSearchValue } from '../utils/provider'
 import { Router } from "next/router";
 import { useRouter } from "next/router";
 import { Input } from 'semantic-ui-react'
@@ -17,21 +17,16 @@ const Nav = ({
     onChange=()=>{},
     onClick=()=>{},
     options,
-    value,
-    onValueChange=()=>{},
-    placeholder,
- 
+    filterValue,
+    onFilterChange=()=>{},
+    placeholder='Search...',
+    onSubmitSearch=()=>{},
 }) => {
 
     const { theme } = useTheme();
+    const { searchKey, setSearchKey} = useSearchKey()
+    const { searchValue, setSearchValue} = useSearchValue()
     const router = useRouter()
-    const filter = [
-        { label: 'BookTitle' },
-        { label: 'Author' },
-        { label: 'ISBN' },
-        { label: 'Year_Publish' }
-
-      ];
 
       const DropMenu = () => (
         <div>
@@ -57,19 +52,25 @@ const Nav = ({
             <div className="navLogoCon  " onClick={() => router.push("/bookShelf")}>
                 <NavLogo className="lightColor "  />
             </div>
+
             <div className="navInputCon">
-                <input className="input" placeholder={placeholder} onChange={onChange} onClick={onClick} />
-                <Autocomplete
-                value={value}
-                onChange={onValueChange}
-                    disablePortal
-                    id="combo-box-demo"
-                    options={filter}
-                    sx={{ width: 165, background: "#cad2c5", borderRadius: 1.5}}
-                    renderInput={(params) => <TextField {...params} label="filter" /> }
-                    
-                />
+
+                <input className="input" placeholder={placeholder} onChange={(e)=>setSearchValue(e.target.value)} value={searchValue}/>
+
+                <select value={searchKey} onChange={e=>setSearchKey(e.target.value)}>
+                  <option value='title'>BookTitle</option>
+                  <option value='authors'>Authors</option>
+                  <option value='isbn'>ISBN</option>
+                </select>
+
+                { router.pathname == '/bookShelf/search' ?
+                  <button onClick={onSubmitSearch}>Search</button>
+                  :
+                  <button onClick={onClick}>Search</button>
+                }
+                
             </div>
+
             <div className="navUsers " style={{color:text_theme[theme].title}}>
                 Hello~ {users}
             </div>

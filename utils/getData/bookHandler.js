@@ -38,3 +38,25 @@ export const getOneBookHandler = async (tk, bkid) => {
       console.log(err.message)
     }
 }
+
+export const searchBookHandler = async (tk,k,v,p) => {
+    const URL = process.env.BASE_URL + "/books/search"
+
+    try{
+        const res = await ax.get(URL,{
+          headers: {
+            "Authorization": `Bearer ${tk}`
+          },
+          params: {
+             key: k,
+             value: v,
+             page: p
+          }
+        })
+
+        return res.data
+
+    }catch(err){
+        console.log(err.message)
+    }
+}
