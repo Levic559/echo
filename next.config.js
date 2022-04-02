@@ -5,7 +5,7 @@ module.exports = {
   },
   env: {
     BASE_URL:"https://server.neverstop.click",
-    LOCAL_URL:"http://localhost:3500",
+    LOCAL_URL:"http://localhost:3030",
     SOCKET_URL:"https://echo-clubchat.herokuapp.com",
   }
 }

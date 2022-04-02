@@ -39,7 +39,8 @@ export default function ClubsID() {
 
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
 
-  
+  console.log(user, chatUsers)
+
   useEffect(()=>{
 
       if(user == null) return router.push('/')
@@ -67,10 +68,13 @@ export default function ClubsID() {
   
   
   const joinChat = async () => {
-      const username = user.username
-      const URL = process.env.SOCKET_URL
+      const joinUser = user
+      const joinName = await joinUser.username
 
-      const socket = io(URL, {auth: {tk: username }})
+      const URL = process.env.SOCKET_URL
+      // const URL = process.env.LOCAL_URL
+
+      const socket = io(URL, {auth: {tk: joinName }})
 
       socket.on("connect", ()=> {
           console.log(`Welcome user: ${socket.id}`)
@@ -93,6 +97,7 @@ export default function ClubsID() {
   }
 
   const exitChat = async () => {
+     mySocket.close()
      setMySocket(null)
      setInRoom(false)
   }
@@ -254,7 +259,7 @@ export default function ClubsID() {
               </div>
               <div className='content'>
 
-                {chats!=undefined? 
+                {inRoom? 
                   chats.map((c, i)=>(
                     <div key={i}>
                       {c.user==user.username?
