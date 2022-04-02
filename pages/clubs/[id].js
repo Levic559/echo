@@ -7,7 +7,6 @@ import ClubsCom from '@/comps/ClubsCom';
 import Nav from '@/comps/Nav'
 import { comp_theme, order_method, text_theme } from '../../utils/variables'
 import { useTheme,useClublist, useUser,useMyClublist } from '../../utils/provider'
-import { v4 as uuidv4 } from 'uuid';
 import { useRead, useIstatus } from '@/utils/provider'
 import FriendPic from '@/comps/FriendPic';
 import Button from '@mui/material/Button';
@@ -19,11 +18,6 @@ import { getOneClub } from '@/utils/getData/clubHandler';
 import ReadListCom from '@/comps/ReadListCom';
 
 
-const memberList = [{
-  "_id": "member1",
-  "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-},
-]
 
 export default function ClubsID() {
   const router = useRouter();
@@ -42,12 +36,6 @@ export default function ClubsID() {
   const [inRoom, setInRoom] = useState(false)
   const [txt, setTxt] = useState()
   const [clubBookList, setClubBookList] = useState([])
-  const [post, setPost] = useState([])
-  const [newcomment, setNewComment] = useState({
-    comment: ""
-    // usersrc: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
-    // username: "Alex"
-    })
 
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
 
@@ -79,8 +67,9 @@ export default function ClubsID() {
   },[])
 
   const joinChat = async () => {
+      const URL = process.env.SOCKET_URL
 
-      const socket = io("https://echo-clubchat.herokuapp.com", {auth: {tk: username }})
+      const socket = io(URL, {auth: {tk: username }})
 
       socket.on("connect", ()=> {
           console.log(`Welcome user: ${socket.id}`)
@@ -113,30 +102,6 @@ export default function ClubsID() {
     }
   }
 
-
-  // useEffect(() => {
-  //   if (id) {
-  //     const GetBook = async () => {
-  //       const res = await ax.get("/api/clubs", {
-  //         params: {
-  //           _id: id,
-  //         }
-  //       });
-  //       // console.log(res.data)
-  //       if (res.data[0]) {
-  //         setDate(res.data[0])
-  //       }
-  //     }
-  //     GetBook()
-  //   }
-  //   // const setHeart= ()=>{
-  //   //   if(Object.keys(readlist).includes("195153448")===true){
-  //   //     setHeartIcon('heart')
-  //   //   }
-  //   // }
-  //   // setHeart()
-  // }, [id])
-
   const heartClick = (value, obj) => {
     if (heartIcon == 'heart outline') {
       setHeartIcon('heart')
@@ -160,11 +125,6 @@ export default function ClubsID() {
     }
 
   }
-  const postcomment = () => {
-    var posts=post.concat([newcomment])
-    setPost(posts)
-  }
-  // console.log(newcomment)
 
   return <div>
     <Head>
@@ -292,25 +252,7 @@ export default function ClubsID() {
 
               </div>
               <div className='content'>
-                {/* <Message    />
-                <Message    />
-                <Message    />
-                <Message_own/>
 
-                <Message    />
-
-                {post ? post.map((o,i)=>{
-                  return <Message_own 
-                  
-                  key={i}
-                  message={o.comment}               
-                  
-                  />
-
-                }):null } */}
-                <div>
-                  
-                </div>
                 {chats!=undefined? 
                   chats.map((c, i)=>(
                     <div key={i}>

@@ -32,8 +32,7 @@ const Nav = ({
     { "key": 'Authors', "text": 'Authors', "value": 'authors' },
     { "key": 'ISBN', "text": 'ISBN', "value": 'isbn' },
   ]
-console.log(searchKey)
-console.log(searchValue)
+
 const handleDropDownSelect = (event, data) => {
   setSearchKey(data.value);
  };
