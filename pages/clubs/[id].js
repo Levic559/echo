@@ -40,7 +40,6 @@ export default function ClubsID() {
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
 
   
-  
   useEffect(()=>{
 
       if(user == null) return router.push('/')
@@ -65,10 +64,11 @@ export default function ClubsID() {
       getClub()
 
   },[])
-
+  
+  
   const joinChat = async () => {
-      const URL = process.env.SOCKET_URL
       const username = user.username
+      const URL = process.env.SOCKET_URL
 
       const socket = io(URL, {auth: {tk: username }})
 
@@ -257,7 +257,7 @@ export default function ClubsID() {
                 {chats!=undefined? 
                   chats.map((c, i)=>(
                     <div key={i}>
-                      {c.user==username?
+                      {c.user==user.username?
                         <Message_own member={c.user} message={c.text}/>
                         :
                         <Message member={c.user} message={c.text}/>
