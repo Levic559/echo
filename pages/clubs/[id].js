@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import ax from 'axios';
+import { io } from 'socket.io-client';
 import { useRouter } from 'next/router';
 import Footer from '@/comps/Footer';
 import { useEffect, useState, useContext } from 'react'
@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import { Icon } from 'semantic-ui-react'
 import Message from '@/comps/Message';
 import Message_own from '@/comps/Message_own';
-import { ConstructionOutlined } from '@mui/icons-material';
+import { ConstructionOutlined, ExitToApp } from '@mui/icons-material';
 import { getOneClub } from '@/utils/getData/clubHandler';
 import ReadListCom from '@/comps/ReadListCom';
 
@@ -33,9 +33,15 @@ export default function ClubsID() {
   const { user } = useUser()
   const { clublist, setClublist } = useClublist();
   const { myclublist, setMyClublist } = useMyClublist();
-  const { readlist, setReadlist } = useRead([])
   const [heartIcon, setHeartIcon] = useState()
+  const [mySocket, setMySocket] = useState()
   const [member, setMember] = useState()
+  const [chatUsers, setChatUsers] = useState([])
+  const [chats, setChats] = useState([{user: 'Host', text: 'Welcome!' }])
+  const [room, setRoom] = useState()
+  const [inRoom, setInRoom] = useState(false)
+  const [txt, setTxt] = useState()
+  const [clubBookList, setClubBookList] = useState([])
   const [post, setPost] = useState([])
   const [newcomment, setNewComment] = useState({
     comment: ""
@@ -45,17 +51,20 @@ export default function ClubsID() {
 
   const default_member_img = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
 
+  const username = user.username
+  
   useEffect(()=>{
 
       if(user == null) return router.push('/')
 
       const getClub = async (p) => {
-        const TK = user. accessTk
+        const TK = user.accessTk
         const clubID = id
         const res = await getOneClub(TK, clubID)
         setData(res.club)
         setMember(res.club.members)
-        setReadlist(res.club.bookList)
+        setClubBookList(res.club.bookList)
+        setRoom(res.club.title)
       }
 
       if (id) {
@@ -64,10 +73,45 @@ export default function ClubsID() {
         }else{
           setHeartIcon('heart outline')
         }
-        getClub()
       }
+      getClub()
 
-  },[id])
+  },[])
+
+  const joinChat = async () => {
+
+      const socket = io("https://echo-clubchat.herokuapp.com", {auth: {tk: username }})
+
+      socket.on("connect", ()=> {
+          console.log(`Welcome user: ${socket.id}`)
+          setInRoom(true)
+      })
+
+      socket.emit('join_room', room)
+
+      socket.on("conn_id", (u)=>{
+          setChatUsers(u)
+      })
+
+      socket.on('joined', (u, txt)=>{
+          setChats((pre)=>([
+              ...pre,
+              {user: u.name, text: txt }
+          ]))
+      })
+      setMySocket(socket)
+  }
+
+  const exitChat = async () => {
+     setMySocket(null)
+     setInRoom(false)
+  }
+
+  const sendTxt = async () => {
+    if(mySocket != null){
+        mySocket.emit('user_ready', txt, room)
+    }
+  }
 
 
   // useEffect(() => {
@@ -121,6 +165,7 @@ export default function ClubsID() {
     setPost(posts)
   }
   // console.log(newcomment)
+
   return <div>
     <Head>
       <title>Echo</title>
@@ -178,8 +223,8 @@ export default function ClubsID() {
               }}>
                 <div className='title'>Top Ten</div>
                 <div className='content'>
-                  { readlist !== undefined || readlist.length!==[]? 
-                    readlist.slice(0,10).map((li)=>(
+                  { clubBookList !== undefined || clubBookList.length!==[]? 
+                    clubBookList.slice(0,10).map((li)=>(
                         <ReadListCom 
                         key={li.bookID._id}
                         text={li.bookID.title}
@@ -200,8 +245,8 @@ export default function ClubsID() {
               }}>
                 <div className='title'>Recommendation list</div>
                 <div className='content'>
-                  { readlist != undefined? 
-                    readlist.map((li)=>(
+                  { clubBookList != undefined? 
+                    clubBookList.map((li)=>(
                       <ReadListCom 
                       key={li.bookID._id}
                       text={li.bookID.title}
@@ -221,34 +266,77 @@ export default function ClubsID() {
                 backgroundColor: comp_theme[theme].label2,
                 color: text_theme[theme].label
               }}>
-
-              <div className='title'>Chat Channel</div>
-              <div className='content'>
-              <Message    />
-              <Message    />
-              <Message    />
-              <Message_own/>
-
-              <Message    />
-              {post ? post.map((o,i)=>{
-                return <Message_own 
+              
+              <div style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
+                <div className='title'>Chat Channel</div>
                 
-                key={i}
-                message={o.comment}               
+                <div>
+                  {inRoom?
+                    `IN`
+                    :
+                    `OUT`
+                  }
+                </div>
                 
-                />
+                <button 
+                    style={{width: 60, height: 30, marginTop: 15, marginRight: 15}} 
+                    onClick={joinChat}
+                >Join
+                </button>
+                <button 
+                    style={{width: 60, height: 30, marginTop: 15, marginRight: 15}} 
+                    onClick={exitChat}
+                >Exit
+                </button>
 
-              }):null }
+
               </div>
+              <div className='content'>
+                {/* <Message    />
+                <Message    />
+                <Message    />
+                <Message_own/>
+
+                <Message    />
+
+                {post ? post.map((o,i)=>{
+                  return <Message_own 
+                  
+                  key={i}
+                  message={o.comment}               
+                  
+                  />
+
+                }):null } */}
+                <div>
+                  
+                </div>
+                {chats!=undefined? 
+                  chats.map((c, i)=>(
+                    <div key={i}>
+                      {c.user==username?
+                        <Message_own member={c.user} message={c.text}/>
+                        :
+                        <Message member={c.user} message={c.text}/>
+                      }
+                    </div>
+                  ))
+                  :
+                  <div>Loading...</div>
+                }
+
+              </div>
+
               <div className='input'>
-                <input  onChange={e => setNewComment({...newcomment, comment: e.target.value })}/>
+                <input  onChange={e => setTxt(e.target.value)}/>
                 <Button variant="contained"
                   style={{ background: text_theme[theme].title, color: text_theme[theme].label }} 
-                onClick={postcomment}
+                onClick={sendTxt}
                 >
                   <Icon name='paper plane' size='large' />
                 </Button>
               </div>
+
             </div>
           </div>
         </div>

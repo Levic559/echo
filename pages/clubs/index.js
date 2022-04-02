@@ -20,7 +20,7 @@ export default function Bookshelf({
   const [clubs, setClubs] = useState([]);
   const [books2, setbooks2] = useState([]);
   const [books3, setbooks3] = useState([]);
-console.log(user)
+
   useEffect(() => {
       if(user == null) return router.push('/')
       
