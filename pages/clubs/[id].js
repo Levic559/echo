@@ -152,7 +152,7 @@ export default function ClubsID() {
               <ClubsCom
                 // src={data.image}
                 title={data.title}
-                host={data.host.username}
+                host={data.host?.username || " "}
                 members={data.member_count}
                 create_date={data.create_date}
                 // Publisher={data.publisher}
@@ -170,9 +170,9 @@ export default function ClubsID() {
               <div className='title'> Members</div>
 
               <div className='membersContent'>
-                { member != undefined?
+                { member != undefined && member.length !==0 ?
                   member.map((o) =>
-                    <FriendPic width={35} height={35} key={o.memberID._id} src={default_member_img} name={o.memberID.username}/>
+                    <FriendPic width={35} height={35} key={o.memberID?._id} src={default_member_img} name={o.memberID?.username || " "}/>
                   )
                   :
                   null
@@ -189,7 +189,7 @@ export default function ClubsID() {
               }}>
                 <div className='title'>Top Ten</div>
                 <div className='content'>
-                  { clubBookList !== undefined || clubBookList.length!==[]? 
+                  { clubBookList !== undefined || clubBookList.length!==0? 
                     clubBookList.slice(0,10).map((li)=>(
                         <ReadListCom 
                         key={li.bookID._id}

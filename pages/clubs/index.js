@@ -74,7 +74,7 @@ export default function Bookshelf({
                     // src={IMG_URL+o.image_s}
                     create_date={o.create_date}
                     title={o.title}
-                    host={o.host.username}
+                    host={o.host?.username || " "}
                     // members={o.member_count}
                   />
                 ): null}
