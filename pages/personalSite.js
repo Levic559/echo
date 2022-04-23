@@ -14,7 +14,7 @@ import ReadListCom from '@/comps/ReadListCom';
 import { useDrop } from "react-dnd";
 import axios from 'axios';
 import { getReadBookHandler, updateReadBookHandler } from '@/utils/getData/readBookHandler';
-import { getFavoBookHandler, updateFavoBookHandler } from '@/utils/getData/favoBookHandler';
+import { getFavoBookHandler, addFavoBookHandler } from '@/utils/getData/favoBookHandler';
 import { Button,Card } from 'semantic-ui-react'
 
 
@@ -81,11 +81,13 @@ export default function Home({
     }
     const getFavList = async () => {
         const res = await getFavoBookHandler(TK)
-        const result = res.favobooks.favobooks
+        const result = res?.favobooks?.favobooks || null
         let arr = []
         
-        for(let i=0; i<result.length; i++){
-          arr.push(result[i].bookID)
+        if(result){
+          for(let i=0; i<result.length; i++){
+            arr.push(result[i].bookID)
+          }
         }
 
         setFavlist(arr)
@@ -123,7 +125,7 @@ export default function Home({
       setFavlist((pre)=>[...pre, item.obj])
     },
     collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
+      isOver: !monitor.isOver(),
     }),}))
 
     // const addBookToFav = (_id) => {
@@ -137,7 +139,7 @@ export default function Home({
     accept: "book",
     drop2: (item) => addBookToClub(item),
     collect: (monitor) => ({
-      isOver2: !!monitor.isOver(),
+      isOver2: !monitor.isOver(),
     }),}))
 
   const addBookToClub = (_id) => {
@@ -158,10 +160,10 @@ export default function Home({
     for(let i=0; i<readlist.length; i++){
       readArr.push(readlist[i]._id)
     }
+    console.log(favoArr, readArr)
     const resReadlist = await updateReadBookHandler(TK, readArr)
-    const resFavolist = await updateFavoBookHandler(TK, favoArr)
+    const resFavolist = await addFavoBookHandler(TK, favoArr)
 
-    console.log(resReadlist.message, resFavolist.message)
   }
   
   return <>
